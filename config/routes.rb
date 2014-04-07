@@ -1,4 +1,7 @@
 SWRpg::Application.routes.draw do
+  get "gm/index"
+  get "player/index"
+  get "game/index"
   devise_for :users
   get "welcome/index"
   # The priority is based upon order of creation: first created -> highest priority.
