@@ -1,14 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="swrpg" ng-controller="homeController as homeCtrl">
 <head>
-  <title>SWRpg</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Rubywebs.net">
+  <meta name="description" content={{metadescription}}>
+  <meta name="fragment" content="!">
+  <title>{{display_title}}</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body id="{{body_id}}">
 
 <%= yield %>
-
-</body>
-</html>

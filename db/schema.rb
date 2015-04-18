@@ -13,7 +13,7 @@
 
 ActiveRecord::Schema.define(version: 20140406170735) do
 
-  create_table "user_infos", force: true do |t|
+  create_table "user_infos", force: :cascade do |t|
     t.string   "name"
     t.integer  "user_id"
     t.datetime "created_at"
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 20140406170735) do
 
   add_index "user_infos", ["user_id"], name: "index_user_infos_on_user_id"
 
-  create_table "users", force: true do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
