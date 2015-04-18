@@ -1,0 +1,14 @@
+<div id="player_signin" ng-hide="signed_in">
+	<h2 class="text-center">Please sign in</h2>
+	<form id="pc-sign-in">
+		<div class="form-group">
+			<label for="user">User Name</label>
+			<input class="form-control" type="text" name="user" ng-model="sign_in.user" placeholder="User Name">
+		</div>
+		<div class="form-group">
+			<label for="password">Password</label>
+			<input class="form-control" type="password" name="password" ng-model="sign_in.password" placeholder="Password">
+		</div>
+		<button type="submit" class="btn btn-default" ng-click="pcCtrl.sign_in()">Sign In</button>
+	</form>
+</div>
