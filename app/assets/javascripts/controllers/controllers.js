@@ -13,6 +13,7 @@ appControllers.controller('playerController', ['$scope', 'playerFactory', functi
 
 	//Is signed in?
 	this.signed_in = false;
+	$scope.signed_in = false;
 	//Player info from sign_in
 	this.player = null;
 
@@ -24,7 +25,8 @@ appControllers.controller('playerController', ['$scope', 'playerFactory', functi
 			function(result)
 			{
 				this.player = result;
-				this.signed_in = true;
+				console.log(result);
+				$scope.signed_in = true;
 			});
 
 		return;

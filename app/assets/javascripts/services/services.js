@@ -26,13 +26,13 @@ appServices.factory('playerFactory', ['$resource', '$q', '$http', function($reso
 		//Attempt to save the session
 		player.$save()
 		.then(
-			function(player_session)
+			function(result)
 			{
-				deferred.resolve(player_session.data);
+				deferred.resolve(result);
 			},
-			function(player_session)
+			function(result)
 			{
-				deferred.reject(player_session);
+				deferred.reject(result);
 			});
 
 		//Return the results

@@ -7,7 +7,7 @@ class Users::SessionsController < Devise::SessionsController
 
             render status: :ok, json: resource.player
           else
-            render status: :forbidden, nothing: true
+            render status: :forbidden, string: "Error" #nothing: true
           end
         else
           render status: :forbidden, nothing: true

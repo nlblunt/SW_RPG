@@ -13,17 +13,18 @@
 
 ActiveRecord::Schema.define(version: 20140406170735) do
 
-  create_table "user_infos", force: :cascade do |t|
+  create_table "players", force: :cascade do |t|
     t.string   "name"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "user_infos", ["user_id"], name: "index_user_infos_on_user_id"
+  add_index "players", ["user_id"], name: "index_players_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
+    t.string   "username",               default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -37,7 +38,7 @@ ActiveRecord::Schema.define(version: 20140406170735) do
     t.datetime "updated_at"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["username"], name: "index_users_on_username", unique: true
 
 end
