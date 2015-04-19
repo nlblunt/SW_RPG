@@ -8,6 +8,7 @@
 		'ui.bootstrap',
 		'appControllers',
 		'appDirectives',
+		'appServices'
 	]);
 
 	swrpg.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider)
