@@ -12,10 +12,33 @@ div#enter
 	text-align: center;
 }
 
+div#player
+{
+	min-width: 320px;
+}
+
 form#pc-sign-in
 {
 	width: 40%;
 	min-width: 300px;
 	margin-left: auto;
 	margin-right: auto;
+}
+
+form#editplayer
+{
+	width: 40%;
+	min-width: 300px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div#characterselect
+{
+
+}
+
+div#characterselect img
+{
+	width: 100%;
 }

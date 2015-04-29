@@ -11,7 +11,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140406170735) do
+ActiveRecord::Schema.define(version: 20150429012135) do
+
+  create_table "pcs", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "brawn"
+    t.integer  "agility"
+    t.integer  "intelect"
+    t.integer  "cunning"
+    t.integer  "willpower"
+    t.integer  "presence"
+    t.integer  "wounds_thresh"
+    t.integer  "wounds_current"
+    t.integer  "strain_thresh"
+    t.integer  "strain_current"
+    t.integer  "critical"
+    t.integer  "soak"
+    t.integer  "player_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  create_table "pcs_skills", id: false, force: :cascade do |t|
+    t.integer "pc_id"
+    t.integer "skill_id"
+  end
 
   create_table "players", force: :cascade do |t|
     t.string   "name"
@@ -21,6 +45,13 @@ ActiveRecord::Schema.define(version: 20140406170735) do
   end
 
   add_index "players", ["user_id"], name: "index_players_on_user_id"
+
+  create_table "skills", force: :cascade do |t|
+    t.string   "name"
+    t.string   "attrib"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

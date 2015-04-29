@@ -15,3 +15,27 @@ app.directive('pcSignedIn', function()
 		templateUrl: 'html/partials/pcsignedin.html'
 	};
 });
+
+app.directive('characterSelect', function()
+{
+    return{
+        restrict: 'E',
+        templateUrl: 'html/partials/characterselect.html'
+    };
+});
+
+app.directive('editPlayer', function()
+{
+    return{
+        restrict: 'E',
+        templateUrl: 'html/partials/editplayer.html'
+    };
+});
+
+app.directive('characterCreate', function()
+{
+    return{
+        restrict: 'E',
+        templateUrl: 'html/partials/charactercreate.html'
+    };
+});

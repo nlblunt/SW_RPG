@@ -1,0 +1,30 @@
+<div id="editplayer" ng-show="stage == 'editplayer'">
+    
+    <h4 class="text-center">Edit {{player.name}}</h4>
+    
+    <form id="editplayer">
+        <div class="form-group">
+            <label>Username</label>
+            <input class="form-control" type="text" ng-model="player_edit.username" />
+        </div>
+        
+        <div class="form-group">
+            <label>Password</label>
+            <input class="form-control" type="password" ng-model="player_edit.password" />
+        </div>
+        
+        <div class="form-group">
+            <label>Confirm Password</label>
+            <input class="form-control" type="password" ng-model="player_edit.password_confirmation" />
+        </div>
+        
+        <div class="form-group">
+            <label>Player Name</label>
+            <input class="form-control" type="text" ng-model="player_edit.name" />
+        </div>
+        
+        <button class="btn btn-default" ng-click="saveEditPlayer()">Save Player</button>
+        <button class="btn btn-default" ng-click="cancelEditPlayer()">Cancel Edit</button>
+    </form>
+
+</div>

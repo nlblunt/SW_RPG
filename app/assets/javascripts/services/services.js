@@ -14,6 +14,15 @@ appServices.factory('playerFactory', ['$resource', '$q', '$http', function($reso
 		//Custom API to check if user signed in.
 		playerCheck: {method:'GET', url:'/users/player_check'}
 	});
+	
+	
+	//Check to see if player is logged in already
+	self.playerCheck = function()
+	{
+		//Return player info if signed in
+		return playerSession.playerCheck();
+	};
+	
 
 	//Player Login
 	self.playerLogin = function(login)
@@ -28,6 +37,7 @@ appServices.factory('playerFactory', ['$resource', '$q', '$http', function($reso
 		.then(
 			function(result)
 			{
+				console.log(result);
 				deferred.resolve(result);
 			},
 			function(result)
@@ -39,5 +49,20 @@ appServices.factory('playerFactory', ['$resource', '$q', '$http', function($reso
 		return deferred.promise;
 	};
 
+	self.playerEdit = function(id, player)
+	{
+		var deferred = $q.defer();
+		
+		//Multi model update so use $http instead of $resource
+		$http.patch('/player/'+ id, {user:{email: player.email, password: player.password, password_confirmation: player.password_confirmation},player:{name: player.name}})
+        .then(function(result)
+        {
+            //returns updated author info
+            deferred.resolve(result.data);
+        });
+        
+        return deferred.promise;
+	}
+	
 	return self;
 }]);
