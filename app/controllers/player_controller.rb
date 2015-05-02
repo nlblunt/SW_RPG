@@ -31,10 +31,16 @@ class PlayerController < ApplicationController
     end
   end
   
-  def create_pc
-    pc = Pc.create(pc_params)
+  def create_pc(player_id)
+    #Create a new PC for the player
+    #pc = Pc.create(pc_params)
+    pc = Pc.create
     
-    pc.initialize
+    #Initials PC
+    pc.init
+    
+    #Assign PC to PLAYER
+    Player.first.pcs << pc
   end
   
   private
@@ -44,6 +50,10 @@ class PlayerController < ApplicationController
   end
   
   def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation)
+    params.require(:user).permit(:email, :username, :password, :password_confirmation)
+  end
+  
+  def pc_params
+    params.require(:pc).permit(:name, :species_id, :career_id)
   end
 end

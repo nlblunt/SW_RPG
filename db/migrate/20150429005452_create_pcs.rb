@@ -16,6 +16,9 @@ class CreatePcs < ActiveRecord::Migration
       t.integer :soak
 
       t.belongs_to :player
+      t.belongs_to :race, index: true
+
+      t.belongs_to :career, index: true
       t.timestamps null: false
     end
   end

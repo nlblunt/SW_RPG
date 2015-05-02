@@ -1,9 +1,11 @@
 SWRpg::Application.routes.draw do
-  get "gm/index"
-  get "player/index"
-  get "game/index"
+
+  resources :player
   get "users/player_check" => "player#player_check"
+  
   devise_for :users, controllers: { sessions: "users/sessions"}
+  
+  
   get "welcome/index"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

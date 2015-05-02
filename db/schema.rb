@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150429012135) do
+ActiveRecord::Schema.define(version: 20150501023350) do
+
+  create_table "careers", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "careers_pcs", id: false, force: :cascade do |t|
+    t.integer "career_id"
+    t.integer "pc_id"
+  end
 
   create_table "pcs", force: :cascade do |t|
     t.string   "name"
@@ -28,9 +39,14 @@ ActiveRecord::Schema.define(version: 20150429012135) do
     t.integer  "critical"
     t.integer  "soak"
     t.integer  "player_id"
+    t.integer  "race_id"
+    t.integer  "career_id"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
   end
+
+  add_index "pcs", ["career_id"], name: "index_pcs_on_career_id"
+  add_index "pcs", ["race_id"], name: "index_pcs_on_race_id"
 
   create_table "pcs_skills", id: false, force: :cascade do |t|
     t.integer "pc_id"
@@ -45,6 +61,21 @@ ActiveRecord::Schema.define(version: 20150429012135) do
   end
 
   add_index "players", ["user_id"], name: "index_players_on_user_id"
+
+  create_table "races", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "brawn"
+    t.integer  "agility"
+    t.integer  "intelect"
+    t.integer  "cunning"
+    t.integer  "willpower"
+    t.integer  "presence"
+    t.integer  "wounds_thresh"
+    t.integer  "strain_thresh"
+    t.integer  "soak"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
 
   create_table "skills", force: :cascade do |t|
     t.string   "name"
