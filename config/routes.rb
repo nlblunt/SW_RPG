@@ -2,6 +2,7 @@ SWRpg::Application.routes.draw do
 
   resources :player
   get "users/player_check" => "player#player_check"
+  post "create_pc" => "player#create_pc"
   
   devise_for :users, controllers: { sessions: "users/sessions"}
   

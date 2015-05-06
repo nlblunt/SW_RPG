@@ -1,4 +1,6 @@
 class PlayerController < ApplicationController
+      before_action :authenticate_user!, only: [:update, :create_pc]
+  
   def index
   end
 
@@ -14,11 +16,16 @@ class PlayerController < ApplicationController
   end
   
   def update
+    #Update User and Player information
+    #params[:id, :user_params(), :player_params()]
+    
     @user = User.find(params[:id])
 		
-		if @user.update(user_params) and @user.player.update(player_params)
+		if @user.update(user_params) and @user.player.update
+		  #If update was valid, render the updated info
 			render json: @user.player
 		else
+		  #Else render status error
 			render status: :error, nothing: true
 		end  
   end
@@ -31,16 +38,25 @@ class PlayerController < ApplicationController
     end
   end
   
-  def create_pc(player_id)
+  def create_pc
     #Create a new PC for the player
-    #pc = Pc.create(pc_params)
-    pc = Pc.create
+    #params[:id, :pc_params(:name, :race_id, :career_id)]
+    
+    pc = Pc.create(pc_params)
     
     #Initials PC
     pc.init
     
-    #Assign PC to PLAYER
-    Player.first.pcs << pc
+    if pc.valid?
+      #PC is valid, assign to player with passed ID
+      @player = Player.find(params[:id])
+      @player.pcs << pc
+      
+      render json: pc
+    else
+      #PC is invalid
+      render status: :error, nothing: true
+    end
   end
   
   private
@@ -54,6 +70,6 @@ class PlayerController < ApplicationController
   end
   
   def pc_params
-    params.require(:pc).permit(:name, :species_id, :career_id)
+    params.require(:pc).permit(:name, :race_id, :career_id)
   end
 end

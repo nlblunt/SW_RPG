@@ -9,8 +9,12 @@ RSpec.describe Pc, type: :model do
          career = FactoryGirl.create(:career)
          FactoryGirl.create(:skill)
          
+         #Set race & class manually ONLY for testing
+         pc.race_id = race.id
+         pc.career_id = career.id
+         
          #Initalize new PC with race.id and career.id
-         pc.init(race.id, career.id)
+         pc.init
          
          #Tests
          expect(pc.race_id).to eq(race.id)

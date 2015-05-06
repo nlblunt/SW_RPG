@@ -7,15 +7,9 @@ class Pc < ActiveRecord::Base
     #Initialize the new PC
     #Setup skill table
     #Sets attributres based on race
-    def init(raceId, careerId)
+    def init
         #Initialize skill table
         self.skills << Skill.all
-        
-        #Set PC race
-        self.race_id = raceId
-        
-        #Set PC career
-        self.career_id = careerId
         
         #Set Attributes from Race
         self.brawn = self.race.brawn
