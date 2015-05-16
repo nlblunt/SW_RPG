@@ -1,5 +1,7 @@
 SWRpg::Application.routes.draw do
 
+  get 'race/index'
+
   resources :player
   get "users/player_check" => "player#player_check"
   post "create_pc" => "player#create_pc"

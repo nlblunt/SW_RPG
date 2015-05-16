@@ -81,6 +81,17 @@ appControllers.controller('playerController', ['$scope', 'playerFactory', functi
 	$scope.newCharacter = function()
 	{
 		$scope.stage = "charactercreate";
+		$scope.character = {};
+
+		//Get list of races
+		playerFactory.getRacesList()
+		.then(function(result)
+		{
+			$scope.races = result;
+			$scope.character.race = $scope.races[0];
+			console.log($scope.character);
+			console.log($scope.races[0]);
+		});
 	};
 	
 	//Cancel create a new character.  Return to character select

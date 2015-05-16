@@ -4,7 +4,7 @@ class CreatePcs < ActiveRecord::Migration
       t.string :name
       t.integer :brawn
       t.integer :agility
-      t.integer :intelect
+      t.integer :intellect
       t.integer :cunning
       t.integer :willpower
       t.integer :presence

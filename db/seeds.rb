@@ -37,6 +37,7 @@ Skill.create(name: "Melee", attrib: "Brawn")
 Skill.create(name: "Ranged - Light", attrib: "Agility")
 Skill.create(name: "Ranged - Heavy", attrib: "Agility")
 
-Race.create(name: "Human", brawn: 2)
+Race.create(name: "Human", agility: 2, brawn: 2, intellect: 2, presence: 2, willpower: 2, cunning: 2)
+Race.create(name: "Wookiee", agility: 1, brawn: 3, intellect: 2, presence: 2, willpower: 2, cunning: 2)
 
 Career.create(name: "Smuggler")

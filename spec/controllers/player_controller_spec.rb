@@ -34,12 +34,14 @@ RSpec.describe PlayerController, type: :controller do
     end
     
     describe "POST create_pc" do
-
+      describe "User Signed In" do
        it "Creates a PC and assigns to player" do
           #Create a player
           player = FactoryGirl.create(:player)
           race = FactoryGirl.create(:race)
           career = FactoryGirl.create(:career)
+          @user = User.create(email: "test@test.com", username: "user", password: "password", password_confirmation: "password")
+          sign_in @user
           
           post :create_pc, {id: player.id, pc:{name: "Test", race_id: race.id, career_id: career.id}}
           
@@ -50,5 +52,23 @@ RSpec.describe PlayerController, type: :controller do
           #Test for return status
           expect(response.status).to eq(200)
        end
+     end
+     describe "User NOT Signed In" do
+        it "Does NOT create a PC and assign it to a player" do
+          #Create a player
+          player = FactoryGirl.create(:player)
+          race = FactoryGirl.create(:race)
+          career = FactoryGirl.create(:career)
+          
+          post :create_pc, {id: player.id, pc:{name: "Test", race_id: race.id, career_id: career.id}}
+          
+          expect(Pc.count).to eq(0)
+          
+          expect(player.pcs.count).to eq(0)
+          
+          #Test for return status
+          expect(response.status).to eq(302)
+        end
+     end
     end
 end

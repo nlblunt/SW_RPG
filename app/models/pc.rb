@@ -14,7 +14,7 @@ class Pc < ActiveRecord::Base
         #Set Attributes from Race
         self.brawn = self.race.brawn
         self.agility = self.race.agility
-        self.intelect = self.race.intelect
+        self.intellect = self.race.intellect
         self.cunning = self.race.cunning
         self.willpower = self.race.willpower
         self.presence = self.race.presence

@@ -22,7 +22,7 @@ RSpec.describe Pc, type: :model do
          
          expect(pc.brawn).to eq(race.brawn)
          expect(pc.agility).to eq(race.agility)
-         expect(pc.intelect).to eq(race.intelect)
+         expect(pc.intellect).to eq(race.intellect)
          expect(pc.cunning).to eq(race.cunning)
          expect(pc.willpower).to eq(race.willpower)
          expect(pc.presence).to eq(race.presence)

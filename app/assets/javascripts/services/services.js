@@ -64,5 +64,18 @@ appServices.factory('playerFactory', ['$resource', '$q', '$http', function($reso
         return deferred.promise;
 	}
 	
+	self.getRacesList = function()
+	{
+		var deferred = $q.defer();
+
+		$http.get('/race/index')
+		.then(function(result)
+		{
+			deferred.resolve(result.data);
+		});
+		
+		return deferred.promise;
+	};
+	
 	return self;
 }]);

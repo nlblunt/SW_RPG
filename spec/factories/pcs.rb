@@ -3,7 +3,7 @@ FactoryGirl.define do
     name "TestChar"
     brawn 0
     agility 0
-    intelect 0
+    intellect 0
     cunning 0
     willpower 0
     presence 0

@@ -10,7 +10,12 @@
         
         <div class="form-group">
             <label>Species</label>
+            <select ng-model="character.race" ng-options="race.name for race in races track by race.id"></select>
+            
             <select ng-model="character.species" class="form-control">
+                <li ng-repeat="race in races">
+                    <option value="{{race.name}}">1</option>
+                </li>
                 <option value="human">Human</option>
                 <option value="wookiee">Wookiee</option>
             </select>
@@ -22,5 +27,7 @@
                 <option value="smuggler">Smuggler</option>
             </select>
         </div>
+
+        {{character}}
     </form>
 </div>
