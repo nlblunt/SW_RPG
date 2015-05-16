@@ -41,3 +41,5 @@ Race.create(name: "Human", agility: 2, brawn: 2, intellect: 2, presence: 2, will
 Race.create(name: "Wookiee", agility: 1, brawn: 3, intellect: 2, presence: 2, willpower: 2, cunning: 2)
 
 Career.create(name: "Smuggler")
+Career.create(name: "Medic")
+Career.create(name: "Bandit")

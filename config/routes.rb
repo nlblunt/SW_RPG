@@ -1,5 +1,7 @@
 SWRpg::Application.routes.draw do
 
+  get 'career/index'
+
   get 'race/index'
 
   resources :player

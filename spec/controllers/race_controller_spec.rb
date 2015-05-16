@@ -10,7 +10,7 @@ RSpec.describe RaceController, type: :controller do
 			FactoryGirl.create(:race)
 			FactoryGirl.create(:race)
 
-			post :index
+			get :index
 
 			expect(assigns(:races).count).to eq(2)
 		end
