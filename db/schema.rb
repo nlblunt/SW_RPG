@@ -24,6 +24,11 @@ ActiveRecord::Schema.define(version: 20150501023350) do
     t.integer "pc_id"
   end
 
+  create_table "careers_skills", id: false, force: :cascade do |t|
+    t.integer "career_id"
+    t.integer "skill_id"
+  end
+
   create_table "pcs", force: :cascade do |t|
     t.string   "name"
     t.integer  "brawn"
@@ -51,6 +56,8 @@ ActiveRecord::Schema.define(version: 20150501023350) do
   create_table "pcs_skills", id: false, force: :cascade do |t|
     t.integer "pc_id"
     t.integer "skill_id"
+    t.integer "rank",     default: 0
+    t.boolean "cskill",   default: false
   end
 
   create_table "players", force: :cascade do |t|

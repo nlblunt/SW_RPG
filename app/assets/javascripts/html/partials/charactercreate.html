@@ -17,6 +17,31 @@
             <label>Career</label>
             <select class="form-control" ng-model="character.career" ng-options="career.name for career in careers track by career.id"></select>
         </div>
-
+        
+        <h2 class="text-center">Character Preview</h2>
+        <table class="table-bordered table table-condensed" id="character-stats-preview">
+            <tr>
+                <td>Brawn</td>
+                <td>{{character.race.brawn}}</td>
+                <td>Agility</td>
+                <td>{{character.race.agility}}</td>
+            </tr>
+            
+            <tr>
+                <td>Intellect</td>
+                <td>{{character.race.intellect}}</td>
+                <td>Presence</td>
+                <td>{{character.race.presence}}</td>
+            </tr>
+            
+            <tr>
+                <td>Willpower</td>
+                <td>{{character.race.willpower}}</td>
+                <td>Cunning</td>
+                <td>{{character.race.cunning}}</td>
+            </tr>
+        </table>
+        
+        <button class="btn btn-default" ng-click="saveNewCharacter()">Save {{character.name}}</button>
     </form>
 </div>

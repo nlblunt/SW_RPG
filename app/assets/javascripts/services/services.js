@@ -15,6 +15,8 @@ appServices.factory('playerFactory', ['$resource', '$q', '$http', function($reso
 		playerCheck: {method:'GET', url:'/users/player_check'}
 	});
 	
+	//PC (Player Character) object
+	var pc = $resource('/pc/:id', {id:'@id'});
 	
 	//Check to see if player is logged in already
 	self.playerCheck = function()

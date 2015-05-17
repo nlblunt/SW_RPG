@@ -40,6 +40,8 @@ Skill.create(name: "Ranged - Heavy", attrib: "Agility")
 Race.create(name: "Human", agility: 2, brawn: 2, intellect: 2, presence: 2, willpower: 2, cunning: 2)
 Race.create(name: "Wookiee", agility: 1, brawn: 3, intellect: 2, presence: 2, willpower: 2, cunning: 2)
 
-Career.create(name: "Smuggler")
+c1 = Career.create(name: "Smuggler")
+c1.skills << Skill.find_by_name("Cool")
+
 Career.create(name: "Medic")
 Career.create(name: "Bandit")
