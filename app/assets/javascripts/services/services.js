@@ -49,6 +49,7 @@ appServices.factory('playerFactory', ['$resource', '$q', '$http', function($reso
 		return deferred.promise;
 	};
 
+	//Edit the plater data with the server
 	self.playerEdit = function(id, player)
 	{
 		var deferred = $q.defer();
@@ -62,8 +63,9 @@ appServices.factory('playerFactory', ['$resource', '$q', '$http', function($reso
         });
         
         return deferred.promise;
-	}
+	};
 	
+	//Get a list of races from the server
 	self.getRacesList = function()
 	{
 		var deferred = $q.defer();
@@ -76,6 +78,22 @@ appServices.factory('playerFactory', ['$resource', '$q', '$http', function($reso
 		
 		return deferred.promise;
 	};
+	
+	//Get a list of careers from the server
+	self.getCareersList = function()
+	{
+		var deferred = $q.defer();
+		
+		//Career list API
+		$http.get('/career/index')
+		.then(function(result)
+		{
+			deferred.resolve(result.data);
+		});
+		
+		return deferred.promise;
+	};
+	
 	
 	return self;
 }]);

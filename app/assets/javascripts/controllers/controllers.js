@@ -81,16 +81,28 @@ appControllers.controller('playerController', ['$scope', 'playerFactory', functi
 	$scope.newCharacter = function()
 	{
 		$scope.stage = "charactercreate";
+		
+		//Initialize the $scope.character MODEL
 		$scope.character = {};
 
 		//Get list of races
 		playerFactory.getRacesList()
 		.then(function(result)
 		{
+			//Load the results into $scope.races
 			$scope.races = result;
+			//Set the initial SELECT value
 			$scope.character.race = $scope.races[0];
-			console.log($scope.character);
-			console.log($scope.races[0]);
+		});
+		
+		//Get list of careers
+		playerFactory.getCareersList()
+		.then(function(result)
+		{
+			//Load the results into $scope.careers
+			$scope.careers = result;
+			//Set the initial SELECT value
+			$scope.character.career = $scope.careers[0];
 		});
 	};
 	

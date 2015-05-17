@@ -15,9 +15,7 @@
         
         <div class="form-group">
             <label>Career</label>
-            <select class="form-control" ng-model="character.career">
-                <option value="smuggler">Smuggler</option>
-            </select>
+            <select class="form-control" ng-model="character.career" ng-options="career.name for career in careers track by career.id"></select>
         </div>
 
     </form>
