@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :skill do
-    name "MyString"
+    name "Pilot"
     attrib "Agility"
   end
 

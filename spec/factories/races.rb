@@ -7,6 +7,11 @@ FactoryGirl.define do
     cunning 2
     willpower 2
     presence 2
+    
+    wounds_thresh 10
+    strain_thresh 10
+    xp 100
+    bonus "Brawl"
   end
 
 end

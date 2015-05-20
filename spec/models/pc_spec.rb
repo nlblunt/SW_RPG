@@ -16,10 +16,11 @@ RSpec.describe Pc, type: :model do
          #Initalize new PC with race.id and career.id
          pc.init
          
-         #Tests
+         #Test race and career assignment
          expect(pc.race_id).to eq(race.id)
          expect(pc.career.id).to eq(career.id)
          
+         #Test attribute assignments
          expect(pc.brawn).to eq(race.brawn)
          expect(pc.agility).to eq(race.agility)
          expect(pc.intellect).to eq(race.intellect)
@@ -27,7 +28,18 @@ RSpec.describe Pc, type: :model do
          expect(pc.willpower).to eq(race.willpower)
          expect(pc.presence).to eq(race.presence)
          
+         #Test skill counts
          expect(pc.skills.count).to eq(1)
+         
+         #Test wounds and strain assignment
+         expect(pc.wounds_thresh).to eq(pc.brawn + race.wounds_thresh)
+         expect(pc.strain_thresh).to eq(pc.willpower + race.strain_thresh)
+         
+         #Test XP
+         expect(pc.xp).to eq(race.xp)
+         
+         #Test Credits
+         expect(pc.credits).to eq(500)
      end
   end
 end

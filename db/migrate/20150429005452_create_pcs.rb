@@ -2,6 +2,8 @@ class CreatePcs < ActiveRecord::Migration
   def change
     create_table :pcs do |t|
       t.string :name
+      t.integer :xp
+      t.integer :credits
       t.integer :brawn
       t.integer :agility
       t.integer :intellect
@@ -15,6 +17,9 @@ class CreatePcs < ActiveRecord::Migration
       t.integer :critical
       t.integer :soak
 
+      t.string  :obligation_type
+      t.integer :obligation_amount
+      
       t.belongs_to :player
       t.belongs_to :race, index: true
 

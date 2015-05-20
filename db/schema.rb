@@ -31,6 +31,8 @@ ActiveRecord::Schema.define(version: 20150501023350) do
 
   create_table "pcs", force: :cascade do |t|
     t.string   "name"
+    t.integer  "xp"
+    t.integer  "credits"
     t.integer  "brawn"
     t.integer  "agility"
     t.integer  "intellect"
@@ -43,17 +45,19 @@ ActiveRecord::Schema.define(version: 20150501023350) do
     t.integer  "strain_current"
     t.integer  "critical"
     t.integer  "soak"
+    t.string   "obligation_type"
+    t.integer  "obligation_amount"
     t.integer  "player_id"
     t.integer  "race_id"
     t.integer  "career_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
   end
 
   add_index "pcs", ["career_id"], name: "index_pcs_on_career_id"
   add_index "pcs", ["race_id"], name: "index_pcs_on_race_id"
 
-  create_table "pcs_skills", id: false, force: :cascade do |t|
+  create_table "pcs_skills", force: :cascade do |t|
     t.integer "pc_id"
     t.integer "skill_id"
     t.integer "rank",     default: 0
@@ -71,6 +75,7 @@ ActiveRecord::Schema.define(version: 20150501023350) do
 
   create_table "races", force: :cascade do |t|
     t.string   "name"
+    t.integer  "xp"
     t.integer  "brawn"
     t.integer  "agility"
     t.integer  "intellect"
@@ -79,7 +84,7 @@ ActiveRecord::Schema.define(version: 20150501023350) do
     t.integer  "presence"
     t.integer  "wounds_thresh"
     t.integer  "strain_thresh"
-    t.integer  "soak"
+    t.string   "bonus"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end

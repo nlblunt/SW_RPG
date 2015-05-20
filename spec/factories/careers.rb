@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :career do
-    name "MyString"
+    name "Smuggler"
   end
 
 end

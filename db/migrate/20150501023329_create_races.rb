@@ -2,6 +2,7 @@ class CreateRaces < ActiveRecord::Migration
   def change
     create_table :races do |t|
       t.string :name
+      t.integer  :xp
       t.integer  :brawn
       t.integer  :agility
       t.integer  :intellect
@@ -10,7 +11,7 @@ class CreateRaces < ActiveRecord::Migration
       t.integer  :presence
       t.integer  :wounds_thresh
       t.integer  :strain_thresh
-      t.integer  :soak
+      t.string   :bonus
       
       t.timestamps null: false
     end

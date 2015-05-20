@@ -1,5 +1,6 @@
 class Pc < ActiveRecord::Base
-    has_and_belongs_to_many :skills
+    has_many :pcs_skills
+    has_many :skills, :through => :pcs_skills
     belongs_to :player
     belongs_to :race
     belongs_to :career
@@ -18,5 +19,19 @@ class Pc < ActiveRecord::Base
         self.cunning = self.race.cunning
         self.willpower = self.race.willpower
         self.presence = self.race.presence
+        
+        #Set wounds and strain threshholds
+        self.wounds_thresh = self.race.wounds_thresh + self.brawn
+        self.strain_thresh = self.race.strain_thresh + self.willpower
+        
+        #Set wounds, critical wounds, soak, and strain to 0
+        self.wounds_current = 0
+        self.strain_current = 0
+        self.critical       = 0
+        self.soak           = self.brawn
+        
+        #Set initial XP and credits
+        self.xp = self.race.xp
+        self.credits = 500
     end
 end
