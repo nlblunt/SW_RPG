@@ -6,7 +6,10 @@ appServices.factory('playerFactory', ['$resource', '$q', '$http', function($reso
 	var self = {};
 
 	//Player object
-	var player = $resource('/player/:id', {id:'@id'});
+	var player = $resource('/player/:id', {id:'@id'},
+	{
+		createPc: {method: 'POST', url:'/player/create_pc'}
+	});
 
 	//Player (user) session object
 	var playerSession = $resource('/users/sign_in', {id: '@id'},
@@ -96,6 +99,32 @@ appServices.factory('playerFactory', ['$resource', '$q', '$http', function($reso
 		return deferred.promise;
 	};
 	
+	self.newPc = function(player, character)
+	{
+		var deferred = $q.defer();
+		
+		$http.post('/player/create_pc', {id: player.id, pc:{name: character.name, race_id: character.race.id, career_id: character.career.id}})
+		.then(function(result)
+		{
+			//Return new pc data
+			deferred.resolve(result.data);
+		});
+		
+		return deferred.promise;
+	};
+	
+	self.getPcSkills = function(pc_id)
+	{
+		var deferred = $q.defer();
+		
+		$http.get('/player/get_pc_skills/' + pc_id + '.json')
+		.then(function(result)
+		{
+			deferred.resolve(result.data);
+		});
+		
+		return deferred.promise;
+	};
 	
 	return self;
 }]);

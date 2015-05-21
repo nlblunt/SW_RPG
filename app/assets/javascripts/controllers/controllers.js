@@ -80,7 +80,7 @@ appControllers.controller('playerController', ['$scope', 'playerFactory', functi
 	//Create a new Character stage
 	$scope.newCharacter = function()
 	{
-		$scope.stage = "charactercreate";
+		$scope.stage = "charactercreate-1";
 		
 		//Initialize the $scope.character MODEL
 		$scope.character = {};
@@ -103,6 +103,26 @@ appControllers.controller('playerController', ['$scope', 'playerFactory', functi
 			$scope.careers = result;
 			//Set the initial SELECT value
 			$scope.character.career = $scope.careers[0];
+		});
+	};
+	
+	$scope.saveNewCharacter = function()
+	{
+		playerFactory.newPc($scope.player, $scope.character)
+		.then(function(result)
+		{
+			//Saved.  Get new character data with inialized stats
+			$scope.character = result;
+			
+			//Get the list of skills
+			playerFactory.getPcSkills($scope.character.id)
+			.then(function(result)
+			{
+				$scope.skills = result;
+				console.log($scope.skills)
+				//Set next stage
+				$scope.stage = "charactercreate-2";
+			});
 		});
 	};
 	

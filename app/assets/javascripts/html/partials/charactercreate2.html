@@ -1,0 +1,15 @@
+<div id="charactercreate2" ng-show="stage == 'charactercreate-2'">
+    Character Step 2
+    {{character.name}}
+    {{character.race}}
+    {{character.career}}
+    
+    <ul>
+        <li ng-repeat="skill in skills">
+            {{skill.name}}
+            {{skill.attrib}}
+            {{skill.rank}}
+            {{skill.career}}
+        </li>
+    </ul>
+</div>

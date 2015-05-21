@@ -59,6 +59,14 @@ class PlayerController < ApplicationController
     end
   end
   
+  def get_pc_skills
+    #Get the PC we are needing the skills for
+    @pc = Pc.find(params[:id])
+    
+    
+    render :get_pc_skills
+  end
+  
   private
   
   def player_params

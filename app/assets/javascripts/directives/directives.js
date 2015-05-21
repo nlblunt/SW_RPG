@@ -39,3 +39,11 @@ app.directive('characterCreate', function()
         templateUrl: 'html/partials/charactercreate.html'
     };
 });
+
+app.directive('characterCreate2', function()
+{
+    return{
+        restrict: 'E',
+        templateUrl: 'html/partials/charactercreate2.html'
+    };
+});
