@@ -33,5 +33,12 @@ class Pc < ActiveRecord::Base
         #Set initial XP and credits
         self.xp = self.race.xp
         self.credits = 500
+        
+        #Set the Career Skills
+        self.career.skills.each do |skill|
+           s = self.pcs_skills.find_by_skill_id(skill.id)
+           s.cskill = true
+           self.pcs_skills << s
+        end
     end
 end
