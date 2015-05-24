@@ -1,4 +1,5 @@
 <div id="player" class="container-fluid" ng-controller="playerController as pcCtrl">
+	<alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
 	<pc-sign-in></pc-sign-in>
 
 	<pc-signed-in></pc-signed-in>

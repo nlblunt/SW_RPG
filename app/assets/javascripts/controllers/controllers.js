@@ -9,14 +9,15 @@ appControllers.controller('homeController', ['$scope', function($scope)
 
 appControllers.controller('playerController', ['$scope', 'playerFactory', function($scope, playerFactory)
 {
+	$scope.alerts = [];
+
 	$scope.$root.body_id = "player";
 
 	//Is signed in?
-	this.signed_in = false;
 	$scope.signed_in = false;
 	//Player info from sign_in
-	this.player = null;
 	$scope.stage = "sign_in";
+	
 	
 	//Check to see if player is signed in.
 	playerFactory.playerCheck().$promise
@@ -32,6 +33,11 @@ appControllers.controller('playerController', ['$scope', 'playerFactory', functi
 		$scope.signed_in = false;
 	});
 	
+	//Remove Alerts
+	$scope.closeAlert = function(index)
+	{
+		$scope.alerts.splice(index, 1);
+	};
 	
 	//Sign player in.  Gets a player session.
 	this.sign_in = function()
@@ -82,6 +88,10 @@ appControllers.controller('playerController', ['$scope', 'playerFactory', functi
 	{
 		$scope.stage = "charactercreate-1";
 		
+		//Initialize career_skill_choices and specialization_skill_choices
+		$scope.career_skill_choices = 4;
+		$scope.specialization_skill_choices = 2;
+		
 		//Initialize the $scope.character MODEL
 		$scope.character = {};
 
@@ -115,15 +125,33 @@ appControllers.controller('playerController', ['$scope', 'playerFactory', functi
 			$scope.character = result;
 			
 			//Get the list of skills
-			playerFactory.getPcSkills($scope.character.id)
+			playerFactory.getPcCareerSkills($scope.character.id)
+			//playerFactory.getPcSkills($scope.character.id)
 			.then(function(result)
 			{
 				$scope.skills = result;
-				console.log($scope.skills)
 				//Set next stage
 				$scope.stage = "charactercreate-2";
 			});
 		});
+	};
+	
+	$scope.increaseRankCareerInit = function(index, skill_id, use_xp)
+	{
+		console.log(index);
+			playerFactory.increaseRank($scope.player.id, skill_id, use_xp)
+			.then(function(result)
+			{
+				$scope.career_skill_choices = $scope.career_skill_choices - 1;
+				$scope.alerts.push({msg: "Skill rank increased", type: "success"});
+				$scope.skills.splice(index, 1);
+			}
+			,
+			function(result)
+			{
+				$scope.alerts.push({msg: "Error: " + result.status, type: "danger"});
+				console.log("Error: " + result.status);
+			});
 	};
 	
 	//Cancel create a new character.  Return to character select

@@ -126,5 +126,38 @@ appServices.factory('playerFactory', ['$resource', '$q', '$http', function($reso
 		return deferred.promise;
 	};
 	
+	self.getPcCareerSkills = function(pc_id)
+	{
+		var deferred = $q.defer();
+		
+		$http.get('/player/get_pc_career_skills/' + pc_id + '.json')
+		.then(function(result)
+		{
+			deferred.resolve(result.data);
+		});
+		
+		return deferred.promise;
+	};
+	
+	self.increaseRank = function(pc_id, s_id, xp)
+	{
+		//Increase a skill rank by id.  use_xp determins to use xp or not
+		var deferred = $q.defer();
+		
+		console.log(s_id);
+		$http.post('/player/increase_skill_rank/', {id: pc_id, skill_id: s_id, use_xp: xp})
+		.success(function(result)
+		{
+			//Return success
+			deferred.resolve(result);
+		})
+		.error(function(result)
+		{
+			deferred.reject(result);
+		});
+		
+		return deferred.promise;
+	};
+	
 	return self;
 }]);

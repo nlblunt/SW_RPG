@@ -50,7 +50,8 @@ Race.create(name: "Gand", agility: 2, brawn: 2, intellect: 1, presence: 2, willp
 Race.create(name: "Human", agility: 2, brawn: 2, intellect: 2, presence: 2, willpower: 2, cunning: 2, wounds_thresh: 10, strain_thresh: 10, xp: 110, bonus: "Specialty")
 Race.create(name: "Rodian", agility: 3, brawn: 2, intellect: 2, presence: 2, willpower: 1, cunning: 2, wounds_thresh: 10, strain_thresh: 10, xp: 100, bonus: "Survival")
 Race.create(name: "Trandoshan", agility: 1, brawn: 3, intellect: 2, presence: 2, willpower: 2, cunning: 2, wounds_thresh: 12, strain_thresh: 9, xp: 90, bonus: "Perception")
-Race.create(name: "Twi'lek", agility: 2, brawn: 1, intellect: 2, presence: 3, willpower: 2, cunning: 2, wounds_thresh: 10, strain_thresh: 11, xp: 100, bonus: "Charm-Deceit")
+Race.create(name: "Twi'lek", agility: 2, brawn: 1, intellect: 2, presence: 3, willpower: 2, cunning: 2, wounds_thresh: 10, strain_thresh: 11, xp: 100, bonus: "Charm")
+#Race.create(name: "Twi'lek", agility: 2, brawn: 1, intellect: 2, presence: 3, willpower: 2, cunning: 2, wounds_thresh: 10, strain_thresh: 11, xp: 100, bonus: "Deceit")
 Race.create(name: "Wookiee", agility: 2, brawn: 3, intellect: 2, presence: 2, willpower: 1, cunning: 2, wounds_thresh: 14, strain_thresh: 8, xp: 90, bonus: "Brawl")
 
 

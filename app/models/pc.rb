@@ -36,9 +36,58 @@ class Pc < ActiveRecord::Base
         
         #Set the Career Skills
         self.career.skills.each do |skill|
-           s = self.pcs_skills.find_by_skill_id(skill.id)
-           s.cskill = true
-           self.pcs_skills << s
+            #Set career skills from career
+           self.set_career_skill(skill.id)
+           
+           #s = self.pcs_skills.find_by_skill_id(skill.id)
+           #s.cskill = true
+           #self.pcs_skills << s
         end
+        
+        #Set the bonus rank from race
+        if self.race.bonus != "None"
+           skill_id = Skill.find_by_name(self.race.bonus)
+           
+           #Increase the rank by 1
+           self.increase_skill_rank(skill_id.id, 'false')
+        end
+    end
+    
+    def increase_skill_rank(skill_id, use_xp)
+        #Increases the rank of the skill by 1.  If use_xp = false, no change to xp, else calculate cost and subtract
+        
+        if use_xp == 'false'
+            #Find the skill in the pcs_skills table by skill_id
+            pc_skill = self.pcs_skills.find_by_skill_id(skill_id)
+            
+            #Increase the rank
+            pc_skill.rank = pc_skill.rank + 1
+            
+            #Save back into skill table
+            self.pcs_skills << pc_skill
+            
+            return "Success"
+        else
+           #TODO: Add rank and use XP 
+        end
+    end
+    
+    def set_career_skill(skill_id)
+        #Sets the skill as a career skill
+        
+        #Find the skill in the pcs_skills table by skill_id
+        pc_skill = self.pcs_skills.find_by_skill_id(skill_id)
+        
+        #Set cskill = true
+        pc_skill.cskill = true
+        
+        #Save back into skill table
+        self.pcs_skills << pc_skill
+    end
+    
+    def get_career_skills
+        #Returns a list of career skills only
+        
+       return self.pcs_skills.where(cskill: true) 
     end
 end

@@ -8,6 +8,8 @@ SWRpg::Application.routes.draw do
   get "users/player_check" => "player#player_check"
   post "player/create_pc" => "player#create_pc"
   get "player/get_pc_skills/:id" => "player#get_pc_skills"
+  get "player/get_pc_career_skills/:id" => "player#get_pc_career_skills"
+  post "player/increase_skill_rank" => "player#increase_skill_rank"
   
   devise_for :users, controllers: { sessions: "users/sessions"}
   

@@ -37,11 +37,12 @@ RSpec.describe PlayerController, type: :controller do
       describe "User Signed In" do
        it "Creates a PC and assigns to player" do
           #Create a player
+          @user = User.create(email: "test@test.com", username: "user", password: "password", password_confirmation: "password")
+          sign_in @user
           player = FactoryGirl.create(:player)
           race = FactoryGirl.create(:race)
           career = FactoryGirl.create(:career)
-          @user = User.create(email: "test@test.com", username: "user", password: "password", password_confirmation: "password")
-          sign_in @user
+          FactoryGirl.create(:skill)
           
           post :create_pc, {id: player.id, pc:{name: "Test", race_id: race.id, career_id: career.id}}
           
@@ -70,5 +71,11 @@ RSpec.describe PlayerController, type: :controller do
           expect(response.status).to eq(302)
         end
      end
+    end
+    
+    describe "GET get_career_skills" do
+        it "Returns a list of career skills" do
+           
+        end
     end
 end

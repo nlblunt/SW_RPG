@@ -41,14 +41,16 @@ class PlayerController < ApplicationController
   def create_pc
     #Create a new PC for the player
     #params[:id, :pc_params(:name, :race_id, :career_id)]
-    
     pc = Pc.create(pc_params)
     
-    #Initials PC
-    pc.init
+
     
     if pc.valid?
       #PC is valid, assign to player with passed ID
+      
+      #Initials PC
+      pc.init
+      
       @player = Player.find(params[:id])
       @player.pcs << pc
       
@@ -63,8 +65,28 @@ class PlayerController < ApplicationController
     #Get the PC we are needing the skills for
     @pc = Pc.find(params[:id])
     
-    
     render :get_pc_skills
+  end
+  
+  def get_pc_career_skills
+    #Get the PC we are needing the career skills for
+    pc = Pc.find(params[:id])
+    
+    @skills = pc.get_career_skills
+    
+    render :get_pc_career_skills
+    
+  end
+  
+  def increase_skill_rank
+    #Increase the skill rank
+    #Get the PC we are increasing the rank for
+    @pc = Pc.find(params[:id])
+    
+    #Increase the skill rank and return the status
+    @pc.increase_skill_rank(params[:skill_id], params[:use_xp])
+    
+    render nothing: true, status: :ok
   end
   
   private

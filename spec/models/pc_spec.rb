@@ -40,6 +40,10 @@ RSpec.describe Pc, type: :model do
          
          #Test Credits
          expect(pc.credits).to eq(500)
+         
+         #Test bonus skill
+         s_id = Skill.find_by_name(pc.race.bonus)
+         expect(pc.pcs_skills.find_by_skill_id(s_id.id).rank).to eq(1)
      end
   end
 end

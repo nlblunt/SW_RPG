@@ -11,7 +11,7 @@ FactoryGirl.define do
     wounds_thresh 10
     strain_thresh 10
     xp 100
-    bonus "Brawl"
+    bonus "Pilot"
   end
 
 end

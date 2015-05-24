@@ -49,4 +49,45 @@ table#character-stats-preview
 	max-width: 500px;
 	margin-left: auto;
 	margin-right: auto;
+	
+	font-size: 10px;
+}
+
+table#skills
+{
+	min-width: 320px;
+	max-width: 500px;
+	margin-left: auto;
+	margin-right: auto;
+	
+	font-size: 11px;
+}
+
+th#career
+{
+	width: 10%;
+}
+
+th#skill
+{
+	width: 60%;
+}
+
+th#attribute
+{
+	width: 25%;
+}
+
+th#rank
+{
+	width: 5%;
+}
+
+.btn-increase
+{
+	color: green;
+	border: solid 1px green;
+	border-radius: 10px;
+	background-color: greenyellow;
+	float: right;
 }
