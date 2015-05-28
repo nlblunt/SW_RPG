@@ -1,0 +1,11 @@
+<div id="charactercreatehuman" ng-show="stage == 'charactercreate-human'">
+    <h2>Select a bonus specialization</h2>
+    
+    <form>
+        
+        <div class="form-group">
+            <label>Specialization</label>
+            <select class="form-control" ng-model="character.bonus_specialization" ng-options="specialization.name for specialization in specializations track by specialization.id"></select>
+        </div>
+    </form>
+</div>

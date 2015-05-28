@@ -113,7 +113,17 @@ appControllers.controller('playerController', ['$scope', 'playerFactory', functi
 			$scope.careers = result;
 			//Set the initial SELECT value
 			$scope.character.career = $scope.careers[0];
+			
+			//Load the career specializations
+			playerFactory.getCareerSpecializations($scope.character.career.id)
+			.then(function(result)
+			{
+				$scope.specializations = result;
+				$scope.character.specialization = $scope.specializations[0];
+			});
 		});
+		
+		
 	};
 	
 	$scope.saveNewCharacter = function()
@@ -126,13 +136,31 @@ appControllers.controller('playerController', ['$scope', 'playerFactory', functi
 			
 			//Get the list of skills
 			playerFactory.getPcCareerSkills($scope.character.id)
-			//playerFactory.getPcSkills($scope.character.id)
 			.then(function(result)
 			{
 				$scope.skills = result;
 				//Set next stage
-				$scope.stage = "charactercreate-2";
+				
+				//Test for Human class
+				if($scope.character.race == "Human")
+				{
+					$scope.stage = "charactercreate-human";
+				}
+				else
+				{
+					$scope.stage = "charactercreate-2";
+				}
 			});
+		});
+	};
+	
+	$scope.careerSelected = function()
+	{
+		//A career has been select.  Reload career specializations
+		playerFactory.getCareerSpecializations($scope.character.career.id)
+		.then(function(result)
+		{
+			$scope.specializations = result;
 		});
 	};
 	

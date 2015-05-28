@@ -8,6 +8,9 @@
 user = User.create(email: 'test@email.com', username: 'user', password: 'password', password_confirmation: 'password')
 user.create_player(name: 'player')
 
+user2 = User.create(email: 'joe@email.com', username: 'joe', password: 'password', password_confirmation: 'password')
+user2.create_player(name: 'Joe')
+
 Skill.create(name: "Astrogation", attrib: "Intellect")
 Skill.create(name: "Athletics", attrib: "Brawn")
 Skill.create(name: "Charm", attrib: "Presence")
@@ -45,7 +48,7 @@ Skill.create(name: "Ranged - Light", attrib: "Agility")
 Skill.create(name: "Ranged - Heavy", attrib: "Agility")
 
 Race.create(name: "Bothan", agility: 2, brawn: 1, intellect: 2, presence: 2, willpower: 2, cunning: 3, wounds_thresh: 10, strain_thresh: 11, xp: 100, bonus: "Streetwise")
-Race.create(name: "Droid", agility: 1, brawn: 1, intellect: 1, presence: 1, willpower: 1, cunning: 1, wounds_thresh: 10, strain_thresh: 10, xp: 175, bonus: "None")
+Race.create(name: "Droid", agility: 1, brawn: 1, intellect: 1, presence: 1, willpower: 1, cunning: 1, wounds_thresh: 10, strain_thresh: 10, xp: 175, bonus: "Specialization")
 Race.create(name: "Gand", agility: 2, brawn: 2, intellect: 1, presence: 2, willpower: 3, cunning: 2, wounds_thresh: 10, strain_thresh: 10, xp: 100, bonus: "Discipline")
 Race.create(name: "Human", agility: 2, brawn: 2, intellect: 2, presence: 2, willpower: 2, cunning: 2, wounds_thresh: 10, strain_thresh: 10, xp: 110, bonus: "Specialty")
 Race.create(name: "Rodian", agility: 3, brawn: 2, intellect: 2, presence: 2, willpower: 1, cunning: 2, wounds_thresh: 10, strain_thresh: 10, xp: 100, bonus: "Survival")
@@ -114,3 +117,6 @@ c1.skills << Skill.find_by_name("Mechanics")
 c1.skills << Skill.find_by_name("Perception")
 c1.skills << Skill.find_by_name("Pilot - Planet")
 c1.skills << Skill.find_by_name("Surveillance")
+
+sp1 = Specialization.create(name: "Bandito", career_id: 1)
+sp1.skills << Skill.find_by_name("Computers")

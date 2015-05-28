@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150501023350) do
+ActiveRecord::Schema.define(version: 20150524050026) do
 
   create_table "careers", force: :cascade do |t|
     t.string   "name"
@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 20150501023350) do
     t.integer  "career_id"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
+    t.string   "status"
   end
 
   add_index "pcs", ["career_id"], name: "index_pcs_on_career_id"
@@ -62,6 +63,11 @@ ActiveRecord::Schema.define(version: 20150501023350) do
     t.integer "skill_id"
     t.integer "rank",     default: 0
     t.boolean "cskill",   default: false
+  end
+
+  create_table "pcs_specializations", id: false, force: :cascade do |t|
+    t.integer "pc_id"
+    t.integer "specialization_id"
   end
 
   create_table "players", force: :cascade do |t|
@@ -92,6 +98,18 @@ ActiveRecord::Schema.define(version: 20150501023350) do
   create_table "skills", force: :cascade do |t|
     t.string   "name"
     t.string   "attrib"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "skills_specializations", id: false, force: :cascade do |t|
+    t.integer "skill_id"
+    t.integer "specialization_id"
+  end
+
+  create_table "specializations", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "career_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

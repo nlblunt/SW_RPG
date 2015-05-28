@@ -18,7 +18,6 @@ class PlayerController < ApplicationController
   def update
     #Update User and Player information
     #params[:id, :user_params(), :player_params()]
-    
     @user = User.find(params[:id])
 		
 		if @user.update(user_params) and @user.player.update

@@ -73,9 +73,21 @@ RSpec.describe PlayerController, type: :controller do
      end
     end
     
+    describe "GET pc_skills" do
+        it "Returns a list of pc skills" 
+    end
+    
     describe "GET get_career_skills" do
-        it "Returns a list of career skills" do
-           
+        it "Returns a list of career skills"
+    end
+    
+    describe "POST increase_skill_rank" do
+        describe "Using XP" do
+            it "Increase skill rank using XP"
         end
+        
+        describe "Not using XP" do
+            it "Increase skill rank without using XP"
+        end 
     end
 end

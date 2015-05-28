@@ -4,6 +4,7 @@ class Pc < ActiveRecord::Base
     belongs_to :player
     belongs_to :race
     belongs_to :career
+    has_and_belongs_to_many :specializations
     
     #Initialize the new PC
     #Setup skill table
@@ -45,12 +46,17 @@ class Pc < ActiveRecord::Base
         end
         
         #Set the bonus rank from race
-        if self.race.bonus != "None"
+        if self.race.bonus == "Specialization"
+            #TODO: Add human specialization selection here
+        else
            skill_id = Skill.find_by_name(self.race.bonus)
            
            #Increase the rank by 1
            self.increase_skill_rank(skill_id.id, 'false')
         end
+        
+        #Set the status to 'started'
+        self.status = "started"
     end
     
     def increase_skill_rank(skill_id, use_xp)
@@ -89,5 +95,27 @@ class Pc < ActiveRecord::Base
         #Returns a list of career skills only
         
        return self.pcs_skills.where(cskill: true) 
+    end
+    
+    def set_specialization(spec_id, use_xp)
+        spec = Specialization.find_by_id(spec_id)
+        
+        if use_xp == "false"
+            #Use no XP
+            self.specializations << spec
+            return "Specialization Added Successfully"
+        else
+            #Use XP
+            #Test for enough XP
+            if self.xp >= 10
+                #There is enough XP
+                self.specializations << spec
+                self.xp = self.xp - 10
+                return "Specialization Added Successfully"
+            else
+                #Not enough XP
+                return "Insufficient XP"
+            end
+        end
     end
 end
