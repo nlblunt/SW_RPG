@@ -48,6 +48,14 @@ app.directive('characterCreate2', function()
     };
 });
 
+app.directive('characterCreate3', function()
+{
+    return{
+        restrict: 'E',
+        templateUrl: 'html/partials/charactercreate3.html'
+    };
+});
+
 app.directive('characterCreateHuman', function()
 {
     return{

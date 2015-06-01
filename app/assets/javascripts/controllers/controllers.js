@@ -126,7 +126,7 @@ appControllers.controller('playerController', ['$scope', '$filter', 'playerFacto
 		
 	};
 	
-	$scope.saveNewCharacter = function()
+	$scope.characterStage2 = function()
 	{
 		playerFactory.newPc($scope.player, $scope.character)
 		.then(function(result)
@@ -135,6 +135,9 @@ appControllers.controller('playerController', ['$scope', '$filter', 'playerFacto
 			//Save the race for later testing
 			var race = $scope.character.race;
 			
+			//Save the specialization for later use if human class
+			var spec = $scope.specialization;
+			console.log(spec);
 			$scope.character = result;
 			
 			//Set the initial Specialization. Uses no xp
@@ -163,10 +166,12 @@ appControllers.controller('playerController', ['$scope', '$filter', 'playerFacto
 					//Human race.  No bonus skill, but they get a bonus specialization
 					$scope.stage = "charactercreate-human";
 					
+					//Get ALL specializations now.  Bonus can be any.
 					playerFactory.getAllSpecializations()
 					.then(function(result)
 					{
-						$scope.specializations = $filter('filter')(result, {name:"!Assassin"});
+						//Filter out previously select specialization to avoid duplicates
+						$scope.specializations = $filter('filter')(result, {name: "!" + spec.name});
 						$scope.character.bonus_specialization = $scope.specializations[0];
 					});
 				}
@@ -178,9 +183,24 @@ appControllers.controller('playerController', ['$scope', '$filter', 'playerFacto
 		});
 	};
 	
+	$scope.characterStage3 = function()
+	{
+		$scope.stage = "charactercreate-3";
+	};
+
 	$scope.saveBonusSpecialization = function()
 	{
-			
+		//Save the bonus specialiation for the human race
+		playerFactory.setSpecialization($scope.character.id, $scope.specialization.id, "false")
+		.then(function(result)
+		{
+			$scope.stage = "charactercreate-2";
+		}
+		,
+		function(result)
+		{
+			$scope.alerts.push({msg: result, type: "danger"});
+		});
 	};
 	
 	$scope.careerSelected = function()

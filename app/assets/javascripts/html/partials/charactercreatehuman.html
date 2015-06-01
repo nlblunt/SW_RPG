@@ -5,7 +5,9 @@
         
         <div class="form-group">
             <label>Specialization</label>
-            <select class="form-control" ng-model="character.bonus_specialization" ng-options="specialization.name for specialization in specializations track by specialization.id"></select>
+            <select class="form-control" ng-model="bonus_specialization" ng-options="specialization.name for specialization in specializations track by specialization.id"></select>
         </div>
+
+        <button class="btn" ng-click="saveBonusSpecialization()">Continue</button>
     </form>
 </div>
