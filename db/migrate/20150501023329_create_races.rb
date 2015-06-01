@@ -12,6 +12,7 @@ class CreateRaces < ActiveRecord::Migration
       t.integer  :wounds_thresh
       t.integer  :strain_thresh
       t.string   :bonus
+      t.text     :description
       
       t.timestamps null: false
     end

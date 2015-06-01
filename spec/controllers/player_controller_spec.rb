@@ -73,6 +73,75 @@ RSpec.describe PlayerController, type: :controller do
      end
     end
     
+    describe "POST set_specialization" do
+        it "Should not exceed 3 specializations per PC" do
+            pc1 = FactoryGirl.create(:pc)
+
+            #Set initial 3 specialization.  Everything else should fail.
+            pc1.specializations << FactoryGirl.create(:specialization)
+            pc1.specializations << FactoryGirl.create(:specialization)
+            pc1.specializations << FactoryGirl.create(:specialization)
+            spec = FactoryGirl.create(:specialization)
+            
+            post :set_specialization, {id: pc1.id, spec_id: spec.id, use_xp: "false"}
+            
+            expect(pc1.specializations.count).to eq(3)
+            expect(response.body).to eq("Error: Exceeds maximum specializations")
+        end
+        
+        describe "Using XP" do
+            describe "With sufficient XP" do
+                it "Should add a specialization and use XP" do
+                    pc2 = FactoryGirl.create(:pc, xp: 10)
+                    #pc2.xp = 10
+                    spec = FactoryGirl.create(:specialization)
+                   
+                    post :set_specialization, {id: pc2.id, spec_id: spec.id, use_xp: "true"}
+                   
+                    #Specializations should = 1
+                    expect(pc2.specializations.count).to eq(1)
+                   
+                    #XP should change
+                    expect(assigns(:pc).xp).to eq(5)
+                end
+            end
+            
+            describe "Without sufficient XP" do
+                it "Should not add a specialization" do
+                    pc = FactoryGirl.create(:pc, xp: 2)
+                    
+                    spec = FactoryGirl.create(:specialization)
+                   
+                    post :set_specialization, {id: pc.id, spec_id: spec.id, use_xp: "true"}
+                   
+                    #Specializations should = 0
+                    expect(pc.specializations.count).to eq(0)
+                   
+                    #XP should not change
+                    expect(assigns(:pc).xp).to eq(2)     
+                    expect(response.body).to eq("Insufficient XP")
+                end
+            end
+        end
+        
+        describe "Not using XP" do
+            it "Should add a specialization without XP" do
+               #Create a PC and set XP to 10 for testing
+               pc = FactoryGirl.create(:pc, xp: 10)
+               
+               spec = FactoryGirl.create(:specialization)
+               
+               post :set_specialization, {id: pc.id, spec_id: spec.id, use_xp: "false"}
+               
+               #Specializations should = 1
+               expect(pc.specializations.count).to eq(1)
+               
+               #XP should not change
+               expect(assigns(:pc).xp).to eq(10)
+            end
+        end
+    end
+    
     describe "GET pc_skills" do
         it "Returns a list of pc skills" 
     end

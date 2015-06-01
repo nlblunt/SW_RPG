@@ -15,8 +15,9 @@ ActiveRecord::Schema.define(version: 20150524050026) do
 
   create_table "careers", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "careers_pcs", id: false, force: :cascade do |t|
@@ -91,6 +92,7 @@ ActiveRecord::Schema.define(version: 20150524050026) do
     t.integer  "wounds_thresh"
     t.integer  "strain_thresh"
     t.string   "bonus"
+    t.text     "description"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
@@ -109,6 +111,7 @@ ActiveRecord::Schema.define(version: 20150524050026) do
 
   create_table "specializations", force: :cascade do |t|
     t.string   "name"
+    t.text     "descriptin"
     t.integer  "career_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

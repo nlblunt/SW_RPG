@@ -96,8 +96,8 @@ RSpec.describe Pc, type: :model do
          expect(pc.xp).to eq(0)
          expect(resp).to eq("Insufficient XP")
          
-         #If XP > 10
-         pc.xp = 10
+         #If XP > 5
+         pc.xp = 5
          resp = pc.set_specialization(spec.id, "true")
          expect(pc.specializations.count).to eq(1)
          expect(pc.xp).to eq(0)   

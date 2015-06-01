@@ -7,7 +7,7 @@ appControllers.controller('homeController', ['$scope', function($scope)
     	$scope.$root.body_id = "welcome";
 }]);
 
-appControllers.controller('playerController', ['$scope', 'playerFactory', function($scope, playerFactory)
+appControllers.controller('playerController', ['$scope', '$filter', 'playerFactory', function($scope, $filter, playerFactory)
 {
 	$scope.alerts = [];
 
@@ -119,7 +119,7 @@ appControllers.controller('playerController', ['$scope', 'playerFactory', functi
 			.then(function(result)
 			{
 				$scope.specializations = result;
-				$scope.character.specialization = $scope.specializations[0];
+				$scope.specialization = $scope.specializations[0];
 			});
 		});
 		
@@ -132,19 +132,43 @@ appControllers.controller('playerController', ['$scope', 'playerFactory', functi
 		.then(function(result)
 		{
 			//Saved.  Get new character data with inialized stats
+			//Save the race for later testing
+			var race = $scope.character.race;
+			
 			$scope.character = result;
 			
+			//Set the initial Specialization. Uses no xp
+			
+			playerFactory.setSpecialization($scope.character.id, $scope.specialization.id, "false")
+			.then(function(result)
+			{
+				console.log(result.msg);
+			}
+			,
+			function(result)
+			{
+				$scope.alerts.push({msg: "Fatal Error", type: "danger"});
+			});
+
 			//Get the list of skills
 			playerFactory.getPcCareerSkills($scope.character.id)
 			.then(function(result)
 			{
 				$scope.skills = result;
 				//Set next stage
-				
+
 				//Test for Human class
-				if($scope.character.race == "Human")
+				if(race.name == "Human")
 				{
+					//Human race.  No bonus skill, but they get a bonus specialization
 					$scope.stage = "charactercreate-human";
+					
+					playerFactory.getAllSpecializations()
+					.then(function(result)
+					{
+						$scope.specializations = $filter('filter')(result, {name:"!Assassin"});
+						$scope.character.bonus_specialization = $scope.specializations[0];
+					});
 				}
 				else
 				{
@@ -154,6 +178,11 @@ appControllers.controller('playerController', ['$scope', 'playerFactory', functi
 		});
 	};
 	
+	$scope.saveBonusSpecialization = function()
+	{
+			
+	};
+	
 	$scope.careerSelected = function()
 	{
 		//A career has been select.  Reload career specializations
@@ -161,6 +190,7 @@ appControllers.controller('playerController', ['$scope', 'playerFactory', functi
 		.then(function(result)
 		{
 			$scope.specializations = result;
+			$scope.specialization = $scope.specializations[0];
 		});
 	};
 	

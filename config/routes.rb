@@ -11,6 +11,7 @@ SWRpg::Application.routes.draw do
   get "player/get_pc_skills/:id" => "player#get_pc_skills"
   get "player/get_pc_career_skills/:id" => "player#get_pc_career_skills"
   post "player/increase_skill_rank" => "player#increase_skill_rank"
+  post "player/set_specialization" => "player#set_specialization"
   
   #RACE CONTROLLER ROUTES
   get 'race/index'

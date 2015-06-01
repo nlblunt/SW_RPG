@@ -2,6 +2,7 @@ class CreateSpecializations < ActiveRecord::Migration
   def change
     create_table :specializations do |t|
       t.string :name
+      t.text   :descriptin
 
       t.belongs_to :career
       t.timestamps null: false

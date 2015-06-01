@@ -50,6 +50,7 @@ class PlayerController < ApplicationController
       #Initials PC
       pc.init
       
+      #Save the pc to the current player
       @player = Player.find(params[:id])
       @player.pcs << pc
       
@@ -86,6 +87,15 @@ class PlayerController < ApplicationController
     @pc.increase_skill_rank(params[:skill_id], params[:use_xp])
     
     render nothing: true, status: :ok
+  end
+  
+  def set_specialization
+    @pc = Pc.find(params[:id])  
+   
+    #Attempt to set a new specialization and save the result
+    result = @pc.set_specialization(params[:spec_id], params[:use_xp])
+    
+    render :status => result[:status], json: result
   end
   
   private

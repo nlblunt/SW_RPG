@@ -10,4 +10,10 @@ class CareerController < ApplicationController
 
     render json: @spec
   end
+  
+  def get_all_specializations
+    @spec = Specialization.all
+    
+    render json: @spec
+  end
 end

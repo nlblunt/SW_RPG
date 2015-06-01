@@ -46,7 +46,7 @@ class Pc < ActiveRecord::Base
         end
         
         #Set the bonus rank from race
-        if self.race.bonus == "Specialization"
+        if self.race.bonus == "Specialty" or "None"
             #TODO: Add human specialization selection here
         else
            skill_id = Skill.find_by_name(self.race.bonus)
@@ -100,21 +100,25 @@ class Pc < ActiveRecord::Base
     def set_specialization(spec_id, use_xp)
         spec = Specialization.find_by_id(spec_id)
         
+        if self.specializations.count == 3
+            return {status: 200, msg: "Error: Exceeds maximum specializations"}
+        end
+        
         if use_xp == "false"
             #Use no XP
             self.specializations << spec
-            return "Specialization Added Successfully"
+            return {status: 200, msg: "Specialization Added Successfully"}
         else
             #Use XP
             #Test for enough XP
-            if self.xp >= 10
+            if self.xp >= 5
                 #There is enough XP
                 self.specializations << spec
-                self.xp = self.xp - 10
-                return "Specialization Added Successfully"
+                self.xp = self.xp - 5
+                return {status: 200, msg: "Specialization Added Successfully"}
             else
                 #Not enough XP
-                return "Insufficient XP"
+                return {status: 500, msg: "Insufficient XP"}
             end
         end
     end

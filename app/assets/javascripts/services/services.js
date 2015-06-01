@@ -172,5 +172,40 @@ appServices.factory('playerFactory', ['$resource', '$q', '$http', function($reso
 		return deferred.promise;
 	};
 	
+	self.getAllSpecializations = function()
+	{
+		var deferred = $q.defer();
+		
+		$http.get('/career/get_all_specializations.json')
+		.success(function(result)
+		{
+			//Return all specializations
+			deferred.resolve(result);
+		});
+		
+		return deferred.promise;
+	};
+	
+	self.setSpecialization = function(pc_id, s_id, xp)
+	{
+		var deferred = $q.defer();
+		console.log(pc_id);
+		console.log(s_id);
+		console.log(xp);
+		
+		$http.post('/player/set_specialization/', {id: pc_id, spec_id: s_id, use_xp: xp})
+		.success(function(result)
+		{
+			//Return result
+			deferred.resolve(result);
+		})
+		.error(function(result)
+		{
+			deferred.reject(result);
+		});
+		
+		return deferred.promise;
+	};
+	
 	return self;
 }]);
