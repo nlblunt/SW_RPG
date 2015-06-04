@@ -65,6 +65,7 @@ class PlayerController < ApplicationController
     #Get the PC we are needing the skills for
     @pc = Pc.find(params[:id])
     
+    @skills = @pc.pcs_skills(true)
     render :get_pc_skills
   end
   

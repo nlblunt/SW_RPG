@@ -1,4 +1,4 @@
-json.array! @pc.pcs_skills do |s|
+json.array! @skills do |s|
     json.id   s.skill.id
     json.name s.skill.name
     json.attrib s.skill.attrib

@@ -1,3 +1,83 @@
 <div id="charactercreate3" ng-show="stage == 'charactercreate-3'">
-Character3
+
+    <table id="attributes" class="table">
+        <thead>
+            <tr>
+                <th>Attribute</th>
+                <th>Score</th>
+                <th>Cost</th>
+                <th>Increase</th>
+            </tr>
+        </thead>    
+        
+        <tbody>
+            <tr>
+                <td>Agility</td>
+                <td>{{character.agility}}</td>
+                <td>{{(character.agility + 1) * 10}}</td>
+                <td><button ng-if="character.xp >= (character.agility + 1) * 10 && character.agility < 5" class="button btn-increase">+</button></td>
+            </tr>
+            <tr>
+                <td>Brawn</td>
+                <td>{{character.brawn}}</td>
+                <td>{{(character.brawn + 1) * 10}}</td>
+                <td><button ng-if="character.xp >= (character.brawn + 1) * 10 && character.brawn < 5" class="button btn-increase">+</button></td>
+            </tr>
+            <tr>
+                <td>Cunning</td>
+                <td>{{character.cunning}}</td>
+                <td>{{(character.cunning + 1) * 10}}</td>
+                <td><button ng-if="character.xp >= (character.cunning + 1) * 10 && character.cunning < 5" class="button btn-increase">+</button></td>
+            </tr>
+            <tr>
+                <td>Intellect</td>
+                <td>{{character.intellect}}</td>
+                <td>{{(character.intellect + 1) * 10}}</td>
+                <td><button ng-if="character.xp >= (character.intellect + 1) * 10 && character.intellect < 5" class="button btn-increase">+</button></td>
+            </tr>
+            <tr>
+                <td>Presence</td>
+                <td>{{character.presence}}</td>
+                <td>{{(character.presence + 1) * 10}}</td>
+                <td><button ng-if="character.xp >= (character.presence + 1) * 10 && character.presence < 5" class="button btn-increase">+</button></td>
+            </tr>
+            <tr>
+                <td>Willpower</td>
+                <td>{{character.willpower}}</td>
+                <td>{{(character.willpower + 1) * 10}}</td>
+                <td><button ng-if="character.xp >= (character.willpower + 1) * 10 && character.willpower < 5" class="button btn-increase">+</button></td>
+            </tr>
+                
+            </tr>
+        </tbody>
+    </table>
+    
+    <table id="skills" class="table">
+        <thead>
+            <tr>
+                <th id="skill">Skill</th>
+                <th id="attribute">Attribute</th>
+                <th id="rank">Rank</th>
+                <th id="career">Career</th>
+                <th id="cost">Cost</th>
+                <th>Increase</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+            <tr ng-repeat="skill in skills" >
+                <td>{{skill.name}}</td>
+                <td>{{skill.attrib}}</td>
+                <td class="text-right">{{skill.rank}}</td>
+                    <td ng-if="skill.career == true">*</td>
+                    <td ng-if="skill.career == false"></td>
+                    <td ng-if="skill.career == true">{{(skill.rank + 1) * 5}}</td>
+                    <td ng-if="skill.career == false">{{((skill.rank +1) * 5) + 5}}</td>
+                    <td ng-if="skill.career == true"><button ng-if="character.xp >= (skill.rank + 1) * 5 && skill.rank < 2" class="button btn-increase">+</button></td>
+                    <td ng-if="skill.career == false"><button ng-if="character.xp >= ((skill.rank + 1) * 5) + 5 && skill.rank < 2" class="button btn-increase">+</button></td>
+            </tr>
+        </tbody>
+    </table>
+    
+    Remaining XP  {{character.xp}}
 </div>

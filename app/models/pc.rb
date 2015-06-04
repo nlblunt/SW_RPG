@@ -46,13 +46,13 @@ class Pc < ActiveRecord::Base
         end
         
         #Set the bonus rank from race
-        if self.race.bonus == "Specialty" or "None"
+        if self.race.bonus == 'Specialty' or self.race.bonus == 'None'
             #TODO: Add human specialization selection here
         else
            skill_id = Skill.find_by_name(self.race.bonus)
            
            #Increase the rank by 1
-           self.increase_skill_rank(skill_id.id, 'false')
+           self.increase_skill_rank(skill_id.id, false)
         end
         
         #Set the status to 'started'
@@ -62,7 +62,7 @@ class Pc < ActiveRecord::Base
     def increase_skill_rank(skill_id, use_xp)
         #Increases the rank of the skill by 1.  If use_xp = false, no change to xp, else calculate cost and subtract
         
-        if use_xp == 'false'
+        if use_xp == false
             #Find the skill in the pcs_skills table by skill_id
             pc_skill = self.pcs_skills.find_by_skill_id(skill_id)
             
@@ -75,6 +75,7 @@ class Pc < ActiveRecord::Base
             return "Success"
         else
            #TODO: Add rank and use XP 
+           return 500
         end
     end
     

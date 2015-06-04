@@ -137,7 +137,7 @@ appControllers.controller('playerController', ['$scope', '$filter', 'playerFacto
 			
 			//Save the specialization for later use if human class
 			var spec = $scope.specialization;
-			console.log(spec);
+
 			$scope.character = result;
 			
 			//Set the initial Specialization. Uses no xp
@@ -185,7 +185,16 @@ appControllers.controller('playerController', ['$scope', '$filter', 'playerFacto
 	
 	$scope.characterStage3 = function()
 	{
+		//XP stage.  Reload data
 		$scope.stage = "charactercreate-3";
+		
+		//Refresh PC skills
+		playerFactory.getPcSkills($scope.character.id)
+		.then(function(result)
+		{
+			console.log(result);
+			$scope.skills = result;
+		});
 	};
 
 	$scope.saveBonusSpecialization = function()
@@ -217,11 +226,11 @@ appControllers.controller('playerController', ['$scope', '$filter', 'playerFacto
 	$scope.increaseRankCareerInit = function(index, skill_id, use_xp)
 	{
 		console.log(index);
-			playerFactory.increaseRank($scope.player.id, skill_id, use_xp)
+			playerFactory.increaseRank($scope.character.id, skill_id, use_xp)
 			.then(function(result)
 			{
 				$scope.career_skill_choices = $scope.career_skill_choices - 1;
-				$scope.alerts.push({msg: "Skill rank increased", type: "success"});
+				//$scope.alerts.push({msg: "Skill rank increased", type: "success"});
 				$scope.skills.splice(index, 1);
 			}
 			,
