@@ -135,7 +135,7 @@ appControllers.controller('playerController', ['$scope', '$filter', 'playerFacto
 			//Save the race for later testing
 			var race = $scope.character.race;
 			
-			//Save the specialization for later use if human class
+			//Save the specialization for later use
 			var spec = $scope.specialization;
 
 			$scope.character = result;
@@ -153,12 +153,19 @@ appControllers.controller('playerController', ['$scope', '$filter', 'playerFacto
 				$scope.alerts.push({msg: "Fatal Error", type: "danger"});
 			});
 
-			//Get the list of skills
+			//Get the list of Career Skills for selecting Initial Ranks
 			playerFactory.getPcCareerSkills($scope.character.id)
 			.then(function(result)
 			{
 				$scope.skills = result;
-				//Set next stage
+				
+				//Get the list of specialization career skills
+				playerFactory.getSpecializationCareerSkills(spec.id)
+				.then(function(result)
+				{
+					console.log(result);
+					$scope.spec_skills = result;
+				});
 
 				//Test for Human class
 				if(race.name == "Human")
@@ -223,9 +230,42 @@ appControllers.controller('playerController', ['$scope', '$filter', 'playerFacto
 		});
 	};
 	
+	$scope.increaseRank = function(skill_id, use_xp)
+	{
+		playerFactory.increaseRank($scope.character.id, skill_id, use_xp)
+		.then(function(result)
+		{
+			playerFactory.getPcSkills($scope.character.id)
+			.then(function(result)
+			{
+				$scope.skills = result;
+			});
+			
+			playerFactory.getPcXp($scope.character.id)
+			.then(function(result)
+			{
+				$scope.character.xp = result;
+			});
+		});
+	};
+	
+	$scope.increaseAttribute = function(attribute)
+	{
+		playerFactory.increaseAttribute($scope.character.id, attribute)
+		.then(function(result)
+		{
+			//Successful increase in attribute.  Reload character.
+			playerFactory.getPc($scope.character.id)
+			.then(function(result)
+			{
+				console.log(result);
+				$scope.character = result;
+			});
+		});
+	};
+	
 	$scope.increaseRankCareerInit = function(index, skill_id, use_xp)
 	{
-		console.log(index);
 			playerFactory.increaseRank($scope.character.id, skill_id, use_xp)
 			.then(function(result)
 			{
@@ -239,6 +279,16 @@ appControllers.controller('playerController', ['$scope', '$filter', 'playerFacto
 				$scope.alerts.push({msg: "Error: " + result.status, type: "danger"});
 				console.log("Error: " + result.status);
 			});
+	};
+	
+	$scope.increaseRankCareerInit2 = function(index, skill_id, use_xp)
+	{
+		playerFactory.increaseRank($scope.character.id, skill_id, use_xp)
+		.then(function(result)
+		{
+			$scope.specialization_skill_choices = $scope.specialization_skill_choices - 1;
+			$scope.spec_skills.splice(index, 1);
+		});
 	};
 	
 	//Cancel create a new character.  Return to character select

@@ -113,6 +113,20 @@ appServices.factory('playerFactory', ['$resource', '$q', '$http', function($reso
 		return deferred.promise;
 	};
 	
+	self.getPc = function(pc_id)
+	{
+		//Get the data for the PC
+		var deferred = $q.defer();
+		
+		$http.get('/player/get_pc/'+ pc_id + ".json")
+		.then(function(result)
+		{
+			deferred.resolve(result.data);
+		});
+		
+		return deferred.promise;
+	};
+	
 	self.getPcSkills = function(pc_id)
 	{
 		var deferred = $q.defer();
@@ -139,12 +153,57 @@ appServices.factory('playerFactory', ['$resource', '$q', '$http', function($reso
 		return deferred.promise;
 	};
 	
+	self.getSpecializationCareerSkills = function(spec_id)
+	{
+		var deferred = $q.defer();
+		
+		$http.get('/career/get_specialization_career_skills/' + spec_id + '.json')
+		.then(function(result)
+		{
+			deferred.resolve(result.data);
+		});
+		
+		return deferred.promise;
+	};
+	
+	self.getPcXp = function(pc_id)
+	{
+		var deferred = $q.defer();
+		
+		$http.get('/player/get_pc_xp/' + pc_id + '.json')
+		.then(function(result)
+		{
+			deferred.resolve(result.data);
+		});
+		
+		return deferred.promise;
+	};
+	
 	self.increaseRank = function(pc_id, s_id, xp)
 	{
 		//Increase a skill rank by id.  use_xp determins to use xp or not
 		var deferred = $q.defer();
 		
 		$http.post('/player/increase_skill_rank/', {id: pc_id, skill_id: s_id, use_xp: xp})
+		.success(function(result)
+		{
+			//Return success
+			deferred.resolve(result);
+		})
+		.error(function(result)
+		{
+			deferred.reject(result);
+		});
+		
+		return deferred.promise;
+	};
+	
+	self.increaseAttribute = function(pc_id, attrib)
+	{
+		//Increase attribute.  Only available during character creation
+		var deferred = $q.defer();
+		
+		$http.post('/player/increase_attribute/', {id: pc_id, attribute: attrib})
 		.success(function(result)
 		{
 			//Return success

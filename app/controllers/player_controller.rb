@@ -61,6 +61,12 @@ class PlayerController < ApplicationController
     end
   end
   
+  def get_pc
+    @pc = Pc.find(params[:id])
+    
+    render json: @pc
+  end
+  
   def get_pc_skills
     #Get the PC we are needing the skills for
     @pc = Pc.find(params[:id])
@@ -79,6 +85,13 @@ class PlayerController < ApplicationController
     
   end
   
+  def get_pc_xp
+    pc = Pc.find(params[:id])
+    @xp = pc.xp
+    
+    render json: @xp
+  end
+  
   def increase_skill_rank
     #Increase the skill rank
     #Get the PC we are increasing the rank for
@@ -87,7 +100,15 @@ class PlayerController < ApplicationController
     #Increase the skill rank and return the status
     @pc.increase_skill_rank(params[:skill_id], params[:use_xp])
     
-    render nothing: true, status: :ok
+    render nothing: true
+  end
+  
+  def increase_attribute
+    @pc = Pc.find(params[:id])
+    
+    result = @pc.increase_attribute(params[:attribute])
+    
+    render json: result
   end
   
   def set_specialization

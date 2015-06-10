@@ -86,7 +86,9 @@ RSpec.describe PlayerController, type: :controller do
             post :set_specialization, {id: pc1.id, spec_id: spec.id, use_xp: "false"}
             
             expect(pc1.specializations.count).to eq(3)
-            expect(response.body).to eq("Error: Exceeds maximum specializations")
+            
+            resp = JSON.parse(response.body)
+            expect(resp["msg"]).to eq("Error: Exceeds maximum specializations")
         end
         
         describe "Using XP" do
@@ -118,8 +120,10 @@ RSpec.describe PlayerController, type: :controller do
                     expect(pc.specializations.count).to eq(0)
                    
                     #XP should not change
-                    expect(assigns(:pc).xp).to eq(2)     
-                    expect(response.body).to eq("Insufficient XP")
+                    expect(assigns(:pc).xp).to eq(2)   
+                    
+                    resp = JSON.parse(response.body)
+                    expect(resp["msg"]).to eq("Insufficient XP")
                 end
             end
         end
@@ -142,6 +146,27 @@ RSpec.describe PlayerController, type: :controller do
         end
     end
     
+    describe "GET get_pc" do
+        it "returns the pc" do
+            pc = FactoryGirl.create(:pc)
+            
+            get :get_pc, {id: pc.id}
+            
+            expect(assigns(:pc).id).to eq(1)
+        end
+    end
+    
+    describe "GET get_pc_xp" do
+        it "Returns the XP" do
+            pc = FactoryGirl.create(:pc, xp: 100)
+            
+            get :get_pc_xp, {id: pc.id}
+            
+            expect(pc.xp).to eq(100)
+            expect(assigns(:xp)).to eq(100)
+        end
+    end
+    
     describe "GET pc_skills" do
         it "Returns a list of pc skills" 
     end
@@ -158,5 +183,28 @@ RSpec.describe PlayerController, type: :controller do
         describe "Not using XP" do
             it "Increase skill rank without using XP"
         end 
+    end
+    
+    describe "POST increase_attribute" do
+        it "Increases attribute using XP" do
+            pc = FactoryGirl.create(:pc, brawn: 1, cunning: 2, agility: 3, xp: 50)
+            
+            post :increase_attribute, {id: pc.id, attribute: "brawn"}
+            #Brawn should be 2 now
+            expect(assigns(:pc).brawn).to eq(2)
+            
+            post :increase_attribute, {id: pc.id, attribute: "cunning"}
+            #Cunning should be 3 now
+            expect(assigns(:pc).cunning).to eq(3)
+            
+            post :increase_attribute, {id: pc.id, attribute: "agility"}
+            #Not enough XP, so agility should = 3 still
+            expect(assigns(:pc).agility).to eq(3)
+            
+            resp = JSON.parse(response.body)
+            pp resp
+            expect(resp["msg"]).to eq("Insufficient XP")
+            
+        end
     end
 end

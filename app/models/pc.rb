@@ -57,6 +57,8 @@ class Pc < ActiveRecord::Base
         
         #Set the status to 'started'
         self.status = "started"
+        
+        self.save
     end
     
     def increase_skill_rank(skill_id, use_xp)
@@ -74,9 +76,94 @@ class Pc < ActiveRecord::Base
             
             return "Success"
         else
-           #TODO: Add rank and use XP 
-           return 500
+           pc_skill = self.pcs_skills.find_by_skill_id(skill_id)
+           
+           if pc_skill.cskill == true
+              #This is a career skill
+                logger.debug("Career")
+              #Check for enough xp
+              if self.xp >= (pc_skill.rank + 1) * 5
+                 #There is enough xp
+                 pc_skill.rank = pc_skill.rank + 1
+                 self.pcs_skills << pc_skill
+                 
+                 self.xp = self.xp - ((pc_skill.rank) * 5)
+                 self.save
+                 
+                 return {msg: "Rank increased"}
+              else
+                  return {msg: "Insufficient XP to add rank"}
+              end
+           else
+               #This is not a career skill
+               logger.debug("Not Career")
+               #Check for enough xp
+                if self.xp >= ((pc_skill.rank + 1) * 5) + 5
+                     #There is enough xp
+                     pc_skill.rank = pc_skill.rank + 1
+                     self.pcs_skills << pc_skill
+                     
+                     self.xp = self.xp - (((pc_skill.rank) * 5) + 5)
+                     self.save
+                     
+                     return {msg: "Rank increased"}
+                else
+                      return {msg: "Insufficient XP to add rank"}
+                end 
+           end
         end
+    end
+    
+    def increase_attribute(attribute)
+        #XP cost is (next level * 10)
+        #Which attribute?
+        case attribute
+        when "brawn"
+            if self.xp >= (self.brawn + 1) * 10
+                self.brawn = self.brawn + 1
+                self.xp = self.xp - (self.brawn * 10)
+            else
+                return {msg: "Insufficient XP"}
+            end
+        when "agility"
+            if self.xp >= (self.agility + 1) * 10
+                self.agility = self.agility + 1
+                self.xp = self.xp - (self.agility * 10)
+            else
+                return {msg: "Insufficient XP"}    
+            end
+        when "cunning"
+            if self.xp >= (self.cunning + 1) * 10
+                self.cunning = self.cunning + 1
+                self.xp = self.xp - (self.cunning * 10)
+            else
+                return {msg: "Insufficient XP"}
+            end
+        when "intellect"
+            if self.xp >= (self.intellect + 1) * 10
+                self.intellect = self.intellect + 1
+                self.xp = self.xp - (self.intellect * 10)
+            else
+                return {msg: "Insufficient XP"}
+            end
+        when "willpower"
+            if self.xp >= (self.willpower + 1) * 10
+                self.willpower = self.willpower + 1
+                self.xp = self.xp - (self.willpower * 10)
+            else
+                return {msg: "Insufficient XP"}
+            end
+        when "presence"
+            if self.xp >= (self.presence + 1) * 10
+                self.presence = self.presence + 1
+                self.xp = self.xp - (self.presence * 10)
+            else
+                return {msg: "Insufficient XP"}
+            end
+        end
+        self.save
+        
+        return {msg: "Attribute increased"}
     end
     
     def set_career_skill(skill_id)
@@ -108,6 +195,12 @@ class Pc < ActiveRecord::Base
         if use_xp == "false"
             #Use no XP
             self.specializations << spec
+
+            #Need to add the specializaion skills as career skills
+            spec.skills.each do |s|
+                self.set_career_skill(s.id)    
+            end
+            
             return {status: 200, msg: "Specialization Added Successfully"}
         else
             #Use XP
@@ -116,6 +209,12 @@ class Pc < ActiveRecord::Base
                 #There is enough XP
                 self.specializations << spec
                 self.xp = self.xp - 5
+                
+                #Need to add the specilization skills as career skills
+                spec.skills.each do |s|
+                    self.set_career_skill(s.id)
+                end
+                
                 return {status: 200, msg: "Specialization Added Successfully"}
             else
                 #Not enough XP

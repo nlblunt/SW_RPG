@@ -73,8 +73,8 @@
                     <td ng-if="skill.career == false"></td>
                     <td ng-if="skill.career == true">{{(skill.rank + 1) * 5}}</td>
                     <td ng-if="skill.career == false">{{((skill.rank +1) * 5) + 5}}</td>
-                    <td ng-if="skill.career == true"><button ng-if="character.xp >= (skill.rank + 1) * 5 && skill.rank < 2" class="button btn-increase">+</button></td>
-                    <td ng-if="skill.career == false"><button ng-if="character.xp >= ((skill.rank + 1) * 5) + 5 && skill.rank < 2" class="button btn-increase">+</button></td>
+                    <td ng-if="skill.career == true"><button ng-click="increaseRank(skill.id, true)" ng-if="character.xp >= (skill.rank + 1) * 5 && skill.rank < 2" class="button btn-increase">+</button></td>
+                    <td ng-if="skill.career == false"><button ng-click="increaseRank(skill.id, true)" ng-if="character.xp >= ((skill.rank + 1) * 5) + 5 && skill.rank < 2" class="button btn-increase">+</button></td>
             </tr>
         </tbody>
     </table>

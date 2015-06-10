@@ -3,14 +3,18 @@ SWRpg::Application.routes.draw do
   get 'career/index'
   get "career/get_career_specializations/:id" => "career#get_career_specializations"
   get "career/get_all_specializations" => "career#get_all_specializations"
+  get "career/get_specialization_career_skills/:id" => "career#get_specialization_career_skills"
   
   #PLAYER CONTROLLER ROUTES
   resources :player
+  get "player/get_pc" => "player#get_pc"
   get "users/player_check" => "player#player_check"
   post "player/create_pc" => "player#create_pc"
+  get "player/get_pc_xp/:id" => "player#get_pc_xp"
   get "player/get_pc_skills/:id" => "player#get_pc_skills"
   get "player/get_pc_career_skills/:id" => "player#get_pc_career_skills"
   post "player/increase_skill_rank" => "player#increase_skill_rank"
+  post "player/increase_attribute" => "player#increase_attribute"
   post "player/set_specialization" => "player#set_specialization"
   
   #RACE CONTROLLER ROUTES

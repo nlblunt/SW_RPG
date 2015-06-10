@@ -16,4 +16,12 @@ class CareerController < ApplicationController
     
     render json: @spec
   end
+  
+  def get_specialization_career_skills
+    spec = Specialization.find(params[:id])
+    
+    @skills = spec.skills
+    
+    render json: @skills
+  end
 end
