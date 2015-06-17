@@ -1,10 +1,20 @@
 <div id="characterselect" ng-show="stage == 'characterselect'">
    	<h1 class="text-center">Welcome {{player.name}}</h1>
-	<h4 class="text-center"><a href ng-click="editPlayer()">Edit player profile</a></h4> 
+	<h4 class="text-center"><a href ng-click="editPlayer()">Edit player profile</a></h4>
+	<h4 class="text-center"><a href ng-click="newCharacter()">+ New Character +</a></h4>
 	
 	<div class="row">
-	    <div class="col-xs-4">
-	        <a href ng-click="newCharacter()"><img src="images/new_character.jpg"></a>
+	    <div class="col-sm-4 select_character" ng-repeat="pc in pcs | filter:{status: 'active'}">
+	    		<h3>{{pc.name}}</h3>
+	    		<p>
+	    			Race: {{pc.race_name}}<br>
+	    			Career: {{pc.career_name}}<br>
+	    			XP: {{pc.xp}}<br>
+	    			Credits:  {{pc.credits}}<br>
+	    			Wounds:  {{pc.wounds_current}}  Max:  {{pc.wounds_thresh}}
+	    		</p>
+	    		
+				<div><a href class="text-center" ng-click="selectCharacter($index)">{{pc.name}}'s Destiny Awaits</a></div>
 	    </div>
 	</div>
 </div>

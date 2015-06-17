@@ -27,6 +27,14 @@ appControllers.controller('playerController', ['$scope', '$filter', 'playerFacto
 		$scope.player = result;
 		$scope.signed_in = true;
 		$scope.stage = "characterselect";
+		
+		//Get a list of players PCs
+		playerFactory.getPlayerPcs($scope.player.id)
+		.then(function(result)
+		{
+			//Assign the list of PCs to $scope.pcs
+			$scope.pcs = result;
+		});
 	},
 	function()
 	{
@@ -47,7 +55,7 @@ appControllers.controller('playerController', ['$scope', '$filter', 'playerFacto
 			function(result)
 			{
 				$scope.player = result;
-				console.log(result);
+
 				$scope.signed_in = true;
 				$scope.stage = "characterselect";
 			});
@@ -126,6 +134,13 @@ appControllers.controller('playerController', ['$scope', '$filter', 'playerFacto
 		
 	};
 	
+	$scope.selectCharacter = function(index)
+	{
+		$scope.character = $scope.pcs[index];
+		console.log($scope.pcs[index]);
+		$scope.stage = "characterselected";
+	};
+	
 	$scope.characterStage2 = function()
 	{
 		playerFactory.newPc($scope.player, $scope.character)
@@ -199,11 +214,22 @@ appControllers.controller('playerController', ['$scope', '$filter', 'playerFacto
 		playerFactory.getPcSkills($scope.character.id)
 		.then(function(result)
 		{
-			console.log(result);
 			$scope.skills = result;
 		});
 	};
 
+	$scope.characterFinished = function()
+	{
+		//Character creation finished.  Set stage as characterSelected and show final character sheet and
+		//set character status = active
+		playerFactory.setPcStatus($scope.character.id, "active")
+		.then(function(result)
+		{
+			$scope.character.status = "active";
+			$scope.stage = "characterselected";
+		});
+	};
+	
 	$scope.saveBonusSpecialization = function()
 	{
 		//Save the bonus specialiation for the human race

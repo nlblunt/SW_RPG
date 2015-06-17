@@ -63,3 +63,11 @@ app.directive('characterCreateHuman', function()
         templateUrl: 'html/partials/charactercreatehuman.html'
     };
 });
+
+app.directive('characterSelected', function()
+{
+    return{
+        restrict: 'E',
+        templateUrl: 'html/partials/characterselected.html'
+    };
+});

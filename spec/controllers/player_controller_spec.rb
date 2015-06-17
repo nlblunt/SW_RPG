@@ -33,6 +33,29 @@ RSpec.describe PlayerController, type: :controller do
         end
     end
     
+    describe "GET get_player_pcs" do
+        it "returns a list of PCs for the player" do
+            player = FactoryGirl.create(:player)
+            #Initial check: Player should have 0 PCs
+            expect(player.pcs.count).to eq(0)
+            
+            #Assign a PC to player.  Count should = 1
+            player.pcs << FactoryGirl.create(:pc)
+            expect(player.pcs.count).to eq(1)
+            
+            #Test
+            get :get_player_pcs, {id: player.id}
+            expect(assigns(:pcs).count).to eq(1)
+            
+            #Add another
+            player.pcs << FactoryGirl.create(:pc)
+            expect(player.pcs.count).to eq(2)
+            
+            get :get_player_pcs, {id: player.id}
+            expect(assigns(:pcs).count).to eq(2)
+        end
+    end
+    
     describe "POST create_pc" do
       describe "User Signed In" do
        it "Creates a PC and assigns to player" do
@@ -153,6 +176,20 @@ RSpec.describe PlayerController, type: :controller do
             get :get_pc, {id: pc.id}
             
             expect(assigns(:pc).id).to eq(1)
+        end
+    end
+    
+    describe "POST set_pc_status" do
+        it "sets the PC status" do
+           pc = FactoryGirl.create(:pc)
+           
+           #Intial status should = "started"
+           expect(pc.status).to eq("started")
+           
+           #Set status = "active"
+           post :set_pc_status, {id: pc.id, status: "active"}
+           
+           expect(assigns(:pc).status).to eq("active")
         end
     end
     

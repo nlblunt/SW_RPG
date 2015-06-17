@@ -222,4 +222,10 @@ class Pc < ActiveRecord::Base
             end
         end
     end
+    
+    def set_status(new_status)
+       self.status = new_status
+       
+       self.save
+    end
 end

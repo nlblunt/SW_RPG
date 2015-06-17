@@ -61,6 +61,15 @@ class PlayerController < ApplicationController
     end
   end
   
+  def get_player_pcs
+    player = Player.find(params[:id])
+    
+    @pcs = player.pcs
+
+    #render json: @pcs
+    render :get_player_pcs
+  end
+  
   def get_pc
     @pc = Pc.find(params[:id])
     
@@ -118,6 +127,15 @@ class PlayerController < ApplicationController
     result = @pc.set_specialization(params[:spec_id], params[:use_xp])
     
     render :status => result[:status], json: result
+  end
+  
+  def set_pc_status
+    #Sets the PC status
+    @pc = Pc.find(params[:id])
+    
+    @pc.set_status(params[:status])
+    
+    render nothing: true
   end
   
   private

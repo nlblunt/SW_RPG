@@ -70,6 +70,23 @@ appServices.factory('playerFactory', ['$resource', '$q', '$http', function($reso
         return deferred.promise;
 	};
 	
+	self.getPlayerPcs = function(player_id)
+	{
+		var deferred = $q.defer();
+		
+		$http.post('/player/get_player_pcs.json', {id: player_id})
+		.success(function(result)
+		{
+			deferred.resolve(result);
+		})
+		.error(function()
+		{
+			deferred.reject("Error");
+		});
+		
+		return deferred.promise;
+	};
+	
 	//Get a list of races from the server
 	self.getRacesList = function()
 	{
@@ -261,6 +278,20 @@ appServices.factory('playerFactory', ['$resource', '$q', '$http', function($reso
 		.error(function(result)
 		{
 			deferred.reject(result);
+		});
+		
+		return deferred.promise;
+	};
+	
+	self.setPcStatus = function(pc_id, status)
+	{
+		var deferred = $q.defer();
+		
+		//Set the pc status
+		$http.post('/player/set_pc_status/', {id: pc_id, status: status})
+		.success(function()
+		{
+			deferred.resolve();
 		});
 		
 		return deferred.promise;

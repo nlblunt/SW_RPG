@@ -180,4 +180,17 @@ RSpec.describe Pc, type: :model do
           expect(pc.pcs_skills.where(cskill: true).count).to eq(2)
       end
   end
+  
+  describe "set_status" do
+     it "sets the PC status" do
+        pc = FactoryGirl.create(:pc)
+        
+        expect(pc.status).to eq("started")
+        
+        #Set the status = "active"
+        pc.set_status("active")
+        
+        expect(pc.status).to eq("active")
+     end
+  end
 end

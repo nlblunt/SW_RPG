@@ -13,6 +13,7 @@ FactoryGirl.define do
     strain_current 1
     critical 1
     soak 1
+    status "started"
   end
 
 end

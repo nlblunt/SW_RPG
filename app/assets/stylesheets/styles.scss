@@ -1,7 +1,14 @@
 body#welcome
 {
-	background-color: black;
+	background-color: rgb(55,55,55);
 	color: white;
+}
+
+body#player
+{
+	//background-color: rgb(197,187,167);
+	color: rgb(230,36,9);
+	background-color: rgb(10,10,10);
 }
 
 div#enter
@@ -35,7 +42,7 @@ form#editplayer
 
 div#characterselect
 {
-
+	
 }
 
 div#characterselect img
@@ -100,4 +107,14 @@ th#rank
 	border-radius: 10px;
 	background-color: greenyellow;
 	float: right;
+}
+
+.select_character
+{
+	border: solid 1px rgb(179,3,3);
+}
+
+p
+{
+	font-family: 'Source Sans Pro', sans-serif;
 }

@@ -7,7 +7,8 @@ SWRpg::Application.routes.draw do
   
   #PLAYER CONTROLLER ROUTES
   resources :player
-  get "player/get_pc" => "player#get_pc"
+  get "player/get_pc/:id" => "player#get_pc"
+  post "player/get_player_pcs" => "player#get_player_pcs"
   get "users/player_check" => "player#player_check"
   post "player/create_pc" => "player#create_pc"
   get "player/get_pc_xp/:id" => "player#get_pc_xp"
@@ -16,6 +17,7 @@ SWRpg::Application.routes.draw do
   post "player/increase_skill_rank" => "player#increase_skill_rank"
   post "player/increase_attribute" => "player#increase_attribute"
   post "player/set_specialization" => "player#set_specialization"
+  post "player/set_pc_status" => "player#set_pc_status"
   
   #RACE CONTROLLER ROUTES
   get 'race/index'
