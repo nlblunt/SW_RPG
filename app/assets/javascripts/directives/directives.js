@@ -71,3 +71,35 @@ app.directive('characterSelected', function()
         templateUrl: 'html/partials/characterselected.html'
     };
 });
+
+app.directive('characterOverview', function()
+{
+	return{
+		restrict: 'E',
+		templateUrl: 'html/partials/character/overview.html'
+	};
+});
+
+app.directive('characterSkills', function()
+{
+	return{
+		restrict: 'E',
+		templateUrl: 'html/partials/character/skills.html'
+	};
+});
+
+app.directive('characterEquipment', function()
+{
+	return{
+		restrict: 'E',
+		templateUrl: 'html/partials/character/equipment.html'
+	};
+});
+
+app.directive('characterOptions', function()
+{
+	return{
+		restrict: 'E',
+		templateUrl: 'html/partials/character/options.html'
+	};
+});

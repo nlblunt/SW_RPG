@@ -67,7 +67,7 @@ class PlayerController < ApplicationController
     @pcs = player.pcs
 
     #render json: @pcs
-    render json: :get_player_pcs
+    render :get_player_pcs
   end
   
   def get_pc
