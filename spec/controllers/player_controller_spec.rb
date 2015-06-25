@@ -239,7 +239,6 @@ RSpec.describe PlayerController, type: :controller do
             expect(assigns(:pc).agility).to eq(3)
             
             resp = JSON.parse(response.body)
-
             expect(resp["msg"]).to eq("Insufficient XP")
             
         end
