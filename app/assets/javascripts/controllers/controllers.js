@@ -58,6 +58,14 @@ appControllers.controller('playerController', ['$scope', '$filter', 'playerFacto
 
 				$scope.signed_in = true;
 				$scope.stage = "characterselect";
+
+//Get a list of players PCs
+		playerFactory.getPlayerPcs($scope.player.id)
+		.then(function(result)
+		{
+			//Assign the list of PCs to $scope.pcs
+			$scope.pcs = result;
+		});
 			});
 
 		return;
