@@ -250,7 +250,7 @@ appControllers.controller('playerController', ['$scope', '$filter', 'playerFacto
 	$scope.saveBonusSpecialization = function()
 	{
 		//Save the bonus specialiation for the human race
-		playerFactory.setSpecialization($scope.character.id, $scope.specialization.id, "false")
+		playerFactory.setSpecialization($scope.character.id, $scope.bonus_specialization.id, "false")
 		.then(function(result)
 		{
 			$scope.stage = "charactercreate-2";
