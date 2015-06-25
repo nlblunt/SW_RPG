@@ -136,9 +136,18 @@ appControllers.controller('playerController', ['$scope', '$filter', 'playerFacto
 	
 	$scope.selectCharacter = function(index)
 	{
+		//Set the body to character
+		$scope.$root.body_id = "character";
+		
+		//Set the selected Character
 		$scope.character = $scope.pcs[index];
-		console.log($scope.pcs[index]);
+		console.log($scope.character);
+
+		//Set the stage to the character
 		$scope.stage = "characterselected";
+		
+		//Set initail character_stage
+		$scope.character_stage = "overview";
 	};
 	
 	$scope.characterStage2 = function()

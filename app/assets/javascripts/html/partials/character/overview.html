@@ -1,0 +1,38 @@
+<div id="character_overview" ng-show="character_stage == 'overview'">
+    Overview
+    <h2>Health</h2>
+    <table class="table">
+        <tr>
+            <td>Wounds</td>
+            <td>{{character.wounds_current}}</td>
+            <td>Max Wounds</td>
+            <td>{{character.wounds_thresh}}</td>
+        </tr>
+        <tr>
+            <td>Strain</td>
+            <td>{{character.strain_current}}</td>
+            <td>Max Strain</td>
+            <td>{{character.strain_thresh}}</td>
+        </tr>
+    </table>
+    
+    <h2>Attributes</h2>
+    <table class="table">
+        <tr>
+            <td>Brawn</td>
+            <td>{{character.brawn}}</td>
+            <td>Agility</td>
+            <td>{{character.agility}}</td>
+            <td>Intellect</td>
+            <td>{{character.intellect}}</td>
+        </tr>
+        <tr>
+            <td>Cunning</td>
+            <td>{{character.cunning}}</td>
+            <td>Willpower</td>
+            <td>{{character.willpower}}</td>
+            <td>Presence</td>
+            <td>{{character.presence}}</td>
+        </tr>
+    </table>
+</div>
