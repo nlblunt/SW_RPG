@@ -312,6 +312,7 @@ DEPENDENCIES
   rails (~> 4.2.0)
   rails_12factor
   rails_layout
+  rake
   rspec-rails
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)

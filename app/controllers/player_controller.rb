@@ -67,7 +67,10 @@ class PlayerController < ApplicationController
     @pcs = player.pcs
 
     #render json: @pcs
-    render json: :get_player_pcs
+    respond_to do |format|
+      format.json {render :get_player_pcs}
+      format.html {render nothing: true}
+    end
   end
   
   def get_pc
