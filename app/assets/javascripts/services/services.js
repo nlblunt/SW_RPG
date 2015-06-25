@@ -77,6 +77,7 @@ appServices.factory('playerFactory', ['$resource', '$q', '$http', function($reso
 		$http.post('/player/get_player_pcs.json', {id: player_id})
 		.success(function(result)
 		{
+			console.log(result);
 			deferred.resolve(result);
 		})
 		.error(function()
