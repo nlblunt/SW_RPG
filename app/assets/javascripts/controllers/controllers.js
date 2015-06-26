@@ -58,6 +58,14 @@ appControllers.controller('playerController', ['$scope', '$filter', 'playerFacto
 
 				$scope.signed_in = true;
 				$scope.stage = "characterselect";
+
+//Get a list of players PCs
+		playerFactory.getPlayerPcs($scope.player.id)
+		.then(function(result)
+		{
+			//Assign the list of PCs to $scope.pcs
+			$scope.pcs = result;
+		});
 			});
 
 		return;
@@ -242,7 +250,7 @@ appControllers.controller('playerController', ['$scope', '$filter', 'playerFacto
 	$scope.saveBonusSpecialization = function()
 	{
 		//Save the bonus specialiation for the human race
-		playerFactory.setSpecialization($scope.character.id, $scope.specialization.id, "false")
+		playerFactory.setSpecialization($scope.character.id, $scope.bonus_specialization.id, "false")
 		.then(function(result)
 		{
 			$scope.stage = "charactercreate-2";
