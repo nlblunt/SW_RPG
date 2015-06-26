@@ -9,6 +9,16 @@ body#player
 	//background-color: rgb(197,187,167);
 	color: rgb(230,36,9);
 	background-color: rgb(10,10,10);
+	//background-image: image_url("scroll.png");
+}
+
+body#character
+{
+	background-image: image_url("scroll.PNG");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-color: rgb(253, 234, 203);
+	font-family: 'Rock Salt', cursive;
 }
 
 div#enter
@@ -40,9 +50,12 @@ form#editplayer
 	margin-right: auto;
 }
 
-div#characterselect
+div#characterselected
 {
-	
+	width: 80%;
+	margin-left: 10%;
+	margin-right: 10%;
+	margin-top: 50px;
 }
 
 div#characterselect img
