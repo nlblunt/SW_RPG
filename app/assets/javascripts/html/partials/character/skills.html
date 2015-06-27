@@ -1,0 +1,31 @@
+<div id="character_skills" ng-show="character_stage == 'skills'">
+    SKILLS
+    
+    <div class="col-sm-12">
+    <table class="table">
+        <tr>
+            <td>Skill</td>
+            <td>Attribute</td>
+            <td>Rank</td>
+            <td>C</td>
+            <td>Dice</td>
+        </tr>
+            <tr ng-repeat="skill in skills" >
+                <td>{{skill.name}}</td>
+                <td>{{skill.attrib}}</td>
+                <td class="text-right">{{skill.rank}}</td>
+                <td class="text-center" ng-if="skill.career == true">*</td>
+                <td ng-if="skill.career == false"></td>
+                <td>
+                    <div class="float-right" ng-repeat="die in skill.dice">
+                        <img class="dice" ng-src="images/{{die.die}}" />
+                    </div>
+                </td>
+            </tr>
+    </table>
+    </div>
+    
+    <div class="col-sm-6">
+        
+    </div>
+</div>

@@ -1,12 +1,14 @@
 <div id="characterselected" ng-show="stage == 'characterselected'">
     <div>
     	<ul id="character-nav">
-    		<li class="text-center">Overview</li>
-    		<li class="text-center">Skills</li>
-    		<li class="text-center">Equipment</li>
+    		<li class="text-center"><a href ng-click="set_char_stage('overview')">Overview</a></li>
+    		<li class="text-center"><a href ng-click="set_char_stage('skills')">Skills</a></li>
+    		<li class="text-center">Gear</li>
     		<li class="text-center">Options</li>
     	</ul>
     </div>
     
     <character-overview></character-overview>
+    
+    <character-skills></character-skills>
 </div>
