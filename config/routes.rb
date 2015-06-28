@@ -1,4 +1,8 @@
 SWRpg::Application.routes.draw do
+
+  #GM CONTROLLER ROUTES
+  get 'gm/gm_check' => "gm#gm_check"
+  
   #CAREER CONTROLLER ROUTES
   get 'career/index'
   get "career/get_career_specializations/:id" => "career#get_career_specializations"
@@ -24,6 +28,8 @@ SWRpg::Application.routes.draw do
 
   #GENERIC ROUTES
   devise_for :users, controllers: { sessions: "users/sessions"}
+  devise_for :gms, controllers: { sessions: "gm/sessions"}
+  
   get "welcome/index"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

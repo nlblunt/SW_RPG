@@ -1,5 +1,48 @@
 var appServices = angular.module('appServices', ['ngResource', 'ngFileUpload']);
 
+/* Factory for GM resource */
+
+appServices.factory('gmFactory', ['$resource', '$q', '$http', function($resource, $q, $http)
+{
+	var self = {};
+	
+	//GM session object
+	var gm = $resource('/gms/sign_in', {id:'@id'},
+	{
+		gmCheck: {method:'GET', url:'/gm/gm_check'},
+	});
+	
+	self.gmCheck = function()
+	{
+		//Return gm info if signed in
+		return gm.gmCheck();
+	};
+	
+	//GM Login
+	self.gmLogin = function(login)
+	{
+		var deferred = $q.defer();
+		
+		var new_gm = new gm({email: login.email, password: login.password});
+		
+		//Attempt to save the session
+		new_gm.$save()
+		.then(
+			function(result)
+			{
+				deferred.resolve(result);
+			},
+			function()
+			{
+				deferred.reject();
+			});
+			
+			return deferred.promise;
+	};
+	
+	return self;
+}]);
+
 /* Factory for player resource */
 appServices.factory('playerFactory', ['$resource', '$q', '$http', function($resource, $q, $http)
 {
