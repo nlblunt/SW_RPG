@@ -7,6 +7,38 @@ appControllers.controller('homeController', ['$scope', function($scope)
     	$scope.$root.body_id = "welcome";
 }]);
 
+appControllers.controller('gmController', ['$scope', 'gmFactory', function($scope, gmFactory)
+{
+	//Controller for GameMaster (GM)
+	
+	//Set the main body tag to "gm"
+	$scope.$root.body_id = "gm";
+	
+	//Is GM signed in?  Set initial check to false then queue server
+	gmFactory.gmCheck().$promise
+	.then(function(result)
+	{
+		//GM is signed in
+		$scope.gm_signed_in = true;
+		$scope.stage = "gmoverview";
+	},
+	function()
+	{
+		//GM is not signed in
+		$scope.gm_signed_in = false;
+	});
+	
+	$scope.gm_sign_in = function()
+	{
+		gmFactory.gmLogin($scope.sign_in)
+		.then(function()
+		{
+			$scope.gm_signed_in = true;
+			$scope.stage = "gmoverview";
+		});
+	};
+}]);
+
 appControllers.controller('playerController', ['$scope', '$filter', 'playerFactory', function($scope, $filter, playerFactory)
 {
 	$scope.alerts = [];

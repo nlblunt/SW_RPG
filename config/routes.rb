@@ -1,5 +1,8 @@
 SWRpg::Application.routes.draw do
 
+  #GM CONTROLLER ROUTES
+  get 'gm/gm_check' => "gm#gm_check"
+  
   #CAREER CONTROLLER ROUTES
   get 'career/index'
   get "career/get_career_specializations/:id" => "career#get_career_specializations"

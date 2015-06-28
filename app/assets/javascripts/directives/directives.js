@@ -1,5 +1,21 @@
 var app = angular.module('appDirectives',[]);
 
+app.directive('gmSignIn', function()
+{
+    return{
+        restrict: 'E',
+        templateUrl: 'html/partials/gm/gmsignin.html'
+    };
+});
+
+app.directive('gmSignedIn', function()
+{
+    return{
+        restrict: 'E',
+        templateUrl: 'html/partials/gm/gmsignedin.html'
+    };
+});
+
 app.directive('pcSignIn', function()
 {
     return{
