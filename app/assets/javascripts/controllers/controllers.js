@@ -20,7 +20,7 @@ appControllers.controller('gmController', ['$scope', 'gmFactory', function($scop
 	{
 		//GM is signed in
 		$scope.gm_signed_in = true;
-		$scope.stage = "gmoverview";
+		$scope.gm_stage = "gmoverview";
 	},
 	function()
 	{
@@ -34,9 +34,62 @@ appControllers.controller('gmController', ['$scope', 'gmFactory', function($scop
 		.then(function()
 		{
 			$scope.gm_signed_in = true;
-			$scope.stage = "gmoverview";
+			$scope.gm_stage = "gmoverview";
 		});
 	};
+	
+	$scope.gm_set_stage = function(stage)
+	{
+		$scope.gm_stage = stage;
+		
+		if(stage == 'gm_pcs')
+		{
+			//PCS stage.  Get a list of PCS
+			gmFactory.gmGetAllPcs()
+			.then(function(result)
+			{
+				//Save the list of PCS
+				$scope.pcs = result;
+				
+				//Get races and careers
+				gmFactory.getRacesList()
+				.then(function(result)
+				{
+					$scope.races = result;
+				});
+				
+				gmFactory.getCareersList()
+				.then(function(result)
+				{
+					$scope.careers = result;
+				});
+			});
+		}
+	};
+	
+	$scope.edit_pc = function(index)
+	{
+		//Edit a PC.  Get the pc from the index.  Set edit_pc = true
+		$scope.character = $scope.pcs[index];
+		
+		//Set the selected race
+		//TODO: Change to a more reliable method
+		$scope.character.race = $scope.races[$scope.character.race_id - 1];
+		
+		//Set the selected career
+		$scope.character.career = $scope.careers[$scope.character.career_id - 1];
+		
+		console.log($scope.pcs[index]);
+		$scope.edit_pc_state = true;
+	};
+	
+	$scope.close_edit_pc_state = function()
+	{
+		console.log("Clicked");
+		$scope.edit_pc_state = false;
+		console.log($scope.edit_pc_state);
+	};
+	
 }]);
 
 appControllers.controller('playerController', ['$scope', '$filter', 'playerFactory', function($scope, $filter, playerFactory)

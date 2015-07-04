@@ -123,6 +123,14 @@ th#rank
 	float: right;
 }
 
+.btn-remove
+{
+	border: solid 1px red;
+	border-radius: 10px;
+	background-color: red;
+	font-size: 10px;
+	font-weight: bold;
+}
 .select_character
 {
 	border: solid 1px rgb(179,3,3);
@@ -192,4 +200,15 @@ div#character_overview p
 {
 	font-family: 'Rock Salt', cursive;
 	font-size: 12px;
+}
+
+.gm-all-pcs
+{
+	width: 18%;
+	float: left;
+	border: 2px solid black;
+	border-radius: 5px;
+	margin: 5px;
+	background-color: rgb(253, 247, 232);
+	padding: 5px;
 }
