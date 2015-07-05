@@ -21,4 +21,27 @@ RSpec.describe GmController, type: :controller do
            expect(response.status).to eq(200)
         end
     end
+    
+    describe "POST get_all_pcs" do
+        it "Returns a list of all PCS" do
+            #Create 2 pcs
+            FactoryGirl.create(:pc)
+            FactoryGirl.create(:pc)
+            
+            expect(Pc.count).to eq(2)
+            
+            post :get_all_pcs
+            
+            #@pcs should = 2
+            expect(assigns(:pcs).count).to eq(2)
+            
+            #Add another
+            FactoryGirl.create(:pc)
+            
+            post :get_all_pcs
+            
+            #Should now = 3
+            expect(assigns(:pcs).count).to eq(3)
+        end
+    end
 end

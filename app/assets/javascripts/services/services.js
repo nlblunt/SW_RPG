@@ -40,6 +40,75 @@ appServices.factory('gmFactory', ['$resource', '$q', '$http', function($resource
 			return deferred.promise;
 	};
 	
+	self.gmGetAllPcs = function()
+	{
+		//Gets all PCS regardless of status
+		var deferred = $q.defer();
+		
+		$http.post('/gm/get_all_pcs.json')
+		.success(function(result)
+		{
+			//Resolve the results
+			deferred.resolve(result);
+		});
+		
+		//Return the list of PCS
+		return deferred.promise;
+	};
+	
+	//Get a list of races from the server
+	self.getRacesList = function()
+	{
+		var deferred = $q.defer();
+
+		$http.get('/race/index')
+		.then(function(result)
+		{
+			deferred.resolve(result.data);
+		});
+		
+		return deferred.promise;
+	};
+	
+	//Get a list of careers from the server
+	self.getCareersList = function()
+	{
+		var deferred = $q.defer();
+		
+		//Career list API
+		$http.get('/career/index')
+		.then(function(result)
+		{
+			deferred.resolve(result.data);
+		});
+		
+		return deferred.promise;
+	};
+	
+	self.getPcSkills = function(pc_id)
+	{
+		var deferred = $q.defer();
+		
+		$http.get('/player/get_pc_skills/' + pc_id + '.json')
+		.then(function(result)
+		{
+			deferred.resolve(result.data);
+		});
+		
+		return deferred.promise;
+	};
+	
+	self.deletePc = function(pc_id)
+	{
+		var deferred = $q.defer();
+		
+		$http({method: 'DELETE', url: '/player/' + pc_id})
+		.then(function()
+		{
+			deferred.resolve();
+		});
+	};
+	
 	return self;
 }]);
 

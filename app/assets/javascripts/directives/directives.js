@@ -119,3 +119,11 @@ app.directive('characterOptions', function()
 		templateUrl: 'html/partials/character/options.html'
 	};
 });
+
+app.directive('gmPcs', function()
+{
+    return{
+        restrict: 'E',
+        templateUrl: 'html/partials/gm/pcs.html'
+    };
+});
