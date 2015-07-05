@@ -69,6 +69,15 @@ appControllers.controller('gmController', ['$scope', 'gmFactory', function($scop
 	
 	$scope.edit_pc = function(index)
 	{
+		//Save the index incase of delete
+		$scope.pc_index = index;
+		
+		//Create empty skills array incase of skill adjustment
+		$scope.modified_skills = {};
+		
+		//Set $scope.changed_skills = 0 for display
+		$scope.changed_skills = 0;
+		
 		//Edit a PC.  Get the pc from the index.  Set edit_pc = true
 		$scope.character = $scope.pcs[index];
 		
@@ -79,17 +88,44 @@ appControllers.controller('gmController', ['$scope', 'gmFactory', function($scop
 		//Set the selected career
 		$scope.character.career = $scope.careers[$scope.character.career_id - 1];
 		
-		console.log($scope.pcs[index]);
+		//Get the list of skills for the PC
+		gmFactory.getPcSkills($scope.character.id)
+		.then(function(result)
+		{
+			$scope.skills = result;
+		});
+		
 		$scope.edit_pc_state = true;
 	};
 	
 	$scope.close_edit_pc_state = function()
 	{
-		console.log("Clicked");
 		$scope.edit_pc_state = false;
-		console.log($scope.edit_pc_state);
 	};
 	
+	$scope.skill_rank_changed = function(skill, value)
+	{
+		//Convert to an integer
+		skill.rank = parseInt(value, 10);
+		
+		//Add the modified skill to the modified_skills
+		$scope.modified_skills[skill.name] = skill;
+		
+		//Update the changed skill count
+		$scope.changed_skills = Object.keys($scope.modified_skills).length;
+		console.log($scope.modified_skills);
+	};
+	
+	$scope.delete_pc = function(pc_id)
+	{
+		gmFactory.deletePc(pc_id)
+		.then(function()
+		{
+			//Delete was successful.  Reload PC and close edit screen (just splice for now)
+			$scope.edit_pc_state = false;
+			$scope.pcs.splice($scope.pc_index, 1);
+		});
+	};
 }]);
 
 appControllers.controller('playerController', ['$scope', '$filter', 'playerFactory', function($scope, $filter, playerFactory)

@@ -1,43 +1,121 @@
-<div class="row" id="gm_pcs" ng-show="gm_stage == 'gm_pcs'">
+<div id="gm_pcs" ng-show="gm_stage == 'gm_pcs'">
     
-    <div id="edit_pc" ng-show="edit_pc_state">
-        <form class="form">
-            <div class="form-group">
-                <label>Character Name</label>
-                <input class="form-control" type="text" ng-model="character.name">
-            </div>
-            
-            <div class="form-group">
-                <label>Species</label>
-                <select class="form-control" ng-model="character.race" ng-options="race.name for race in races track by race.id"></select>
-            </div>
-            
-            <div class="form-group">
-                <label>Career</label>
-                <select class="form-control" ng-change="careerSelected()" ng-model="character.career" ng-options="career.name for career in careers track by career.id"></select>
-            </div>
+    <div class="row" id="edit_pc" ng-show="edit_pc_state">
+        <div class="col-md-12">
+            <ul id="gm_pc_update">
+                <li><a href ng-click="delete_pc(character.id)">DELETE PC</a></li>
+                <li><a href ng-click="gm_update_pc()">SAVE UPDATES</a></li>
+                <li>Changed Skills: {{changed_skills}}</li>
+            </ul>
+        </div>
         
-            <div class="form-group">
-                <label>Specializations</label>
-                <div ng-repeat="spec in character.specialization">
-                    <p>{{spec.name}}
-                    <button class="button btn-remove">--</button></p>
+        <div class="col-md-6">
+            <form class="form">
+                <div class="form-group">
+                    <label>Character Name</label>
+                    <input class="form-control" type="text" ng-model="character.name">
                 </div>
-            </div>
-        </form>   
+                
+                <div class="form-group">
+                    <label>Species</label>
+                    <select class="form-control" ng-model="character.race" ng-options="race.name for race in races track by race.id"></select>
+                </div>
+                
+                <div class="form-group">
+                    <label>Career</label>
+                    <select class="form-control" ng-change="careerSelected()" ng-model="character.career" ng-options="career.name for career in careers track by career.id"></select>
+                </div>
+            
+                <div class="form-group">
+                    <label>Specializations</label>
+                    <div ng-repeat="spec in character.specialization">
+                        <p>{{spec.name}}
+                        <button class="button btn-remove">--</button></p>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-6">
+                        <label class="float-left">XP</label>
+                        <input class="form-control float-left" type="text" ng-model="character.xp">
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <label>Credits</label>
+                        <input class="form-control" type="text" ng-model="character.credits">
+                    </div>
+                </div>
+                
+                <table id="pc_attributes" class="table table-striped">
+                    <thead>
+                        <tr>
+                            <td><label>Attribute</label></td>
+                            <td class="table-rank"><label>Rank</label></td>
+                            <td><label>Attribute</label></td>
+                            <td class="table-rank"><label>Rank</label></td>
+                            <td><label>Attribute</label></td>
+                            <td class="table-rank"><label>Rank</label></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Agility</td>
+                            <td class="table-rank"><input class="form-control" ng-model="character.agility"></td>
+                            <td>Brawn</td>
+                            <td class="table-rank"><input class="form-control" ng-model="character.brawn"></td>
+                            <td>Cunning</td>
+                            <td class="table-rank"><input class="form-control" ng-model="character.cunning"></td>
+                        </tr>
+                        <tr>
+                            <td>Intellect</td>
+                            <td class="table-rank"><input class="form-control" ng-model="character.intellect"></td>
+                            <td>Presence</td>
+                            <td class="table-rank"><input class="form-control" ng-model="character.presence"></td>
+                            <td>Willpower</td>
+                            <td class="table-rank"><input class="form-control" ng-model="character.willpower"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>   
         
-        <a href ng-click="close_edit_pc_state()">Cancel</a>
+            <a href ng-click="close_edit_pc_state()">Cancel</a>
+        </div>
+        <div class="col-md-6">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <td>Name</td>
+                        <td>Attribute</td>
+                        <td>Career</td>
+                        <td id="skill-rank">Rank</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="skill in skills" >
+                        <td><label>{{skill.name}}</label></td>
+                        <td><label>{{skill.attrib}}</label></td>
+                            <td ng-if="skill.career == true">*</td>
+                            <td ng-if="skill.career == false"></td>
+                        <td class="rank"><input ng-change="skill_rank_changed({{skill}}, skill.rank)" class="form-control" ng-model=skill.rank></td>
+                    </tr>
+        </tbody>
+            </table>
+        </div>
     </div>
     
-    <div class="gm-all-pcs" ng-repeat="pc in pcs" ng-hide="edit_pc_state">
-        <p>
-            Name: {{pc.name}}<br>
-            Race: {{pc.race_name}}<br>
-            Career: {{pc.career_name}}<br>
-            XP: {{pc.xp}}<br>
-            Credit: {{pc.credits}}<br>
-            Status: {{pc.status}}
-        </p>
-        <a href ng-click="edit_pc($index)">Edit</a>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="gm-all-pcs" ng-repeat="pc in pcs" ng-hide="edit_pc_state">
+                <p>
+                    Name: {{pc.name}}<br>
+                    Race: {{pc.race_name}}<br>
+                    Career: {{pc.career_name}}<br>
+                    XP: {{pc.xp}}<br>
+                    Credit: {{pc.credits}}<br>
+                    Status: {{pc.status}}
+                </p>
+                <a href ng-click="edit_pc($index)">Edit</a>
+            </div>
+        </div>
     </div>
 </div>

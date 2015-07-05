@@ -22,6 +22,11 @@ body#character
 	font-size: 12px;
 }
 
+body#gm
+{
+	background-color: rgb(252, 252, 252);
+}
+
 div#enter
 {
 	width: 70%;
@@ -112,6 +117,17 @@ th#attribute
 th#rank
 {
 	width: 5%;
+}
+
+td#skill-rank
+{
+	width: 5%;
+}
+
+td.table-rank
+{
+	width: 5%;
+	border-right: 1px solid black;
 }
 
 .btn-increase
@@ -211,4 +227,40 @@ div#character_overview p
 	margin: 5px;
 	background-color: rgb(253, 247, 232);
 	padding: 5px;
+}
+
+td.rank input.ng-dirty
+{
+	-webkit-transition: 1s linear all;
+	transition: 1s linear all;
+	font-weight: bold;
+	background-color: rgb(54, 255, 48);
+}
+
+table#pc_attributes
+{
+	margin-top: 20px;
+}
+
+table#pc_attributes input.ng-dirty
+{
+	-webkit-transition: 1s linear all;
+	transition: 1s linear all;
+	font-weight: bold;
+	background-color: rgb(54, 255, 48);
+}
+
+ul#gm_pc_update
+{
+	width: 100%;
+	height: 30px;
+	list-style: none;
+	
+}
+
+ul#gm_pc_update li
+{
+	float: left;
+	padding: 10px;
+	text-align: center;
 }

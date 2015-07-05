@@ -85,6 +85,29 @@ appServices.factory('gmFactory', ['$resource', '$q', '$http', function($resource
 		return deferred.promise;
 	};
 	
+	self.getPcSkills = function(pc_id)
+	{
+		var deferred = $q.defer();
+		
+		$http.get('/player/get_pc_skills/' + pc_id + '.json')
+		.then(function(result)
+		{
+			deferred.resolve(result.data);
+		});
+		
+		return deferred.promise;
+	};
+	
+	self.deletePc = function(pc_id)
+	{
+		var deferred = $q.defer();
+		
+		$http({method: 'DELETE', url: '/player/' + pc_id})
+		.then(function()
+		{
+			deferred.resolve();
+		});
+	};
 	
 	return self;
 }]);
