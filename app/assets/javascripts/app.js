@@ -25,6 +25,11 @@
 			templateUrl: "html/player.html",
 			controller: "playerController"
 		})
+		.when('/gm',
+		{
+			templateUrl: "html/gm.html",
+			controller: "gmController"
+		})
 		.otherwise(
 		{
 			redirectTo: '/'

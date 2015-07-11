@@ -7,6 +7,128 @@ appControllers.controller('homeController', ['$scope', function($scope)
     	$scope.$root.body_id = "welcome";
 }]);
 
+appControllers.controller('gmController', ['$scope', 'gmFactory', function($scope, gmFactory)
+{
+	//Controller for GameMaster (GM)
+	
+	//Set the main body tag to "gm"
+	$scope.$root.body_id = "gm";
+	
+	//Is GM signed in?  Set initial check to false then queue server
+	gmFactory.gmCheck().$promise
+	.then(function(result)
+	{
+		//GM is signed in
+		$scope.gm_signed_in = true;
+		$scope.gm_stage = "gmoverview";
+	},
+	function()
+	{
+		//GM is not signed in
+		$scope.gm_signed_in = false;
+	});
+	
+	$scope.gm_sign_in = function()
+	{
+		gmFactory.gmLogin($scope.sign_in)
+		.then(function()
+		{
+			$scope.gm_signed_in = true;
+			$scope.gm_stage = "gmoverview";
+		});
+	};
+	
+	$scope.gm_set_stage = function(stage)
+	{
+		$scope.gm_stage = stage;
+		
+		if(stage == 'gm_pcs')
+		{
+			//PCS stage.  Get a list of PCS
+			gmFactory.gmGetAllPcs()
+			.then(function(result)
+			{
+				//Save the list of PCS
+				$scope.pcs = result;
+				
+				//Get races and careers
+				gmFactory.getRacesList()
+				.then(function(result)
+				{
+					$scope.races = result;
+				});
+				
+				gmFactory.getCareersList()
+				.then(function(result)
+				{
+					$scope.careers = result;
+				});
+			});
+		}
+	};
+	
+	$scope.edit_pc = function(index)
+	{
+		//Save the index incase of delete
+		$scope.pc_index = index;
+		
+		//Create empty skills array incase of skill adjustment
+		$scope.modified_skills = {};
+		
+		//Set $scope.changed_skills = 0 for display
+		$scope.changed_skills = 0;
+		
+		//Edit a PC.  Get the pc from the index.  Set edit_pc = true
+		$scope.character = $scope.pcs[index];
+		
+		//Set the selected race
+		//TODO: Change to a more reliable method
+		$scope.character.race = $scope.races[$scope.character.race_id - 1];
+		
+		//Set the selected career
+		$scope.character.career = $scope.careers[$scope.character.career_id - 1];
+		
+		//Get the list of skills for the PC
+		gmFactory.getPcSkills($scope.character.id)
+		.then(function(result)
+		{
+			$scope.skills = result;
+		});
+		
+		$scope.edit_pc_state = true;
+	};
+	
+	$scope.close_edit_pc_state = function()
+	{
+		$scope.edit_pc_state = false;
+	};
+	
+	$scope.skill_rank_changed = function(skill, value)
+	{
+		//Convert to an integer
+		skill.rank = parseInt(value, 10);
+		
+		//Add the modified skill to the modified_skills
+		$scope.modified_skills[skill.name] = skill;
+		
+		//Update the changed skill count
+		$scope.changed_skills = Object.keys($scope.modified_skills).length;
+		console.log($scope.modified_skills);
+	};
+	
+	$scope.delete_pc = function(pc_id)
+	{
+		gmFactory.deletePc(pc_id)
+		.then(function()
+		{
+			//Delete was successful.  Reload PC and close edit screen (just splice for now)
+			console.log("Delete pc");
+			$scope.edit_pc_state = false;
+			$scope.pcs.splice($scope.pc_index, 1);
+		});
+	};
+}]);
+
 appControllers.controller('playerController', ['$scope', '$filter', 'playerFactory', function($scope, $filter, playerFactory)
 {
 	$scope.alerts = [];

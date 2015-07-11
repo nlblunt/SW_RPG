@@ -1,4 +1,9 @@
 SWRpg::Application.routes.draw do
+
+  #GM CONTROLLER ROUTES
+  get 'gm/gm_check' => "gm#gm_check"
+  post 'gm/get_all_pcs' => "gm#get_all_pcs"
+  
   #CAREER CONTROLLER ROUTES
   get 'career/index'
   get "career/get_career_specializations/:id" => "career#get_career_specializations"
@@ -11,6 +16,7 @@ SWRpg::Application.routes.draw do
   post "player/get_player_pcs" => "player#get_player_pcs"
   get "users/player_check" => "player#player_check"
   post "player/create_pc" => "player#create_pc"
+  post "player/delete_pc" => "player#delete_pc"
   get "player/get_pc_xp/:id" => "player#get_pc_xp"
   get "player/get_pc_skills/:id" => "player#get_pc_skills"
   get "player/get_pc_career_skills/:id" => "player#get_pc_career_skills"
@@ -24,6 +30,8 @@ SWRpg::Application.routes.draw do
 
   #GENERIC ROUTES
   devise_for :users, controllers: { sessions: "users/sessions"}
+  devise_for :gms, controllers: { sessions: "gm/sessions"}
+  
   get "welcome/index"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -1,5 +1,119 @@
 var appServices = angular.module('appServices', ['ngResource', 'ngFileUpload']);
 
+/* Factory for GM resource */
+
+appServices.factory('gmFactory', ['$resource', '$q', '$http', function($resource, $q, $http)
+{
+	var self = {};
+	
+	//GM session object
+	var gm = $resource('/gms/sign_in', {id:'@id'},
+	{
+		gmCheck: {method:'GET', url:'/gm/gm_check'},
+	});
+	
+	self.gmCheck = function()
+	{
+		//Return gm info if signed in
+		return gm.gmCheck();
+	};
+	
+	//GM Login
+	self.gmLogin = function(login)
+	{
+		var deferred = $q.defer();
+		
+		var new_gm = new gm({email: login.email, password: login.password});
+		
+		//Attempt to save the session
+		new_gm.$save()
+		.then(
+			function(result)
+			{
+				deferred.resolve(result);
+			},
+			function()
+			{
+				deferred.reject();
+			});
+			
+			return deferred.promise;
+	};
+	
+	self.gmGetAllPcs = function()
+	{
+		//Gets all PCS regardless of status
+		var deferred = $q.defer();
+		
+		$http.post('/gm/get_all_pcs.json')
+		.success(function(result)
+		{
+			//Resolve the results
+			deferred.resolve(result);
+		});
+		
+		//Return the list of PCS
+		return deferred.promise;
+	};
+	
+	//Get a list of races from the server
+	self.getRacesList = function()
+	{
+		var deferred = $q.defer();
+
+		$http.get('/race/index')
+		.then(function(result)
+		{
+			deferred.resolve(result.data);
+		});
+		
+		return deferred.promise;
+	};
+	
+	//Get a list of careers from the server
+	self.getCareersList = function()
+	{
+		var deferred = $q.defer();
+		
+		//Career list API
+		$http.get('/career/index')
+		.then(function(result)
+		{
+			deferred.resolve(result.data);
+		});
+		
+		return deferred.promise;
+	};
+	
+	self.getPcSkills = function(pc_id)
+	{
+		var deferred = $q.defer();
+		
+		$http.get('/player/get_pc_skills/' + pc_id + '.json')
+		.then(function(result)
+		{
+			deferred.resolve(result.data);
+		});
+		
+		return deferred.promise;
+	};
+	
+	self.deletePc = function(pc_id)
+	{
+		var deferred = $q.defer();
+		
+		$http.post('/player/delete_pc.json',{id: pc_id})
+		.then(function()
+		{
+			deferred.resolve();
+		});
+		
+		return deferred.promise;
+	};
+	
+	return self;
+}]);
+
 /* Factory for player resource */
 appServices.factory('playerFactory', ['$resource', '$q', '$http', function($resource, $q, $http)
 {
