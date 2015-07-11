@@ -16,6 +16,7 @@ SWRpg::Application.routes.draw do
   post "player/get_player_pcs" => "player#get_player_pcs"
   get "users/player_check" => "player#player_check"
   post "player/create_pc" => "player#create_pc"
+  post "player/delete_pc" => "player#delete_pc"
   get "player/get_pc_xp/:id" => "player#get_pc_xp"
   get "player/get_pc_skills/:id" => "player#get_pc_skills"
   get "player/get_pc_career_skills/:id" => "player#get_pc_career_skills"

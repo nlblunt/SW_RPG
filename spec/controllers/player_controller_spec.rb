@@ -16,6 +16,19 @@ RSpec.describe PlayerController, type: :controller do
        end
     end
     
+    describe "POST delete_pc" do
+      it "Deletes the PC" do
+        #Create a PC that will be deleted
+        pc = FactoryGirl.create(:pc)
+        expect(Pc.count).to eq(1)
+        
+        post :delete_pc, {id: pc.id}
+        
+        #deleted pc
+        expect(Pc.count).to eq(0);        
+      end  
+    end
+    
     describe "POST player_check" do
        it "Returns 'Forbidden' when not signed in" do
            post :player_check

@@ -61,6 +61,15 @@ class PlayerController < ApplicationController
     end
   end
   
+  def delete_pc
+    pc = Pc.find_by_id(params[:id])
+    
+    pc.delete
+    
+    render nothing: true
+    
+  end
+  
   def get_player_pcs
     player = Player.find(params[:id])
     

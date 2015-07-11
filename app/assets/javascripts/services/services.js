@@ -102,11 +102,13 @@ appServices.factory('gmFactory', ['$resource', '$q', '$http', function($resource
 	{
 		var deferred = $q.defer();
 		
-		$http({method: 'DELETE', url: '/player/' + pc_id})
+		$http.post('/player/delete_pc.json',{id: pc_id})
 		.then(function()
 		{
 			deferred.resolve();
 		});
+		
+		return deferred.promise;
 	};
 	
 	return self;
