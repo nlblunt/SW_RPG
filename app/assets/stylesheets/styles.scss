@@ -1,6 +1,9 @@
 body#welcome
 {
 	background-color: rgb(55,55,55);
+	background-image: image_url("tatooine.jpg");
+	background-size: 100%;
+	background-repeat: no-repeat;
 	color: white;
 }
 
