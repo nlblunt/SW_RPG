@@ -122,6 +122,7 @@ appControllers.controller('gmController', ['$scope', 'gmFactory', function($scop
 		.then(function()
 		{
 			//Delete was successful.  Reload PC and close edit screen (just splice for now)
+			console.log("Delete pc");
 			$scope.edit_pc_state = false;
 			$scope.pcs.splice($scope.pc_index, 1);
 		});
