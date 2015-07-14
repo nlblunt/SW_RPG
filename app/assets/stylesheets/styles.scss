@@ -1,7 +1,7 @@
 body#welcome
 {
-	background-color: rgb(55,55,55);
-	background-image: image_url("tatooine.jpg");
+	background-color: #FECF89;
+	background-image: image_url("tatooine_new.png");
 	background-size: 100%;
 	background-repeat: no-repeat;
 	color: white;
@@ -33,6 +33,11 @@ body#gm
 img.main-nav
 {
   width: 100%;
+}
+
+div.main-nav-small
+{
+  margin-top: 10px;
 }
 
 div#enter
