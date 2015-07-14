@@ -127,3 +127,11 @@ app.directive('gmPcs', function()
         templateUrl: 'html/partials/gm/pcs.html'
     };
 });
+
+app.directive('gmGame', function()
+              {
+                return{
+                  restrict: 'E',
+                  templateUrl: 'html/partials/gm/game.html'
+                };
+              });
