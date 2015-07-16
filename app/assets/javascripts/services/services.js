@@ -111,6 +111,20 @@ appServices.factory('gmFactory', ['$resource', '$q', '$http', function($resource
 		return deferred.promise;
 	};
 	
+	self.modifyPc = function(pc, skills)
+	{
+		//Modify a PC.  This is a GM function.  Get PC and SKILLs and send to server
+		var deferred = $q.defer();
+		
+		$http.post('/gm/modify_pc.json', {pc: pc, skills: skills})
+		.then(function()
+		{
+			deferred.resolve();
+		});
+		
+		return deferred.promise;
+	};
+	
 	return self;
 }]);
 

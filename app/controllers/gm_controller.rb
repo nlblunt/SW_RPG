@@ -22,4 +22,14 @@ class GmController < ApplicationController
       format.html {render nothing: true}
     end
   end
+  
+  def modify_pc
+    pc = Pc.find_by_id(params[:pc][:id])
+    
+    pc.gm_modify(params[:pc])
+    
+    #Save the updated skills into the PC
+    pc.skills << params[:skills]
+    render nothing: true
+  end
 end

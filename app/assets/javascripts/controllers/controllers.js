@@ -127,6 +127,24 @@ appControllers.controller('gmController', ['$scope', 'gmFactory', function($scop
 			$scope.pcs.splice($scope.pc_index, 1);
 		});
 	};
+	
+	$scope.gm_modify_pc = function()
+	{
+		//Modify the selected PC
+		gmFactory.modifyPc($scope.character, $scope.skills)
+		.then(function()
+		{
+			//Modification was successful
+			console.log("Modification successful");
+			gmFactory.gmGetAllPcs()
+			.then(function(result)
+			{
+				$scope.pcs = result;
+			});
+			
+			$scope.edit_pc_state = false;
+		});
+	};
 }]);
 
 appControllers.controller('playerController', ['$scope', '$filter', 'playerFactory', function($scope, $filter, playerFactory)

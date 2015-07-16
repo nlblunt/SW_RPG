@@ -228,4 +228,16 @@ class Pc < ActiveRecord::Base
        
        self.save
     end
+    
+    def gm_modify(mods)
+      #Only modify attributes that 'CAN' be changed without major impact
+        self.brawn = mods[:brawn]
+        self.agility = mods[:agility]
+        self.intellect = mods[:intellect]
+        self.cunning = mods[:cunning]
+        self.willpower = mods[:willpower]
+        self.presence = mods[:presence]
+        
+        self.save
+    end
 end
