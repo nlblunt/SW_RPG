@@ -26,10 +26,10 @@ class GmController < ApplicationController
   def modify_pc
     pc = Pc.find_by_id(params[:pc][:id])
     
-    pc.gm_modify(params[:pc])
+    pc.gm_modify(params[:pc], params[:skills])
     
     #Save the updated skills into the PC
-    pc.skills << params[:skills]
+
     render nothing: true
   end
 end

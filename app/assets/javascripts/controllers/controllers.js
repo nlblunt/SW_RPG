@@ -147,7 +147,7 @@ appControllers.controller('gmController', ['$scope', 'gmFactory', function($scop
 	};
 }]);
 
-appControllers.controller('playerController', ['$scope', '$filter', 'playerFactory', function($scope, $filter, playerFactory)
+appControllers.controller('playerController', ['$scope', '$filter', '$interval', 'playerFactory', function($scope, $filter, $interval, playerFactory)
 {
 	$scope.alerts = [];
 
@@ -158,6 +158,9 @@ appControllers.controller('playerController', ['$scope', '$filter', 'playerFacto
 	//Player info from sign_in
 	$scope.stage = "sign_in";
 	
+	//Timer
+	var tmr_attr_update;
+	var tmr_skills_update;
 	
 	//Check to see if player is signed in.
 	playerFactory.playerCheck().$promise
@@ -282,22 +285,8 @@ appControllers.controller('playerController', ['$scope', '$filter', 'playerFacto
 		
 	};
 	
-	$scope.selectCharacter = function(index)
+	$scope.setDice = function(len)
 	{
-		//Set the body to character
-		$scope.$root.body_id = "character";
-		
-		//Set the selected Character
-		$scope.character = $scope.pcs[index];
-		console.log($scope.character);
-
-		//Get the selected Characters skills
-		playerFactory.getPcSkills($scope.character.id)
-		.then(function(result)
-		{
-			$scope.skills = result;
-			
-			var len = result.length;
 			for (var i = 0; i < len; i++)
 			{
 				$scope.skills[i].dice = new Array;
@@ -470,7 +459,25 @@ appControllers.controller('playerController', ['$scope', '$filter', 'playerFacto
 						break;
 				}
 			}
-			console.log($scope.skills);
+			return 1;
+	};
+	
+	$scope.selectCharacter = function(index)
+	{
+		//Set the body to character
+		$scope.$root.body_id = "character";
+		
+		//Set the selected Character
+		$scope.character = $scope.pcs[index];
+		console.log($scope.character);
+
+		//Get the selected Characters skills
+		playerFactory.getPcSkills($scope.character.id)
+		.then(function(result)
+		{
+			$scope.skills = result;
+			
+			$scope.setDice(result.length);
 		});
 		
 		//Set the stage to the character
@@ -478,7 +485,48 @@ appControllers.controller('playerController', ['$scope', '$filter', 'playerFacto
 		
 		//Set initail character_stage
 		$scope.character_stage = "overview";
+		
+		//Start update timer to auto update
+		tmr_attr_update = $interval(function()
+		{
+			playerFactory.getPc($scope.character.id)
+			.then(function(result)
+			{
+				$scope.character = result;
+			});
+		}
+		,1000);
+		
+		//Skills update
+		tmr_skills_update = $interval(function()
+		{
+			playerFactory.getPcSkills($scope.character.id)
+			.then(function(result)
+			{
+				$scope.skills = result;
+				$scope.setDice(result.length);
+			});
+		}
+		,5000);
 	};
+	
+	
+	$scope.$on('destroy', function()
+	{
+		//Called on 'destroy'.  Stop tmr_attr_update
+		if(angular.isDefined(tmr_attr_update))
+		{
+			$interval.cancel(tmr_attr_update);
+			tmr_attr_update = undefined;
+		}
+		
+		//Stop tmr_skills_update
+		if(angular.isDefined(tmr_skills_update))
+		{
+			$interval.cancel(tmr_skills_update);
+			tmr_skills_update = undefined;
+		}
+	});
 	
 	$scope.characterStage2 = function()
 	{

@@ -85,7 +85,8 @@ class PlayerController < ApplicationController
   def get_pc
     @pc = Pc.find(params[:id])
     
-    render json: @pc
+    #render json: @pc
+    render :get_pc
   end
   
   def get_pc_skills

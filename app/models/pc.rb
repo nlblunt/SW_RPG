@@ -229,7 +229,7 @@ class Pc < ActiveRecord::Base
        self.save
     end
     
-    def gm_modify(mods)
+    def gm_modify(mods, skills)
       #Only modify attributes that 'CAN' be changed without major impact
         self.brawn = mods[:brawn]
         self.agility = mods[:agility]
@@ -238,6 +238,16 @@ class Pc < ActiveRecord::Base
         self.willpower = mods[:willpower]
         self.presence = mods[:presence]
         
+        skills.each do |s|
+            #Find the skill in the pcs_skills table by skill_id
+            pc_skill = self.pcs_skills.find_by_skill_id(s[:id])
+            
+            #Set cskill = true
+            pc_skill.rank = s[:rank]
+            
+            #Save back into skill table
+            self.pcs_skills << pc_skill
+        end
         self.save
     end
 end
