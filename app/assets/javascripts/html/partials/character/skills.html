@@ -10,7 +10,7 @@
             <td>C</td>
             <td>Dice</td>
         </tr>
-            <tr ng-repeat="skill in skills" >
+            <tr ng-repeat="skill in skills | orderBy:'name'" >
                 <td>{{skill.name}}</td>
                 <td>{{skill.attrib}}</td>
                 <td class="text-right">{{skill.rank}}</td>

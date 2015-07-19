@@ -242,7 +242,7 @@ class Pc < ActiveRecord::Base
             #Find the skill in the pcs_skills table by skill_id
             pc_skill = self.pcs_skills.find_by_skill_id(s[:id])
             
-            #Set cskill = true
+            #Adjust skill rank
             pc_skill.rank = s[:rank]
             
             #Save back into skill table
