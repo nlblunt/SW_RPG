@@ -26,11 +26,18 @@ class GmController < ApplicationController
   def modify_pc
     @pc = Pc.find_by_id(params[:pc][:id])
     
-    puts(params)
     @pc.gm_modify(params[:pc], params[:skills])
     
     #Save the updated skills into the PC
 
+    render nothing: true
+  end
+  
+  def pc_modify_strain
+    @pc = Pc.find_by_id(params[:id])
+
+    @pc.modify_strain(params[:amount])
+    
     render nothing: true
   end
 end

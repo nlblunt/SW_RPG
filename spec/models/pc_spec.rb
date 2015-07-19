@@ -193,4 +193,44 @@ RSpec.describe Pc, type: :model do
         expect(pc.status).to eq("active")
      end
   end
+  
+  describe "modify_strain" do
+     it "increases the current strain level" do
+        pc = FactoryGirl.create(:pc)
+        expect(pc.strain_current).to eq(0)
+        
+        #increase stain by 1
+        pc.modify_strain(1)
+        expect(pc.strain_current).to eq(1)
+        
+        #increase again for accumulation
+        pc.modify_strain(1)
+        expect(pc.strain_current).to eq(2)
+     end
+     
+     it "decrease the current strain level" do
+        pc = FactoryGirl.create(:pc, strain_current: 5)
+        expect(pc.strain_current).to eq(5)
+        
+        #decrease strain by 1
+        pc.modify_strain(-1)
+        expect(pc.strain_current).to eq(4)
+     end
+     
+     it "doesn't decrease to negative" do
+        pc = FactoryGirl.create(:pc)
+        expect(pc.strain_current).to eq(0)
+        
+        #Attempt to decrease to negative
+        pc.modify_strain(-1)
+        expect(pc.strain_current).to eq(0)
+     end
+     
+     it "doesn't exceed max strain" do
+        pc = FactoryGirl.create(:pc)
+        
+        pc.modify_strain(100)
+        expect(pc.strain_current).to eq(pc.strain_thresh)
+     end
+  end
 end

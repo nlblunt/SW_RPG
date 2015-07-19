@@ -7,10 +7,10 @@ FactoryGirl.define do
     cunning 0
     willpower 0
     presence 0
-    wounds_thresh 1
-    wounds_current 1
-    strain_thresh 1
-    strain_current 1
+    wounds_thresh 10
+    wounds_current 0
+    strain_thresh 10
+    strain_current 0
     critical 1
     soak 1
     status "started"

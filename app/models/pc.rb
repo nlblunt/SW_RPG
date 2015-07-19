@@ -250,4 +250,21 @@ class Pc < ActiveRecord::Base
         end
         self.save
     end
+    
+    def modify_strain(amount)
+        #Adjust strain
+        self.strain_current = self.strain_current + amount.to_i
+        
+        #Can't go negative
+        if self.strain_current < 0
+            self.strain_current = 0
+        end
+        
+        #Or higher than the thresh
+        if self.strain_current > self.strain_thresh
+            self.strain_current = self.strain_thresh
+        end
+        
+        self.save
+    end
 end

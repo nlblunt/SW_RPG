@@ -4,6 +4,7 @@ SWRpg::Application.routes.draw do
   get 'gm/gm_check' => "gm#gm_check"
   post 'gm/get_all_pcs' => "gm#get_all_pcs"
   post 'gm/modify_pc' => "gm#modify_pc"
+  post 'gm/pc_modify_strain' => "gm#pc_modify_strain"
   
   #CAREER CONTROLLER ROUTES
   get 'career/index'

@@ -57,4 +57,33 @@ RSpec.describe GmController, type: :controller do
             expect(assigns(:pc).brawn).to eq(5);
         end
     end
+    
+    describe "POST pc_modify_strain" do
+       it "Modifies a PC strain" do
+          #Create a PC to modify
+          pc = FactoryGirl.create(:pc)
+          expect(pc.strain_current).to eq(0)
+          
+          #Modify the PC strain.  Accepts ID and Modify amount. Incremental
+          post :pc_modify_strain, {id: pc.id, amount: 1}
+          
+          expect(assigns(:pc).strain_current).to eq(1)
+          
+          #Repeat to ensure proper incremental
+          post :pc_modify_strain, {id: pc.id, amount: 1}
+          expect(assigns(:pc).strain_current).to eq(2)
+          
+          #Now a negative (healing) amount
+          post :pc_modify_strain, {id: pc.id, amount: -1}
+          expect(assigns(:pc).strain_current).to eq(1)
+          
+          #Make sure strain can't go negative
+          post :pc_modify_strain, {id: pc.id, amount: -100}
+          expect(assigns(:pc).strain_current).to eq(0)
+          
+          #Make sure strain can't go higher than max
+          post :pc_modify_strain, {id: pc.id, amount: 100}
+          expect(assigns(:pc).strain_current).to eq(pc.strain_thresh)
+       end
+    end
 end
