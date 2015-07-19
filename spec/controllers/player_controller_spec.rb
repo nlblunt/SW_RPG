@@ -186,7 +186,7 @@ RSpec.describe PlayerController, type: :controller do
         it "returns the pc" do
             pc = FactoryGirl.create(:pc)
             
-            get :get_pc, {id: pc.id}
+            get :get_pc, {id: pc.id, format: 'json'}
             
             expect(assigns(:pc).id).to eq(1)
         end

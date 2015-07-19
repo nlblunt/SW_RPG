@@ -44,4 +44,17 @@ RSpec.describe GmController, type: :controller do
             expect(assigns(:pcs).count).to eq(3)
         end
     end
+    
+    describe "POST gm_modify" do
+        it "Modifies a PC" do
+            #Create a PC to modify
+            pc = FactoryGirl.create(:pc, agility: 1, brawn: 1)
+            
+            #Modify 'agility' = 5
+            post :modify_pc, {:format => 'json', pc:{id: pc.id, agility: 5, brawn: 5, cunning: 5, presence: 5, knowledge: 5, presence: 5}, skills:{}}
+            
+            expect(assigns(:pc).agility).to eq(5);
+            expect(assigns(:pc).brawn).to eq(5);
+        end
+    end
 end

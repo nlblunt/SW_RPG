@@ -486,7 +486,7 @@ appControllers.controller('playerController', ['$scope', '$filter', '$interval',
 		//Set initail character_stage
 		$scope.character_stage = "overview";
 		
-		//Start update timer to auto update
+		//Start update timer to auto update - 3 second interval
 		tmr_attr_update = $interval(function()
 		{
 			playerFactory.getPc($scope.character.id)
@@ -495,9 +495,9 @@ appControllers.controller('playerController', ['$scope', '$filter', '$interval',
 				$scope.character = result;
 			});
 		}
-		,1000);
+		,3000);
 		
-		//Skills update
+		//Skills update - 30 second interval (should not change much)
 		tmr_skills_update = $interval(function()
 		{
 			playerFactory.getPcSkills($scope.character.id)
@@ -507,7 +507,7 @@ appControllers.controller('playerController', ['$scope', '$filter', '$interval',
 				$scope.setDice(result.length);
 			});
 		}
-		,5000);
+		,30000);
 	};
 	
 	
