@@ -1,3 +1,30 @@
-PLAYER MODULE
+SWRPG is a tool to help Game Masters and Players with the table top game Starwars - Edge of the galaxy.
+It contains 3 seperate modules: GM, Player, and View.  The GM module contains tools for the GM to administer
+the game.  The Player module is designed for players to adminster thier PC sheets.  It is designed to be used
+on tablet sized devices.  The View module is a centeralized view display that is targeted towards larger displays
+such as a large monitor or a TV.  The content that is displayed is controlled by the GM module.
 
+PLAYER MODULE
+*** FEATURES ***
 * Create player character sheets
+* Display PC sheet with tabs (Overview, Skills, Equipment)
+* Auto update of core stats (3 second interval)
+* Auto update of skills (30 second interval)
+
+*** PLANNED FEATURES ***
+* Equipment tab
+* Weapon / Armor on Overview tab
+* Create dice roll from skills page
+
+
+GM MODULE
+*** FEATURES ***
+* Delete PC
+* Modify PC stats (core attributes and skill levels)
+
+*** PLANNED FEATURES ***
+* Modify PC wounds & strain
+* Game Session
+* Add players => Game Session
+* Location Creation
+* NPC Creation
