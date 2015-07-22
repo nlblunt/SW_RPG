@@ -30,6 +30,9 @@ SWRpg::Application.routes.draw do
   #RACE CONTROLLER ROUTES
   get 'race/index'
 
+  #GAME CONTROLLER ROUTES (GAME SESSION)
+  get 'game/index'
+  
   #GENERIC ROUTES
   devise_for :users, controllers: { sessions: "users/sessions"}
   devise_for :gms, controllers: { sessions: "gm/sessions"}

@@ -5,6 +5,7 @@ class Pc < ActiveRecord::Base
     belongs_to :race
     belongs_to :career
     has_and_belongs_to_many :specializations
+    has_and_belongs_to_many :sessions
     
     #Initialize the new PC
     #Setup skill table
