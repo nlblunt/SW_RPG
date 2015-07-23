@@ -32,6 +32,7 @@ SWRpg::Application.routes.draw do
 
   #GAME CONTROLLER ROUTES (GAME SESSION)
   get 'game/index'
+  post 'game/create'
   
   #GENERIC ROUTES
   devise_for :users, controllers: { sessions: "users/sessions"}
