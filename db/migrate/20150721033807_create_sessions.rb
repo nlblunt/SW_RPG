@@ -9,8 +9,8 @@ class CreateSessions < ActiveRecord::Migration
     end
     
     create_table :pcs_sessions do |t|
-      t.belongs_to :pcs
-      t.belongs_to :sessions
+      t.belongs_to :pc
+      t.belongs_to :session
     end
   end
 end

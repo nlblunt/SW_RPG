@@ -86,4 +86,28 @@ RSpec.describe GmController, type: :controller do
           expect(assigns(:pc).strain_current).to eq(pc.strain_thresh)
        end
     end
+    
+    describe "GET get_session_pcs" do
+       it "Returns a list of PCs for game session" do
+           #Create 2 PC and add to game :session
+           pc1 = FactoryGirl.create(:pc)
+           pc2 = FactoryGirl.create(:pc)
+           
+           #Create a game session
+           g_session = FactoryGirl.create(:session)
+           
+           expect(g_session.pcs.count).to eq(0)
+           
+           #Add PCs to g_session
+           g_session.pcs << pc1
+           g_session.pcs << pc2
+           
+           expect(g_session.pcs.count).to eq(2)
+           
+           post :get_session_pcs, {id: g_session.id}
+           
+           #@pcs should = 2
+           expect(assigns(:pcs).count).to eq(2)
+       end
+    end
 end

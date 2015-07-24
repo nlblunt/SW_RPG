@@ -21,7 +21,7 @@ RSpec.describe GameController, type: :controller do
   
   describe "POST create" do
     it "creates a new game session" do
-      post :create, {session:{name: "Game Session", description: "Here we go", status: "active"}}
+      post :create_session, {session:{name: "Game Session", description: "Here we go", status: "active"}}
       
       expect(Session.count).to eq(1)
     end

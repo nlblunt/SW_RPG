@@ -5,6 +5,7 @@ SWRpg::Application.routes.draw do
   post 'gm/get_all_pcs' => "gm#get_all_pcs"
   post 'gm/modify_pc' => "gm#modify_pc"
   post 'gm/pc_modify_strain' => "gm#pc_modify_strain"
+  post 'gm/get_session_pcs' => "gm#get_session_pcs"
   
   #CAREER CONTROLLER ROUTES
   get 'career/index'
@@ -32,7 +33,7 @@ SWRpg::Application.routes.draw do
 
   #GAME CONTROLLER ROUTES (GAME SESSION)
   get 'game/index'
-  post 'game/create'
+  post 'game/create_session'
   
   #GENERIC ROUTES
   devise_for :users, controllers: { sessions: "users/sessions"}

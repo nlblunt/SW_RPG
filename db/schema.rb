@@ -78,8 +78,8 @@ ActiveRecord::Schema.define(version: 20150721033807) do
   add_index "pcs", ["race_id"], name: "index_pcs_on_race_id"
 
   create_table "pcs_sessions", force: :cascade do |t|
-    t.integer "pcs_id"
-    t.integer "sessions_id"
+    t.integer "pc_id"
+    t.integer "session_id"
   end
 
   create_table "pcs_skills", force: :cascade do |t|
