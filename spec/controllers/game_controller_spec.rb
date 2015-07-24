@@ -15,7 +15,8 @@ RSpec.describe GameController, type: :controller do
      
       get :index
       
-      expect(assigns(:sessions).count).to eq(2)
+      resp = JSON.parse(response.body)
+      expect(resp.count).to eq(2)
     end
   end
   
