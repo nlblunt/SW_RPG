@@ -57,6 +57,16 @@ class GmController < ApplicationController
   
   def add_session_pcs
     #Adds a PC to the game session
+    #Get the session ID
+    g_session = Session.find_by_id(params[:s_id])
     
+    #Get the PC we are adding
+    pc = Pc.find_by_id(params[:pc_id])
+    
+    #Add the PC to the session
+    g_session.pcs << pc
+    
+    #Return the PCs for the session
+    render json: g_session.pcs
   end
 end

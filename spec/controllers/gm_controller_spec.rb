@@ -110,4 +110,22 @@ RSpec.describe GmController, type: :controller do
            expect(assigns(:pcs).count).to eq(2)
        end
     end
+  
+  describe "GET add_session_pcs" do
+    it "Adds a pc to the session" do
+      #Create a session and a PC
+      g_session = FactoryGirl.create(:session)
+      pc = FactoryGirl.create(:pc)
+      
+      #Add the PC to the session
+      post :add_session_pcs, {s_id: g_session.id, pc_id: pc.id}
+      
+      #Response status = 200
+      expect(response.status).to eq(200)
+      
+      #JSON Response should = 1 PC
+      resp = JSON.parse(response.body)
+      expect(resp.count).to eq(1)
+    end
+  end
 end
