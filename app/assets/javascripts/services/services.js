@@ -277,7 +277,7 @@ appServices.factory('playerFactory', ['$resource', '$q', '$http', function($reso
 	{
 		var deferred = $q.defer();
 		
-		$http.get('/player/get_pc_skills/' + pc_id + '.json')
+		$http.post('/player/get_pc_skills', {id: pc_id})
 		.then(function(result)
 		{
 			deferred.resolve(result.data);

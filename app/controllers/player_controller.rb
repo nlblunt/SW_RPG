@@ -94,6 +94,7 @@ class PlayerController < ApplicationController
     @pc = Pc.find(params[:id])
     
     @skills = @pc.pcs_skills(true)
+    
     render :get_pc_skills
   end
   
@@ -111,7 +112,8 @@ class PlayerController < ApplicationController
     pc = Pc.find(params[:id])
     @xp = pc.xp
     
-    render json: @xp
+    render json: {xp: @xp}
+    #render json: @xp
   end
   
   def increase_skill_rank

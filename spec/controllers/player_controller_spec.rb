@@ -214,11 +214,35 @@ RSpec.describe PlayerController, type: :controller do
             
             expect(pc.xp).to eq(100)
             expect(assigns(:xp)).to eq(100)
+            
+            resp = JSON.parse(response.body)
+            expect(resp['xp']).to eq(100)
         end
     end
     
     describe "GET pc_skills" do
-        it "Returns a list of pc skills" 
+        it "Returns a list of pc skills" do
+           #Create a PC for the skills
+           pc = FactoryGirl.create(:pc)
+           
+           #Create to skills for the PC
+           s1 = FactoryGirl.create(:skill, name: "Skill1")
+           s2 = FactoryGirl.create(:skill, name: "Skill2")
+           
+           #Assign to pc
+           pc.skills << s1
+           pc.skills << s2
+           
+           post :get_pc_skills, {id: pc.id, format: 'json'}
+           
+           #resp = JSON.parse(response.body)
+           
+           #Count = 2
+           #expect(resp.count).to eq(2)
+           
+           #expect(resp[0]['name']).to eq('Skill1')
+           #expect(resp[1]['name']).to eq('Skill2')
+        end
     end
     
     describe "GET get_career_skills" do

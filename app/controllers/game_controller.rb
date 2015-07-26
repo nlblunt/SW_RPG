@@ -12,6 +12,12 @@ class GameController < ApplicationController
     render json: g_session
   end
   
+  def restore_session
+    g_session = Session.find_by_id(params[:id])
+    
+    render json: g_session
+  end
+  
   private
   
   def session_params

@@ -87,7 +87,7 @@ RSpec.describe GmController, type: :controller do
        end
     end
     
-    describe "GET get_session_pcs" do
+    describe "POST get_session_pcs" do
        it "Returns a list of PCs for game session" do
            #Create 2 PC and add to game :session
            pc1 = FactoryGirl.create(:pc)

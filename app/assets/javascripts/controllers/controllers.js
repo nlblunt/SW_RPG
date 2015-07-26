@@ -657,7 +657,7 @@ appControllers.controller('playerController', ['$scope', '$filter', '$interval',
 			playerFactory.getPcXp($scope.character.id)
 			.then(function(result)
 			{
-				$scope.character.xp = result;
+				$scope.character.xp = result.xp;
 			});
 		});
 	};

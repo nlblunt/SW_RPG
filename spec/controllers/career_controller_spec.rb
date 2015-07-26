@@ -1,3 +1,5 @@
+#SPEC file for CareerController
+
 require 'rails_helper'
 
 RSpec.describe CareerController, type: :controller do
@@ -41,7 +43,21 @@ RSpec.describe CareerController, type: :controller do
 	end
 	
 	describe "GET get_all_specializations" do
-		it "Returns a list of all specializations"
+		it "Returns a list of all specializations" do
+			#Create 2 specializations
+			s1 = FactoryGirl.create(:specialization)
+			s2 = FactoryGirl.create(:specialization)
+			
+			get :get_all_specializations
+			
+			resp = JSON.parse(response.body)
+			
+			#Count = 2
+			expect(resp.count).to eq(2)
+			
+			expect(resp[0]['id']).to eq(s1.id)
+			expect(resp[1]['id']).to eq(s2.id)
+		end
 	end
 	
 	describe "GET get_specialization_career_skills" do

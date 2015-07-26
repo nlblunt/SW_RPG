@@ -1,3 +1,5 @@
+#SPEC file for GameController
+#Rails 5.0 compliant
 require 'rails_helper'
 
 RSpec.describe GameController, type: :controller do
@@ -20,11 +22,30 @@ RSpec.describe GameController, type: :controller do
     end
   end
   
-  describe "POST create" do
+  describe "POST create_session" do
     it "creates a new game session" do
       post :create_session, {session:{name: "Game Session", description: "Here we go", status: "active"}}
       
+      #Session count = 1
       expect(Session.count).to eq(1)
+      
+      #Session name = "Game Session"
+      resp = JSON.parse(response.body)
+      
+      expect(resp['name']).to eq("Game Session")
+    end
+  end
+  
+  describe "POST restore_session" do
+    it "restores a previous session" do
+      g_session = FactoryGirl.create(:session)
+      
+      post :restore_session, {id: g_session.id}
+      
+      #Resp = g_session
+      resp = JSON.parse(response.body)
+      
+      expect(resp['id']).to eq(g_session.id)
     end
   end
 end
