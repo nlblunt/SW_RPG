@@ -125,6 +125,36 @@ appServices.factory('gmFactory', ['$resource', '$q', '$http', function($resource
 		return deferred.promise;
 	};
 	
+	self.getAllSessions = function()
+	{
+		//Get all sessions
+		var deferred = $q.defer();
+		
+		$http.get('/game/get_all_sessions')
+		.then(function(result)
+		{
+			console.log(result.data);
+			deferred.resolve(result.data);
+		});
+		
+		return deferred.promise;
+	};
+	
+	self.createSession = function(name, description)
+	{
+		//Create a new game session
+		var deferred = $q.defer();
+		
+		$http.post('/game/create_session', {session:{name: name, description: description, status: "active"}})
+		.then(function(result)
+		{
+			console.log(result.data);
+			deferred.resolve(result.data);
+		});
+		
+		return deferred.promise;
+	};
+	
 	return self;
 }]);
 

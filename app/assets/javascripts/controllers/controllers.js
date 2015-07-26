@@ -14,6 +14,9 @@ appControllers.controller('gmController', ['$scope', 'gmFactory', function($scop
 	//Set the main body tag to "gm"
 	$scope.$root.body_id = "gm";
 	
+	//Set gm_game_stage
+	$scope.gm_game_stage = "gm_stage_sessions";
+	
 	//Is GM signed in?  Set initial check to false then queue server
 	gmFactory.gmCheck().$promise
 	.then(function(result)
@@ -145,6 +148,36 @@ appControllers.controller('gmController', ['$scope', 'gmFactory', function($scop
 			$scope.edit_pc_state = false;
 		});
 	};
+	
+	$scope.set_game_stage = function(stage)
+	{
+		$scope.gm_game_stage = stage;
+		
+		//IF stage = sessions load sessions
+		if(stage == "gm_game_sessions")
+		{
+			gmFactory.getAllSessions()
+			.then(function(result)
+			{
+				$scope.sessions = result;
+			});
+		}
+	};
+	
+	$scope.create_session = function()
+	{
+		//Create a new game session
+		gmFactory.createSession($scope.new_session.name, $scope.new_session.description)
+		.then(function(result)
+		{
+			//New session.  Save in $scope
+			$scope.current_session = result;
+			$scope.new_session = "";
+			
+			$scope.sessions.push(result);
+		});
+	};
+	
 }]);
 
 appControllers.controller('playerController', ['$scope', '$filter', '$interval', 'playerFactory', function($scope, $filter, $interval, playerFactory)

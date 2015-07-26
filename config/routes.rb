@@ -33,7 +33,7 @@ SWRpg::Application.routes.draw do
   get 'race/index'
 
   #GAME CONTROLLER ROUTES (GAME SESSION)
-  get 'game/index'
+  get 'game/get_all_sessions' => "game#get_all_sessions"
   post 'game/create_session' => "game#create_session"
   post 'game/restore_session' => "game#restore_session"
   

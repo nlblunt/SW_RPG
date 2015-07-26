@@ -129,9 +129,25 @@ app.directive('gmPcs', function()
 });
 
 app.directive('gmGame', function()
-              {
-                return{
-                  restrict: 'E',
-                  templateUrl: 'html/partials/gm/game.html'
-                };
-              });
+{
+    return{
+        restrict: 'E',
+        templateUrl: 'html/partials/gm/game.html'
+    };
+});
+
+app.directive('gmGameSessions', function()
+{
+    return{
+        restrict: 'E',
+        templateUrl: 'html/partials/gm/game/sessions.html'
+    };
+});
+
+app.directive('gmGameOverview', function()
+{
+    return{
+        restrict: 'E',
+        templateUrl: 'html/partials/gm/game/overview.html'
+    };
+});

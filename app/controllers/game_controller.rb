@@ -1,6 +1,6 @@
 class GameController < ApplicationController
   #GameController controls aspects of the game, such as game session.
-  def index
+  def get_all_sessions
     @sessions = Session.all
     
     render json: @sessions

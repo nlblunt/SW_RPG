@@ -7,7 +7,7 @@ RSpec.describe GameController, type: :controller do
     Session.delete_all  
   end
   
-  describe "GET index" do
+  describe "GET get_all_sessions" do
     it "returns a list of game sessions" do
       #Create 2 game sessions
       FactoryGirl.create(:session)
@@ -15,7 +15,7 @@ RSpec.describe GameController, type: :controller do
       
       expect(Session.count).to eq(2)
      
-      get :index
+      get :get_all_sessions
       
       resp = JSON.parse(response.body)
       expect(resp.count).to eq(2)
