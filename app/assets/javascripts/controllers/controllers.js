@@ -178,6 +178,17 @@ appControllers.controller('gmController', ['$scope', 'gmFactory', function($scop
 		});
 	};
 	
+	$scope.restore_session = function(session_id)
+	{
+		//Restore a previous session
+		gmFactory.restoreSession(session_id)
+		.then(function(result)
+		{
+			//Save the returned session
+			$scope.current_session = result;
+		});
+	};
+	
 }]);
 
 appControllers.controller('playerController', ['$scope', '$filter', '$interval', 'playerFactory', function($scope, $filter, $interval, playerFactory)

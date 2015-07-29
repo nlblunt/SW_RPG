@@ -155,6 +155,21 @@ appServices.factory('gmFactory', ['$resource', '$q', '$http', function($resource
 		return deferred.promise;
 	};
 	
+	self.restoreSession = function(id)
+	{
+		//Get the session info from the server
+		var deferred = $q.defer();
+		
+		$http.post('/game/restore_session', {id: id})
+		.then(function(result)
+		{
+			//Return the session
+			deferred.resolve(result.data);
+		});
+		
+		return deferred.promise;
+	};
+	
 	return self;
 }]);
 

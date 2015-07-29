@@ -15,7 +15,7 @@
                     <td>{{session.name}}</td>
                     <td>{{session.description}}</td>
                     <td>{{session.status}}</td>
-                    <td><button class="btn btn-link">Restore</button></td>
+                    <td><button ng-click="restore_session(session.id)" class="btn btn-link">Restore</button></td>
                 </tr>
             </tbody>
         </table>
