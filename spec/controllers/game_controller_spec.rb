@@ -48,4 +48,12 @@ RSpec.describe GameController, type: :controller do
       expect(resp['id']).to eq(g_session.id)
     end
   end
+  
+  describe "POST get_non_session_pcs" do
+    
+  end
+  
+  describe "POST get_session_pcs" do
+    
+  end
 end

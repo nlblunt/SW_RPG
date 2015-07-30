@@ -1,0 +1,17 @@
+<div id="gm_game_pcs" ng-show="gm_game_pcs">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="gm-all-pcs" ng-repeat="pc in pcs">
+                <p>
+                    Name: {{pc.name}}<br>
+                    Race: {{pc.race_name}}<br>
+                    Career: {{pc.career_name}}<br>
+                    XP: {{pc.xp}}<br>
+                    Credit: {{pc.credits}}<br>
+                    Status: {{pc.status}}
+                </p>
+                <a href ng-click="edit_pc($index)">Edit</a>
+            </div>
+        </div>
+    </div>
+</div>

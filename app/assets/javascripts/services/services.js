@@ -170,6 +170,35 @@ appServices.factory('gmFactory', ['$resource', '$q', '$http', function($resource
 		return deferred.promise;
 	};
 	
+	self.getSessionPcs = function(session_id)
+	{
+		//Get the PCs in the session
+		var deferred = $q.defer();
+		
+		$http.post('/game/get_session_pcs', {session_id: session_id})
+		.then(function(result)
+		{
+			deferred.resolve(result);
+		});
+		
+		return deferred.promise;
+	};
+	
+	self.getNonSessionPcs = function(session_id)
+	{
+		//Get the PCs that are not in the session
+		var deferred = $q.defer();
+		
+		$http.post('/game/get_non_session_pcs', {session_id: session_id})
+		.then(function(result)
+		{
+			//Return the list of PCs that are not in the current game session
+			deferred.resolve(result.data);
+		});
+		
+		return deferred.promise;
+	};
+	
 	return self;
 }]);
 
