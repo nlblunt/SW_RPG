@@ -5,6 +5,7 @@
 		'templates',
 		'ngRoute',
 		'ngResource',
+		'ngAnimate',
 		'ui.bootstrap',
 		'appControllers',
 		'appDirectives',

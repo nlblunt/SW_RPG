@@ -175,6 +175,14 @@ appControllers.controller('gmController', ['$scope', 'gmFactory', function($scop
 			$scope.new_session = "";
 			
 			$scope.sessions.push(result);
+			
+			//Set the lists of PCs
+			gmFactory.gmGetAllPcs()
+			.then(function(result)
+			{
+				$scope.all_pcs = result;
+				$scope.manage_game_pcs = "false";
+			});
 		});
 	};
 	
@@ -186,9 +194,22 @@ appControllers.controller('gmController', ['$scope', 'gmFactory', function($scop
 		{
 			//Save the returned session
 			$scope.current_session = result;
+			
+			//Set the lists of PCs
+			gmFactory.gmGetAllPcs()
+			.then(function(result)
+			{
+				$scope.all_pcs = result;
+				$scope.manage_game_pcs = "false";
+			});
 		});
 	};
 	
+	$scope.manage_pcs = function(state)
+	{
+		//Sets the state for manage_game_pcs.  If true, show PC list
+		$scope.manage_game_pcs = state;
+	};
 }]);
 
 appControllers.controller('playerController', ['$scope', '$filter', '$interval', 'playerFactory', function($scope, $filter, $interval, playerFactory)

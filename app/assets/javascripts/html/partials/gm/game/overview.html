@@ -10,7 +10,15 @@
     </div>
     
     <div class="col-xs-3">
-      <select class="form-control" ng-model="pc_pool" ng-options="pc.name for pc in pcs track by pc.id"></select>
+    	<button class="btn btn-primary btn-block" ng-if="manage_game_pcs == 'false'" ng-click="manage_pcs('true')">Manage Session PCs</button>
+    	<button class="btn btn-primary btn-block" ng-if="manage_game_pcs == 'true'" ng-click="manage_pcs('false')">Close Manage PCs</button>
+    	<table id="manage_pcs" ng-show="manage_game_pcs =='true'" class="manage_pcs table table-striped">
+    		<tr ng-repeat="pc in all_pcs">
+    			<td>{{pc.name}}</td>
+    			<td>{{pc.career_name}}</td>
+    			<td><button ng-click="add_pc_to_session(pc, $index)" class="btn btn-increase">+</button></td>
+    		</tr>
+    	</table>
     </div>
 </div>
 </div>
