@@ -14,6 +14,9 @@ appControllers.controller('gmController', ['$scope', 'gmFactory', function($scop
 	//Set the main body tag to "gm"
 	$scope.$root.body_id = "gm";
 	
+	//Container for session_pcs
+	$scope.session_pcs = [];
+	
 	//Set gm_game_stage
 	$scope.gm_game_stage = "gm_stage_sessions";
 	
@@ -209,6 +212,16 @@ appControllers.controller('gmController', ['$scope', 'gmFactory', function($scop
 	{
 		//Sets the state for manage_game_pcs.  If true, show PC list
 		$scope.manage_game_pcs = state;
+	};
+	
+	$scope.add_pc_to_session = function(index)
+	{
+		//Add PC to sessions_pc
+		$scope.session_pcs.push($scope.all_pcs[index]);
+		
+		console.log($scope.session_pcs);
+		//Remove pc from Add List
+		$scope.all_pcs.splice(index, 1);
 	};
 }]);
 

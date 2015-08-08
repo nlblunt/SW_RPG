@@ -284,6 +284,13 @@ ul#gm_pc_update li
   margin: 0px;
 }
 
+#game_session
+{
+	color: gold;
+	-webkit-transition:0.5s linear all;
+	transition:0.5s linear all;
+}
+
 .manage_pcs
 {
  -webkit-transition:0.5s linear all;
@@ -297,4 +304,15 @@ ul#gm_pc_update li
   -webkit-transition:0.5s linear all;
   transition:0.5s linear all;
   opacity:0;
+}
+
+tr.all_pcs.ng-leave
+{
+	-webkit-transition:0.25s linear all;
+	transition:0.25s linear all;
+	opacity:1;
+}
+tr.all_pcs.ng-leave.ng-leave-active
+{
+	opacity:0;
 }

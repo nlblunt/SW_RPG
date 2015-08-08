@@ -6,7 +6,7 @@
                 <a href ng-click="gm_set_stage('gm_pcs')" class="navbar-text navbar-link">Player Characters</a>
 				<a href ng-click="gm_set_stage('gm_npcs')" class="navbar-text navbar-link">NPCs</a>
 				
-				<p class="navbar-text pull-right" ng-if="current_session">Current Session: {{current_session.name}}</p>
+				<p id="game_session" class="navbar-text pull-right game_session" ng-if="current_session">Current Session: {{current_session.name}}</p>
 			</div>
 		</nav>
    </div>

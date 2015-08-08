@@ -13,12 +13,19 @@
     	<button class="btn btn-primary btn-block" ng-if="manage_game_pcs == 'false'" ng-click="manage_pcs('true')">Manage Session PCs</button>
     	<button class="btn btn-primary btn-block" ng-if="manage_game_pcs == 'true'" ng-click="manage_pcs('false')">Close Manage PCs</button>
     	<table id="manage_pcs" ng-show="manage_game_pcs =='true'" class="manage_pcs table table-striped">
-    		<tr ng-repeat="pc in all_pcs">
+    		 <tr ng-repeat="pc in all_pcs" class="all_pcs">
     			<td>{{pc.name}}</td>
     			<td>{{pc.career_name}}</td>
-    			<td><button ng-click="add_pc_to_session(pc, $index)" class="btn btn-increase">+</button></td>
+    			<td><button ng-click="add_pc_to_session($index)" class="btn btn-increase">+</button></td>
     		</tr>
     	</table>
+    	
+    	<hr>
+    
+      <div ng-repeat="pc in session_pcs" class="session_pcs">
+        <p>{{pc.name}}</p>
+        <p>{{pc.career_name}}</p>
+      </div>	
     </div>
 </div>
 </div>
