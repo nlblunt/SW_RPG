@@ -22,8 +22,8 @@ production:
   adapter: postgresql
   encoding: unicode
   pool: 5
-  database: dbieslfp4n02vu
-  username: ajtpjrnjomvltk
-  password: 4HP4aKpZsEc8nXtQxwsEsIrJD5
-  host: ec2-54-204-35-132.compute-1.amazonaws.com
+  database: swrpg
+  username: rails
+  password: railspassword
+  host: localhost
   port: 5432
