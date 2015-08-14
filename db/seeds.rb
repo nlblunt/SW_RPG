@@ -50,7 +50,7 @@ Skill.create(name: "Melee", attrib: "Brawn")
 Skill.create(name: "Ranged - Light", attrib: "Agility")
 Skill.create(name: "Ranged - Heavy", attrib: "Agility")
 
-Race.create(name: "Bothan", agility: 2, brawn: 1, intellect: 2, presence: 2, willpower: 2, cunning: 3, wounds_thresh: 10, strain_thresh: 11, xp: 100, bonus: "Streetwise", description: "Bothan get a Bonus Skill: Streetwise")
+Race.create(name: "Bothan", agility: 2, brawn: 1, intellect: 2, presence: 2, willpower: 2, cunning: 3, wounds_thresh: 10, strain_thresh: 11, xp: 100, bonus: "Streetwise", avatar: "/images/avatars/bothan.jpg", description: "Bothan get a Bonus Skill: Streetwise")
 Race.create(name: "Droid", agility: 1, brawn: 1, intellect: 1, presence: 1, willpower: 1, cunning: 1, wounds_thresh: 10, strain_thresh: 10, xp: 175, bonus: "None", description: "Droids get a Bonus Skill: Specialization")
 Race.create(name: "Gand", agility: 2, brawn: 2, intellect: 1, presence: 2, willpower: 3, cunning: 2, wounds_thresh: 10, strain_thresh: 10, xp: 100, bonus: "Discipline", description: "Gands get a Bonus Skill: Discipline")
 Race.create(name: "Human", agility: 2, brawn: 2, intellect: 2, presence: 2, willpower: 2, cunning: 2, wounds_thresh: 10, strain_thresh: 10, xp: 110, bonus: "Specialty", description: "Humans get a Bonus Specialty")

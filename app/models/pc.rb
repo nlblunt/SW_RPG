@@ -56,6 +56,9 @@ class Pc < ActiveRecord::Base
            self.increase_skill_rank(skill_id.id, false)
         end
         
+        #Set the avatar to the default from the Race
+        self.avatar = self.race.avatar
+        
         #Set the status to 'started'
         self.status = "started"
         

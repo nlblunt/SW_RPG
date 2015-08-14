@@ -26,6 +26,8 @@ class CreatePcs < ActiveRecord::Migration
       t.belongs_to :career, index: true
       t.timestamps null: false
       
+      t.string :avatar
+      
       t.string  :status
     end
   end
