@@ -1,6 +1,6 @@
 <div id="gm_game_overview" ng-show="gm_game_stage == 'gm_game_overview'">
   <div class="row">
-    <div class="col-xs-9">
+    <div class="col-xs-10">
       <div class="row">
         Top Section
       </div>
@@ -9,7 +9,7 @@
       </div>
     </div>
     
-    <div class="col-xs-3">
+    <div class="col-xs-2">
     	<button class="btn btn-primary btn-block" ng-if="manage_game_pcs == 'false'" ng-click="manage_pcs('true')">Manage Session PCs</button>
     	<button class="btn btn-primary btn-block" ng-if="manage_game_pcs == 'true'" ng-click="manage_pcs('false')">Close Manage PCs</button>
     	<table id="manage_pcs" ng-show="manage_game_pcs =='true'" class="manage_pcs table table-striped">
@@ -23,8 +23,8 @@
     	<hr>
     
       <div ng-repeat="pc in session_pcs" class="session_pcs">
-        <p>{{pc.name}}</p>
-        <p>{{pc.career_name}}</p>
+      	<h3>{{pc.name}}</h3>
+      	<img class="session_avatar" ng-src={{pc.avatar}}>
       </div>	
     </div>
 </div>
