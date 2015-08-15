@@ -19,6 +19,7 @@ json.race_id @pc.race_id
 json.race_name @pc.race.name
 json.career_id @pc.career_id
 json.career_name @pc.career.name
+json.avatar @pc.avatar
 json.status @pc.status
 
 json.specialization @pc.specializations

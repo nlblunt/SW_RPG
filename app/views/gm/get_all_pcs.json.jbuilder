@@ -20,6 +20,7 @@ json.array! @pcs do |pc|
     json.race_name pc.race.name
     json.career_id pc.career_id
     json.career_name pc.career.name
+    json.avatar pc.avatar
     json.status pc.status
     
     json.specialization pc.specializations
