@@ -10,8 +10,8 @@ body#welcome
 body#player
 {
 	//background-color: rgb(197,187,167);
-	color: rgb(230,36,9);
-	background-color: rgb(10,10,10);
+	color: black;
+	background-color: #F5F5F5;
 	//background-image: image_url("scroll.png");
 }
 
@@ -80,6 +80,12 @@ div#characterselected
 div#characterselect img
 {
 	width: 100%;
+}
+
+img#avatar-preview
+{
+  width: 100%;
+  margin: 10px;
 }
 
 table#character-stats-preview

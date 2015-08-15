@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(version: 20150721033807) do
     t.integer  "career_id"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
+    t.string   "avatar"
     t.string   "status"
   end
 
@@ -116,6 +117,7 @@ ActiveRecord::Schema.define(version: 20150721033807) do
     t.integer  "strain_thresh"
     t.string   "bonus"
     t.text     "description"
+    t.string   "avatar"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end

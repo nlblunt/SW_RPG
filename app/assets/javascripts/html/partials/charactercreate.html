@@ -1,4 +1,5 @@
-<div id="charactercreate" ng-show="stage == 'charactercreate-1'">
+<div class="row" id="charactercreate" ng-show="stage == 'charactercreate-1'">
+    <div class="col-md-8">
     <h4 class="text-center">Create a New Character</h4>
     <a href ng-click="cancelNewCharacter()">Cancel New Character</a>
     
@@ -22,7 +23,10 @@
             <label>Specialization</label>
             <select class="form-control" ng-model="specialization" ng-options="specialization.name for specialization in specializations track by specialization.id"></select>
         </div>
+        
         <h2 class="text-center">Character Preview</h2>
+        <p class="text-center">{{character.race.description}}</p>
+        
         <table class="table-bordered table table-condensed" id="character-stats-preview">
             <tr>
                 <td>Brawn</td>
@@ -46,6 +50,12 @@
             </tr>
         </table>
         
+
         <button class="btn btn-default" ng-click="characterStage2()">Save {{character.name}}</button>
     </form>
+    </div>
+    
+    <div class="col-md-4">
+   		<img ng-src={{character.race.avatar}} id="avatar-preview">
+    </div>
 </div>
