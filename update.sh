@@ -8,5 +8,6 @@ rake assets:clobber
 rake assets:precompile
 
 echo "Updating completed"
-sudo /etc/init.d/apache2 restart
-echo "Apache restarted"
+
+echo "Restarting Passenger"
+touch /tmp/restart.txt
