@@ -2,7 +2,10 @@
   <div class="row">
     <div class="col-xs-10">
       <div class="row">
-        Top Section
+        Top Section - Player characters
+	      <div class="col-xs-1" ng-repeat="pc in session_pcs">
+		      <img class="session_avatar" ng-src={{pc.avatar}}>
+        </div>
       </div>
       <div class="row">
         Bottom SectIon
