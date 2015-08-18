@@ -85,8 +85,9 @@ div#characterselect img
 img.character-avatar
 {
 	width: 10%;
-	minimum-width: 100px;
-	float: right;
+	min-width: 100px;
+	float: left;
+	margin: 10px;
 }
 
 img#avatar-preview
