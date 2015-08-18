@@ -1,10 +1,11 @@
 <div id="character_overview" ng-show="character_stage == 'overview'">
+        <img ng-src={{character.avatar}} class="character-avatar">
     <h2>{{character.name}}</h2>
     <p>Race: {{character.race_name}}</p>
     <p>Career: {{character.career_name}}</p>
     <p>XP: {{character.xp}}</p>
     <p>Credits: {{character.credits}}</p>
-    
+
     <h2>Health</h2>
     <table class="table">
         <tr>
