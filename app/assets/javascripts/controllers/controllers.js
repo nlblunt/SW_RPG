@@ -691,7 +691,12 @@ appControllers.controller('playerController', ['$scope', '$filter', '$interval',
 		.then(function(result)
 		{
 			$scope.character.status = "active";
-			$scope.stage = "characterselected";
+			$scope.stage = "characterselect";
+			playerFactory.getPlayerPcs($scope.player.id)
+			.then(function(result)
+			{
+				$scope.pcs = result;
+			});
 		});
 	};
 	

@@ -3,6 +3,12 @@ clear
 echo "Updating working files"
 git pull origin master
 
+echo "Checking Gemfile"
+bundle install
+
+echo "Checking DB Migrations"
+rake db:migrate
+
 echo "Rebuilding assets"
 rake assets:clobber
 rake assets:precompile

@@ -89,7 +89,7 @@ appServices.factory('gmFactory', ['$resource', '$q', '$http', function($resource
 	{
 		var deferred = $q.defer();
 		
-		$http.get('/player/get_pc_skills/' + pc_id + '.json')
+		$http.post('/player/get_pc_skills.json', {id: pc_id})// + pc_id + '.json')
 		.then(function(result)
 		{
 			deferred.resolve(result.data);
