@@ -1,34 +1,74 @@
 <div id="gm_game_overview" ng-show="gm_game_stage == 'gm_game_overview'">
   <div class="row">
-    <div class="col-xs-10">
-      <div class="row">
-        Top Section - Player characters
+    <div class="col-xs-12">
+      <div class="row border-bottom">
 	      <div class="col-xs-1" ng-repeat="pc in session_pcs">
+	        <a href ng-click="show_selected_info('pc', pc)">
+	        <p class="text-center">{{pc.name}}</p>
 		      <img class="session_avatar" ng-src={{pc.avatar}}>
+		      </a>
         </div>
       </div>
+      
       <div class="row">
-        Bottom SectIon
+        Locale Information
+      </div>
+      
+      <div class="row">
+        Selected Information
+        <div ng-if="info_type == 'pc'">
+          <div class="col-xs-2">
+            <img class="session_avatar" ng-src={{info_object.avatar}}>  
+          </div>
+          
+          <div class="col-xs-3">
+            <table class="table">
+              <tr>
+                <td class="text-right">PC Name:</td>
+                <td colspan="3">{{info_object.name}}</td>
+              </tr>
+              <tr>
+                <td class="text-right">Race:</td>
+                <td>{{info_object.race_name}}</td>
+              </tr>
+              <tr>
+                <td class="text-right">Wounds:</td>
+                <td>{{info_object.wounds_current}}</td>
+                <td class="text-right">Max:</td>
+                <td>{{info_object.wounds_thresh}}</td>
+              </tr>
+              <tr>
+                <td class="text-right">Strain:</td>
+                <td>{{info_object.strain_current}}</td>
+                <td class="text-right">Max:</td>
+                <td>{{info_object.strain_thresh}}</td>
+              </tr>
+            </table>
+          </div>
+          <div class="col-xs-3">
+            <div class="row">
+              <button class="button33">Wounds +1</button>
+              <button class="button33">Wounds +2</button>
+              <button class="button33">Wounds +3</button>
+            </div>
+            <div class="row">
+              <button class="button33">Wounds -1</button>
+              <button class="button33">Wounds -2</button>
+              <button class="button33">Wounds -3</button>
+            </div>
+            <div class="row">
+              <button class="button33">Strain +1</button>
+              <button class="button33">Strain +2</button>
+              <button class="button33">Strain +3</button>
+            </div>
+            <div class="row">
+              <button class="button33">Strain -1</button>
+              <button class="button33">Strain -2</button>
+              <button class="button33">Strain -3</button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    
-    <div class="col-xs-2">
-    	<button class="btn btn-primary btn-block" ng-if="manage_game_pcs == 'false'" ng-click="manage_pcs('true')">Manage Session PCs</button>
-    	<button class="btn btn-primary btn-block" ng-if="manage_game_pcs == 'true'" ng-click="manage_pcs('false')">Close Manage PCs</button>
-    	<table id="manage_pcs" ng-show="manage_game_pcs =='true'" class="manage_pcs table table-striped">
-    		 <tr ng-repeat="pc in all_pcs" class="all_pcs">
-    			<td>{{pc.name}}</td>
-    			<td>{{pc.career_name}}</td>
-    			<td><button ng-click="add_pc_to_session($index)" class="btn btn-increase">+</button></td>
-    		</tr>
-    	</table>
-    	
-    	<hr>
-    
-      <div ng-repeat="pc in session_pcs" class="session_pcs">
-      	<h3>{{pc.name}}</h3>
-      	<img class="session_avatar" ng-src={{pc.avatar}}>
-      </div>	
-    </div>
-</div>
+  </div>
 </div>

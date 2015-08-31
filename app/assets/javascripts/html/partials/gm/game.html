@@ -4,7 +4,7 @@
     <div class="container">
       <a href ng-click="set_game_stage('gm_game_sessions')" class="navbar-text navbar-link">Sessions</a>
       <a href ng-click="set_game_stage('gm_game_overview')" class="navbar-text navbar-link">Overview</a>
-      <a href class="navbar-text navbar-link">Player</a>
+      <a href ng-click="set_game_stage('gm_game_players')" class="navbar-text navbar-link">Players</a>
       <a href class="navbar-text navbar-link">NPC</a>
     </div>
   </nav>
@@ -13,4 +13,6 @@
   <gm-game-sessions></gm-game-sessions>
   
   <gm-game-overview></gm-game-overview>
+  
+  <gm-game-players></gm-game-players>
 </div>

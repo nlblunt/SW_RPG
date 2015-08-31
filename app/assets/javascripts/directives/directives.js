@@ -151,3 +151,11 @@ app.directive('gmGameOverview', function()
         templateUrl: 'html/partials/gm/game/overview.html'
     };
 });
+
+app.directive('gmGamePlayers', function()
+{
+    return{
+        restrict: 'E',
+        templateUrl: 'html/partials/gm/game/players.html'
+    };
+});

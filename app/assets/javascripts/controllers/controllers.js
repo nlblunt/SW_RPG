@@ -223,6 +223,14 @@ appControllers.controller('gmController', ['$scope', 'gmFactory', function($scop
 		//Remove pc from Add List
 		$scope.all_pcs.splice(index, 1);
 	};
+	
+	$scope.show_selected_info = function(type, object)
+	{
+		//Shows the selected object in the information section.  Type determins layout
+		$scope.info_type = type;
+		$scope.info_object = object;
+		console.log(object);
+	};
 }]);
 
 appControllers.controller('playerController', ['$scope', '$filter', '$interval', 'playerFactory', function($scope, $filter, $interval, playerFactory)
