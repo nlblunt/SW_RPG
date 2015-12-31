@@ -170,6 +170,20 @@ appServices.factory('gmFactory', ['$resource', '$q', '$http', function($resource
 		return deferred.promise;
 	};
 	
+    //Add PC to current session
+    self.addPcToSession = function(session_id, pc_id)
+    {
+        var deferred = $q.defer();
+        
+        $http.post('/gm/add_session_pcs', {s_id: session_id, pc_id: pc_id})
+        .then(function(result)
+        {
+            deferred.resolve(result.data);
+        });
+        
+        return deferred.promise;
+    };
+    
 	self.getSessionPcs = function(session_id)
 	{
 		//Get the PCs in the session
@@ -199,6 +213,23 @@ appServices.factory('gmFactory', ['$resource', '$q', '$http', function($resource
 		return deferred.promise;
 	};
 	
+    
+    //Modify player health (wounds)
+    self.modifyPcWounds = function(pc_id, amount)
+    {
+        //Modifiy 'pc_id' heath by 'amount'
+        
+        var deferred = $q.defer();
+        
+        $http.post('/gm/modify_pc_wounds', {pc_id: pc_id, amount: amount})
+        .then(function(result)
+        {
+            deferred.resolve(result.data);
+        });
+        
+        return deferred.promise;
+    };
+    
 	return self;
 }]);
 

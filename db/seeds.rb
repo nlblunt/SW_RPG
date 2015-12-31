@@ -14,6 +14,8 @@ user2.create_player(name: 'Joe')
 user3 = User.create(email: 'chris@email.com', username: 'chris', password: 'password', password_confirmation: 'password')
 user3.create_player(name: 'Chris')
 
+Gm.create(email: 'gm@test.com', password: 'password', password_confirmation: 'password')
+
 Skill.create(name: "Astrogation", attrib: "Intellect")
 Skill.create(name: "Athletics", attrib: "Brawn")
 Skill.create(name: "Charm", attrib: "Presence")

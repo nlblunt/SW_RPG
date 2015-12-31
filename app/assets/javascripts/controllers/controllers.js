@@ -2,9 +2,9 @@ var appControllers = angular.module('appControllers', ['appDirectives', 'appServ
 
 appControllers.controller('homeController', ['$scope', function($scope)
 {
-    	$scope.$root.display_title = "Title";
-    	$scope.$root.metadescription = "Description";
-    	$scope.$root.body_id = "welcome";
+   $scope.$root.display_title = "Title";
+   $scope.$root.metadescription = "Description";
+   $scope.$root.body_id = "welcome";
 }]);
 
 appControllers.controller('gmController', ['$scope', 'gmFactory', function($scope, gmFactory)
@@ -228,9 +228,24 @@ appControllers.controller('gmController', ['$scope', 'gmFactory', function($scop
 	{
 		//Shows the selected object in the information section.  Type determins layout
 		$scope.info_type = type;
+        
+        if(type == 'pc')
+            {
+                
+            }
 		$scope.info_object = object;
 		console.log(object);
 	};
+    
+    //GM OVERVIEW: Add / Remove wounds
+    $scope.modify_wounds = function(pc_id, amount)
+    {
+        gmFactory.modifyPcWounds(pc_id, amount)
+        .then(function(result)
+        {
+            $scope.
+        })
+    }
 }]);
 
 appControllers.controller('playerController', ['$scope', '$filter', '$interval', 'playerFactory', function($scope, $filter, $interval, playerFactory)

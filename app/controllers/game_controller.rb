@@ -17,7 +17,7 @@ class GameController < ApplicationController
     
     render json: g_session
   end
-  
+    
   private
   
   def session_params
