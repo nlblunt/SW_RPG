@@ -36,7 +36,7 @@ app.directive('characterSelect', function()
 {
     return{
         restrict: 'E',
-        templateUrl: 'html/partials/characterselect.html'
+        templateUrl: 'html/partials/createpc/characterselect.html'
     };
 });
 
@@ -44,7 +44,7 @@ app.directive('editPlayer', function()
 {
     return{
         restrict: 'E',
-        templateUrl: 'html/partials/editplayer.html'
+        templateUrl: 'html/partials/createpc/editplayer.html'
     };
 });
 
@@ -52,7 +52,7 @@ app.directive('characterCreate', function()
 {
     return{
         restrict: 'E',
-        templateUrl: 'html/partials/charactercreate.html'
+        templateUrl: 'html/partials/createpc/charactercreate.html'
     };
 });
 
@@ -60,7 +60,7 @@ app.directive('characterCreate2', function()
 {
     return{
         restrict: 'E',
-        templateUrl: 'html/partials/charactercreate2.html'
+        templateUrl: 'html/partials/createpc/charactercreate2.html'
     };
 });
 
@@ -68,7 +68,7 @@ app.directive('characterCreate3', function()
 {
     return{
         restrict: 'E',
-        templateUrl: 'html/partials/charactercreate3.html'
+        templateUrl: 'html/partials/createpc/charactercreate3.html'
     };
 });
 
@@ -76,7 +76,7 @@ app.directive('characterCreateHuman', function()
 {
     return{
         restrict: 'E',
-        templateUrl: 'html/partials/charactercreatehuman.html'
+        templateUrl: 'html/partials/createpc/charactercreatehuman.html'
     };
 });
 
@@ -84,7 +84,7 @@ app.directive('characterSelected', function()
 {
     return{
         restrict: 'E',
-        templateUrl: 'html/partials/characterselected.html'
+        templateUrl: 'html/partials/createpc/characterselected.html'
     };
 });
 
