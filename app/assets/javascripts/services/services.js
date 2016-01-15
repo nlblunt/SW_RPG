@@ -215,13 +215,13 @@ appServices.factory('gmFactory', ['$resource', '$q', '$http', function($resource
 	
     
     //Modify player health (wounds)
-    self.modifyPcWounds = function(pc_id, amount)
+    self.pcModifyStrain = function(pc_id, amount)
     {
         //Modifiy 'pc_id' heath by 'amount'
         
         var deferred = $q.defer();
         
-        $http.post('/gm/modify_pc_wounds', {pc_id: pc_id, amount: amount})
+        $http.post('/gm/pc_modify_strain', {id: pc_id, amount: amount})
         .then(function(result)
         {
             deferred.resolve(result.data);

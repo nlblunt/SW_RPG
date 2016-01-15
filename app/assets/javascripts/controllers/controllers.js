@@ -238,12 +238,12 @@ appControllers.controller('gmController', ['$scope', 'gmFactory', function($scop
 	};
     
     //GM OVERVIEW: Add / Remove wounds
-    $scope.modify_wounds = function(pc_id, amount)
+    $scope.modify_strain = function(pc_id, amount)
     {
-        gmFactory.modifyPcWounds(pc_id, amount)
+        gmFactory.pcModifyStrain(pc_id, amount)
         .then(function(result)
         {
-            $scope.
+            $scope.info_object.strain_current = $scope.info_object.strain_current + amount;
         })
     }
 }]);

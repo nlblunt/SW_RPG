@@ -159,3 +159,11 @@ app.directive('gmGamePlayers', function()
         templateUrl: 'html/partials/gm/game/players.html'
     };
 });
+
+app.directive('overviewPc', function()
+{
+    return{
+        restrict: 'E',
+        templateUrl: 'html/partials/gm/game/overview/pc.html'
+    };
+});

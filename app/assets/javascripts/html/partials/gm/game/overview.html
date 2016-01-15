@@ -16,58 +16,7 @@
       
       <div class="row">
         Selected Information
-        <div ng-if="info_type == 'pc'">
-          <div class="col-xs-2">
-            <img class="session_avatar" ng-src={{info_object.avatar}}>  
-          </div>
-          
-          <div class="col-xs-3">
-            <table class="table">
-              <tr>
-                <td class="text-right">PC Name:</td>
-                <td colspan="3">{{info_object.name}}</td>
-              </tr>
-              <tr>
-                <td class="text-right">Race:</td>
-                <td>{{info_object.race_name}}</td>
-              </tr>
-              <tr>
-                <td class="text-right">Wounds:</td>
-                <td>{{info_object.wounds_current}}</td>
-                <td class="text-right">Max:</td>
-                <td>{{info_object.wounds_thresh}}</td>
-              </tr>
-              <tr>
-                <td class="text-right">Strain:</td>
-                <td>{{info_object.strain_current}}</td>
-                <td class="text-right">Max:</td>
-                <td>{{info_object.strain_thresh}}</td>
-              </tr>
-            </table>
-          </div>
-          <div class="col-xs-3">
-            <div class="row">
-              <button class="button33">Wounds +1</button>
-              <button class="button33">Wounds +2</button>
-              <button class="button33">Wounds +3</button>
-            </div>
-            <div class="row">
-              <button class="button33">Wounds -1</button>
-              <button class="button33">Wounds -2</button>
-              <button class="button33">Wounds -3</button>
-            </div>
-            <div class="row">
-              <button class="button33">Strain +1</button>
-              <button class="button33">Strain +2</button>
-              <button class="button33">Strain +3</button>
-            </div>
-            <div class="row">
-              <button class="button33">Strain -1</button>
-              <button class="button33">Strain -2</button>
-              <button class="button33">Strain -3</button>
-            </div>
-          </div>
-        </div>
+        <overview-pc></overview-pc>
       </div>
     </div>
   </div>
