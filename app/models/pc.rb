@@ -271,4 +271,21 @@ class Pc < ActiveRecord::Base
         
         self.save
     end
+
+    def modify_wounds(amount)
+        #Adjust wounds
+        self.wounds_current = self.wounds_current + amount.to_i
+
+        #Can't go negative
+        if self.wounds_current < 0
+            self.wounds_current = 0
+        end
+
+        #Or higher than the thresh
+        if self.wounds_current > self.wounds_thresh
+            self.wounds_current = self.wounds_thresh
+        end
+
+        self.save
+    end
 end

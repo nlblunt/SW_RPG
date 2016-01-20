@@ -5,6 +5,7 @@ SWRpg::Application.routes.draw do
   post 'gm/get_all_pcs' => "gm#get_all_pcs"
   post 'gm/modify_pc' => "gm#modify_pc"
   post 'gm/pc_modify_strain' => "gm#pc_modify_strain"
+  post 'gm/pc_modify_wounds' => "gm#pc_modify_wounds"
   post 'gm/get_session_pcs' => "gm#get_session_pcs"
   post 'gm_add_session_pcs' => "gm#add_session_pcs"
   

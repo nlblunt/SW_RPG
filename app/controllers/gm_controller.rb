@@ -43,6 +43,15 @@ class GmController < ApplicationController
     render nothing: true
   end
   
+  def pc_modify_wounds
+    #Modify PC wounds
+    pc = Pc.find_by_id(params[:id])
+
+    pc.modify_wounds(params[:amount])
+
+    render status: :ok, json: {msg: pc.name + " Wounds Modified", wounds: pc.wounds_current}
+  end
+
   def get_session_pcs
     #Returns a list of PCs in the current game session
     
