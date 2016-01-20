@@ -40,7 +40,7 @@ class GmController < ApplicationController
 
     @pc.modify_strain(params[:amount])
     
-    render nothing: true
+    render status: :ok, json: {msg: pc.name + ": stain modified " + params[:amount], strain: pc.strain_current}
   end
   
   def pc_modify_wounds
@@ -49,7 +49,7 @@ class GmController < ApplicationController
 
     pc.modify_wounds(params[:amount])
 
-    render status: :ok, json: {msg: pc.name + " Wounds Modified", wounds: pc.wounds_current}
+    render status: :ok, json: {msg: pc.name + ": wounds modified " + params[:amount], wounds: pc.wounds_current}
   end
 
   def get_session_pcs

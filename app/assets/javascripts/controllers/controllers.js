@@ -243,7 +243,7 @@ appControllers.controller('gmController', ['$scope', 'gmFactory', function($scop
         gmFactory.pcModifyStrain(pc_id, amount)
         .then(function(result)
         {
-            $scope.info_object.strain_current = $scope.info_object.strain_current + amount;
+            $scope.info_object.strain_current = result.wounds;
         })
     }
 
@@ -253,7 +253,6 @@ appControllers.controller('gmController', ['$scope', 'gmFactory', function($scop
     	gmFactory.pcModifyWounds(pc_id, amount)
     	.then(function(result)
     	{
-    		console.log(result);
     		$scope.info_object.wounds_current = result.wounds;
     	})
     }
