@@ -20,6 +20,9 @@ appControllers.controller('gmController', ['$scope', 'gmFactory', function($scop
 	//Set gm_game_stage
 	$scope.gm_game_stage = "gm_stage_sessions";
 	
+	//GM Messages
+	$scope.messages = [];
+
 	//Is GM signed in?  Set initial check to false then queue server
 	gmFactory.gmCheck().$promise
 	.then(function(result)
@@ -243,7 +246,8 @@ appControllers.controller('gmController', ['$scope', 'gmFactory', function($scop
         gmFactory.pcModifyStrain(pc_id, amount)
         .then(function(result)
         {
-            $scope.info_object.strain_current = result.wounds;
+            $scope.info_object.strain_current = result.strain;
+            $scope.messages.unshift(result.time + ": " + result.msg);
         })
     }
 
@@ -254,6 +258,7 @@ appControllers.controller('gmController', ['$scope', 'gmFactory', function($scop
     	.then(function(result)
     	{
     		$scope.info_object.wounds_current = result.wounds;
+    		$scope.messages.unshift(result.time + ": " + result.msg);
     	})
     }
 }]);
