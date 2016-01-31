@@ -235,6 +235,13 @@ class Pc < ActiveRecord::Base
     
     def gm_modify(mods, skills)
       #Only modify attributes that 'CAN' be changed without major impact
+        self.name = mods[:name]
+        self.xp = mods[:xp]
+        self.credits = mods[:credits]
+
+        self.wounds_current = mods[:wounds_current]
+        self.strain_current = mods[:strain_current]
+
         self.brawn = mods[:brawn]
         self.agility = mods[:agility]
         self.intellect = mods[:intellect]
