@@ -214,10 +214,10 @@ appServices.factory('gmFactory', ['$resource', '$q', '$http', function($resource
 	};
 	
     
-    //Modify player health (wounds)
+    //Modify player strain (strain)
     self.pcModifyStrain = function(pc_id, amount)
     {
-        //Modifiy 'pc_id' heath by 'amount'
+        //Modifiy 'pc_id' strain by 'amount'
         
         var deferred = $q.defer();
         
@@ -228,6 +228,22 @@ appServices.factory('gmFactory', ['$resource', '$q', '$http', function($resource
         });
         
         return deferred.promise;
+    };
+    
+    //Modify player health (wounds)
+    self.pcModifyWounds = function(pc_id, amount)
+    {
+    	//Modify 'pc_id' health by 'amount'
+
+    	var deferred = $q.defer();
+
+    	$http.post('/gm/pc_modify_wounds', {id: pc_id, amount: amount})
+    	.then(function(result)
+    	{
+    		deferred.resolve(result.data);
+    	});
+
+    	return deferred.promise;
     };
     
 	return self;

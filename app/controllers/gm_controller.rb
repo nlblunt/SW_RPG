@@ -36,13 +36,26 @@ class GmController < ApplicationController
   
   def pc_modify_strain
     #Modify PC strain.  Can be + or -
-    @pc = Pc.find_by_id(params[:id])
+    pc = Pc.find_by_id(params[:id])
 
-    @pc.modify_strain(params[:amount])
+    pc.modify_strain(params[:amount])
     
-    render nothing: true
+    t = Time.now
+    time = t.strftime("%I:%M:%S")
+    render status: :ok, json: {msg: pc.name + ": strain modified " + params[:amount].to_s, strain: pc.strain_current, time: time}
   end
   
+  def pc_modify_wounds
+    #Modify PC wounds
+    pc = Pc.find_by_id(params[:id])
+
+    pc.modify_wounds(params[:amount])
+
+    t = Time.now
+    time = t.strftime("%I:%M:%S")
+    render status: :ok, json: {msg: pc.name + ": wounds modified " + params[:amount].to_s, wounds: pc.wounds_current, time: time}
+  end
+
   def get_session_pcs
     #Returns a list of PCs in the current game session
     

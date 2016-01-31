@@ -20,6 +20,9 @@ appControllers.controller('gmController', ['$scope', 'gmFactory', function($scop
 	//Set gm_game_stage
 	$scope.gm_game_stage = "gm_stage_sessions";
 	
+	//GM Messages
+	$scope.messages = [];
+
 	//Is GM signed in?  Set initial check to false then queue server
 	gmFactory.gmCheck().$promise
 	.then(function(result)
@@ -237,14 +240,26 @@ appControllers.controller('gmController', ['$scope', 'gmFactory', function($scop
 		console.log(object);
 	};
     
-    //GM OVERVIEW: Add / Remove wounds
+    //GM OVERVIEW: Add / Remove strain
     $scope.modify_strain = function(pc_id, amount)
     {
         gmFactory.pcModifyStrain(pc_id, amount)
         .then(function(result)
         {
-            $scope.info_object.strain_current = $scope.info_object.strain_current + amount;
+            $scope.info_object.strain_current = result.strain;
+            $scope.messages.unshift(result.time + ": " + result.msg);
         })
+    }
+
+    //GM OVERVIEW: Add / Remove wounds
+    $scope.modify_wounds = function(pc_id, amount)
+    {
+    	gmFactory.pcModifyWounds(pc_id, amount)
+    	.then(function(result)
+    	{
+    		$scope.info_object.wounds_current = result.wounds;
+    		$scope.messages.unshift(result.time + ": " + result.msg);
+    	})
     }
 }]);
 
