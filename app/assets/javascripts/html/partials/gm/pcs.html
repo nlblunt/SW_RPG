@@ -34,18 +34,6 @@
                     </div>
                 </div>
                 
-                <div class="row">
-                    <div class="col-md-6">
-                        <label class="float-left">XP</label>
-                        <input class="form-control float-left" type="text" ng-model="character.xp">
-                    </div>
-                    
-                    <div class="col-md-6">
-                        <label>Credits</label>
-                        <input class="form-control" type="text" ng-model="character.credits">
-                    </div>
-                </div>
-                
                 <table id="pc_attributes" class="table table-striped">
                     <thead>
                         <tr>
@@ -75,6 +63,29 @@
                             <td class="table-rank"><input class="form-control" ng-model="character.willpower"></td>
                         </tr>
                     </tbody>
+                </table>
+
+                <table id="pc_health" class="table table-striped">
+                <thead>
+                    <tr>
+                        <td><label>Current Wounds</label></td>
+                        <td><label>Max Wounds</label></td>
+                        <td><label>Current Strain</label></td>
+                        <td><label>Max Strain</label></td>
+                        <td><label>XP</label></td>
+                        <td><label>Credits</label></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="table-rank"><input class="form-control" ng-model="character.wounds_current"></td>
+                        <td class="table-rank">{{character.wounds_thresh}}</td>
+                        <td class="table-rank"><input class="form-control" ng-model="character.strain_current"></td>
+                        <td class="table-rank">{{character.strain_thresh}}</td>
+                        <td class="table-rank"><input class="form-control" ng-model="character.xp"></td>
+                        <td class="table-rank"><input class="form-control" ng-model="character.credits"></td>
+                    </tr>
+                </tbody>
                 </table>
             </form>   
         
