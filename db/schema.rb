@@ -17,11 +17,16 @@ ActiveRecord::Schema.define(version: 20160201183905) do
     t.string   "name"
     t.string   "description"
     t.integer  "defense"
-    t.string   "soak"
+    t.integer  "soak"
     t.integer  "price"
     t.text     "notes"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "armors_pcs", id: false, force: :cascade do |t|
+    t.integer "armor_id"
+    t.integer "pc_id"
   end
 
   create_table "careers", force: :cascade do |t|
@@ -104,6 +109,11 @@ ActiveRecord::Schema.define(version: 20160201183905) do
   create_table "pcs_specializations", id: false, force: :cascade do |t|
     t.integer "pc_id"
     t.integer "specialization_id"
+  end
+
+  create_table "pcs_weapons", id: false, force: :cascade do |t|
+    t.integer "pc_id"
+    t.integer "weapon_id"
   end
 
   create_table "players", force: :cascade do |t|
