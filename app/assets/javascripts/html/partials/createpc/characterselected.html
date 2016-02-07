@@ -1,10 +1,26 @@
 <div id="characterselected" ng-show="stage == 'characterselected'">
     <div>
     	<ul id="character-nav">
-    		<li class="text-center"><a href ng-click="set_char_stage('overview')">Overview</a></li>
-    		<li class="text-center"><a href ng-click="set_char_stage('skills')">Skills</a></li>
-    		<li class="text-center"><a href ng-click="set_char_stage('equipment')">Gear</a></li>
-    		<li class="text-center">Options</li>
+    		<li>
+                <a href ng-click="set_char_stage('overview')">
+                <img class="pc-nav" ng-src="/images/pc/pc_overview.png">      
+                </a>
+            </li>
+    		<li>
+                <a href ng-click="set_char_stage('skills')">
+                <img class="pc-nav" ng-src="/images/pc/pc_skills.png">
+                </a>
+            </li>
+    		<li>
+                <a href ng-click="set_char_stage('equipment')">
+                <img class="pc-nav" ng-src="/images/pc/pc_gear.png">
+                </a>
+            </li>
+    		<li>
+                <a href ng-click="set_char_stage('combat')">
+                <img class="pc-nav" ng-src="/images/pc/pc_combat.png">
+                </a>
+            </li>
     	</ul>
     </div>
     
