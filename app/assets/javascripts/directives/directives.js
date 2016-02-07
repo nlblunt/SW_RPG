@@ -128,6 +128,14 @@ app.directive('gmPcs', function()
     };
 });
 
+app.directive('gmCampaignSetup', function()
+{
+    return{
+        restrict: 'E',
+        templateUrl: 'html/partials/gm/game/campaign_setup.html'
+    };
+});
+
 app.directive('gmGame', function()
 {
     return{
@@ -136,7 +144,7 @@ app.directive('gmGame', function()
     };
 });
 
-app.directive('gmGameSessions', function()
+app.directive('gmCampaignSessions', function()
 {
     return{
         restrict: 'E',
@@ -144,7 +152,7 @@ app.directive('gmGameSessions', function()
     };
 });
 
-app.directive('gmGameOverview', function()
+app.directive('gmCampaignOverview', function()
 {
     return{
         restrict: 'E',
@@ -152,7 +160,7 @@ app.directive('gmGameOverview', function()
     };
 });
 
-app.directive('gmGamePlayers', function()
+app.directive('gmCampaignPlayers', function()
 {
     return{
         restrict: 'E',

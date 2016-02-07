@@ -17,6 +17,9 @@ appControllers.controller('gmController', ['$scope', 'gmFactory', function($scop
 	//Container for session_pcs
 	$scope.session_pcs = [];
 	
+	//Empty game session
+	$scope.current_session = "";
+
 	//Set gm_game_stage
 	$scope.gm_game_stage = "gm_stage_sessions";
 	
@@ -72,6 +75,15 @@ appControllers.controller('gmController', ['$scope', 'gmFactory', function($scop
 				{
 					$scope.careers = result;
 				});
+			});
+		}
+
+		if(stage == "gm_campaign_select")
+		{
+			gmFactory.getAllSessions()
+			.then(function(result)
+			{
+				$scope.sessions = result;
 			});
 		}
 	};
