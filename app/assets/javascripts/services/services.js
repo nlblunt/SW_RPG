@@ -98,6 +98,8 @@ appServices.factory('gmFactory', ['$resource', '$q', '$http', function($resource
 		return deferred.promise;
 	};
 	
+
+
 	self.deletePc = function(pc_id)
 	{
 		var deferred = $q.defer();
@@ -407,6 +409,46 @@ appServices.factory('playerFactory', ['$resource', '$q', '$http', function($reso
 		return deferred.promise;
 	};
 	
+	self.getPcWeapons = function(pc_id)
+	{
+		var deferred = $q.defer();
+
+		$http.post('/player/get_pc_weapons.json', {id: pc_id})
+		.then(function(result)
+		{
+			deferred.resolve(result.data);
+		});
+
+		return deferred.promise;
+	};
+
+	self.getPcArmor = function(pc_id)
+	{
+		var deferred = $q.defer();
+
+		$http.post('/player/get_pc_armor.json', {id: pc_id})
+		.then(function(result)
+		{
+			console.log(result);
+			deferred.resolve(result.data);
+		});
+
+		return deferred.promise;
+	};
+
+	self.getPcItems = function(pc_id)
+	{
+		var deferred = $q.defer();
+
+		$http.post('/player/get_pc_items.json', {id: pc_id})
+		.then(function(result)
+		{
+			deferred.resolve(result.data);
+		});
+
+		return deferred.promise;
+	};
+
 	self.getPcCareerSkills = function(pc_id)
 	{
 		var deferred = $q.defer();

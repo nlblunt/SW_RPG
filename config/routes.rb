@@ -29,6 +29,9 @@ SWRpg::Application.routes.draw do
   post "player/increase_attribute" => "player#increase_attribute"
   post "player/set_specialization" => "player#set_specialization"
   post "player/set_pc_status" => "player#set_pc_status"
+  post "player/get_pc_weapons" => "player#get_pc_weapons"
+  post "player/get_pc_armor" => "player#get_pc_armor"
+  post "player/get_pc_items" => "player#get_pc_items"
   
   #RACE CONTROLLER ROUTES
   get 'race/index'

@@ -1,4 +1,63 @@
 <div id="character_equipment" ng-show="character_stage == 'equipment'">
-    <h2>Well, this is embarassing... but you appear to be broke and naked.
-    You should go steal some clothes or something.</h2>
+    <h2>Weapons</h2>
+    <table class="table table-stripped">
+    	<thead>
+    		<tr>
+    			<td>Name</td>
+    			<td>Skill</td>
+    			<td>Damage</td>
+    			<td>Critical</td>
+    			<td>Range</td>
+    			<td>Price</td>
+    			<td>Special</td>
+    		</tr>
+    	</thead>
+    	<tbody>
+    		<tr ng-repeat="w in weapons">
+    			<td>{{w.name}}</td>
+    			<td>{{w.skill}}</td>
+    			<td>{{w.damage}}</td>
+    			<td>{{w.critical}}</td>
+    			<td>{{w.range}}</td>
+    			<td>{{w.price}}</td>
+    			<td>{{w.special}}</td>
+    		</tr>
+    	</tbody>
+    </table>
+
+    <h2>Armor</h2>
+    <table class="table table-stripped">
+        <thead>
+            <tr>
+                <td>Name</td>
+                <td>Soak</td>
+                <td>Defense</td>
+                <td>Price</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="a in armor">
+                <td>{{a.name}}</td>
+                <td>{{a.soak}}</td>
+                <td>{{a.defense}}</td>
+                <td>{{a.price}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Items</h2>
+    <table class="table table-stripped">
+        <thead>
+            <tr>
+                <td>Name</td>
+                <td>Description</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="i in items">
+                <td>{{i.name}}</td>
+                <td>{{i.description}}</td>
+            </tr>
+        </tbody>
+    </table>
 </div>

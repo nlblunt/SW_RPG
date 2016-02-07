@@ -235,3 +235,13 @@ sp1.skills << Skill.find_by_name("Computers")
 sp1.skills << Skill.find_by_name("Surveillance")
 sp1.skills << Skill.find_by_name("Knowledge - Education")
 sp1.skills << Skill.find_by_name("Knowledge - Underworld")
+
+##########
+# Armor  #
+##########
+Armor.create(name: "Heavy Clothing", defense: 0, soak: 0, price: 50, description: "A good leather jacket...")
+
+###########
+# Weapons #
+###########
+Weapon.create(name: "Holdout Blaster", skill_id: Skill.find_by_name("Ranged - Light").id, damage: 5, critical: 4, range: "Short", price: 300, special: "Stun Setting", notes: "Can switch to stun setting to cause strain damage instead of wounds")
