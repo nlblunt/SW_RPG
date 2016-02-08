@@ -1,16 +1,65 @@
 <div id="gm_signed_in" ng-show="gm_signed_in">
 	<div class="row">
-		<nav class="navbar navbar-default margin-zero">
-			<div class="container">
-				<a href ng-click="gm_set_stage('gm_game')" class="navbar-text navbar-link">Game</a>
-                <a href ng-click="gm_set_stage('gm_pcs')" class="navbar-text navbar-link">Player Characters</a>
-				<a href ng-click="gm_set_stage('gm_npcs')" class="navbar-text navbar-link">NPCs</a>
-				
-				<p id="game_session" class="navbar-text pull-right game_session" ng-if="current_session">Current Session: {{current_session.name}}</p>
-			</div>
-		</nav>
-   </div>
-    <gm-pcs></gm-pcs>
+        <nav class="col-lg-2">
+            <ul id="admin_nav">
+                <li><img class="nav-header" ng-src="/images/nav/admin_setup.png"></li>
+                <li>
+                    <a href ng-click="gm_set_stage('gm_pcs')">
+                    <img class="nav-item" ng-src="/images/nav/player_characters.png">
+                    </a>
+                </li>
+                <li>
+                    <a href ng-click="gm_set_stage('gm_npcs')">
+                    <img class="nav-item" ng-src="/images/nav/npcs.png">
+                    </a>
+                </li>
+                <li>
+                    <a href>
+                    <img class="nav-item" ng-src="/images/nav/equipment.png">
+                    </a>
+                </li>
+                <li>
+                    <a href ng-click="gm_set_stage('gm_campaign_setup')">
+                    <img class="nav-item" ng-src="/images/nav/campaign_setup.png">
+                    </a>
+                </li>
 
-    <gm-game></gm-game>
+                <li><img class="nav-header" ng-src="/images/nav/campaign.png"></li>
+
+                <li>
+                    <a href ng-click="gm_set_stage('gm_campaign_select')">
+                    <img class="nav-item" ng-src="/images/nav/campaign_select.png">
+                    </a>
+                </li>
+
+                <div ng-if="current_session != ''">
+                <li class="game_session">{{current_session.name}}</li>
+                <li>
+                    <a href ng-click="gm_set_stage('gm_campaign_overview')">
+                    <img class="nav-item" ng-src="/images/nav/campaign_overview.png">
+                    </a>
+                </li>
+
+                <li>
+                    <a href ng-click="gm_set_stage('gm_campaign_players')">
+                    <img class="nav-item" ng-src="/images/nav/campaign_pcs.png">
+                    </a>
+                </li>
+                </div>
+            </ul>
+        </nav>
+        <section id="gm-content" class="col-lg-10">
+            <gm-pcs></gm-pcs>
+
+            <gm-campaign-setup></gm-campaign-setup>
+
+            <gm-campaign-sessions></gm-campaign-sessions>
+
+            <gm-campaign-overview></gm-campaign-overview>
+
+            <gm-campaign-players></gm-campaign-players>
+
+            <gm-game></gm-game>
+        </section>
+   </div>
 </div>

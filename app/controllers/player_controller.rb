@@ -98,6 +98,26 @@ class PlayerController < ApplicationController
     render :get_pc_skills
   end
   
+  def get_pc_weapons
+    #Gets the PC weapons
+    pc = Pc.find(params[:id])
+    @weapons = pc.weapons
+
+    render :get_pc_weapons
+  end
+
+  def get_pc_armor
+    pc = Pc.find(params[:id])
+
+    render json: pc.armors
+  end
+
+  def get_pc_items
+    pc = Pc.find(params[:id])
+
+    render json: pc.items
+  end
+
   def get_pc_career_skills
     #Get the PC we are needing the career skills for
     pc = Pc.find(params[:id])

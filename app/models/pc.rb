@@ -7,6 +7,8 @@ class Pc < ActiveRecord::Base
     has_and_belongs_to_many :specializations
     has_and_belongs_to_many :sessions
     
+    has_and_belongs_to_many :weapons
+    has_and_belongs_to_many :armors
     #Initialize the new PC
     #Setup skill table
     #Sets attributres based on race

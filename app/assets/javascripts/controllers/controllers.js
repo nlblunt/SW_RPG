@@ -17,6 +17,9 @@ appControllers.controller('gmController', ['$scope', 'gmFactory', function($scop
 	//Container for session_pcs
 	$scope.session_pcs = [];
 	
+	//Empty game session
+	$scope.current_session = "";
+
 	//Set gm_game_stage
 	$scope.gm_game_stage = "gm_stage_sessions";
 	
@@ -72,6 +75,15 @@ appControllers.controller('gmController', ['$scope', 'gmFactory', function($scop
 				{
 					$scope.careers = result;
 				});
+			});
+		}
+
+		if(stage == "gm_campaign_select")
+		{
+			gmFactory.getAllSessions()
+			.then(function(result)
+			{
+				$scope.sessions = result;
 			});
 		}
 	};
@@ -585,7 +597,6 @@ appControllers.controller('playerController', ['$scope', '$filter', '$interval',
 		
 		//Set the selected Character
 		$scope.character = $scope.pcs[index];
-		console.log($scope.character);
 
 		//Get the selected Characters skills
 		playerFactory.getPcSkills($scope.character.id)
@@ -596,6 +607,29 @@ appControllers.controller('playerController', ['$scope', '$filter', '$interval',
 			$scope.setDice(result.length);
 		});
 		
+
+		//Get the selectec Character weapons
+		playerFactory.getPcWeapons($scope.character.id)
+		.then(function(result)
+		{
+			$scope.weapons = result;
+		});
+
+		//Get the selected Character armor
+		playerFactory.getPcArmor($scope.character.id)
+		.then(function(result)
+		{
+			console.log(result);
+			$scope.armor = result;
+		});
+
+		//Get the selected Character items
+		//playerFactory.getPcItems($scope.character.id)
+		//.then(function(result)
+		//{
+		//	$scope.items = result;
+		//});
+
 		//Set the stage to the character
 		$scope.stage = "characterselected";
 		

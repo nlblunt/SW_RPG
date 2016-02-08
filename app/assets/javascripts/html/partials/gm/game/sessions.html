@@ -1,10 +1,10 @@
-<div id="gm_game_session" ng-show="gm_game_stage == 'gm_game_sessions'">
+<div id="gm_game_session" ng-show="gm_stage == 'gm_campaign_select'">
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
-        <table class="table table-hover">
+        <table class="table">
             <thead>
                 <tr>
-                    <td>Session Name</td>
+                    <td>Campaign Name</td>
                     <td>Description</td>
                     <td>Status</td>
                     <td></td>
@@ -19,20 +19,6 @@
                 </tr>
             </tbody>
         </table>
-        
-        <form>
-            <div class="form-group">
-                <label>Session Name</label>
-                <input type="text" class="form-control" ng-model="new_session.name">
-            </div>
-            
-            <div class="form-group">
-                <label>Description</label>
-                <input type="text" class="form-control" ng-model="new_session.description">
-            </div>
-            
-            <button class="btn btn-link" ng-click="create_session()">Create Session</button>
-        </form>
         </div>
     </div>
 </div>

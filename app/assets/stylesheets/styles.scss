@@ -27,12 +27,35 @@ body#character
 
 body#gm
 {
-	background-color: rgb(252, 252, 252);
+	background-color: rgb(8, 7, 7);
+	color: #ffc000;
+}
+
+img.nav-header
+{
+	width: 100%;
+	margin-bottom: 10px;
+	margin-top: 10px;
+	border: solid 1px silver;
+	border-radius: 5px;
+}
+
+img.nav-item
+{
+	width: 100%;
+	margin-bottom: 5px;
+	border: solid 1px silver;
+	border-radius: 10px;
 }
 
 img.main-nav
 {
   width: 100%;
+}
+
+img.pc-nav
+{
+	width: 100%;
 }
 
 div.main-nav-small
@@ -46,6 +69,11 @@ div#enter
 	margin-left: auto;
 	margin-right: auto;
 	text-align: center;
+}
+
+section#gm-content
+{
+	background-color: rgba(80,80,80,0.5);
 }
 
 div#player
@@ -349,4 +377,9 @@ tr.all_pcs.ng-leave.ng-leave-active
 .button33
 {
 	width: 31.3%;
+}
+
+#admin_nav
+{
+	list-style: none;
 }

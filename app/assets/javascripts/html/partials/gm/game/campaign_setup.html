@@ -1,0 +1,15 @@
+<div id="gm_campaign_setup" ng-show="gm_stage == 'gm_campaign_setup'">
+    <form>
+        <div class="form-group">
+            <label>Campaign Name</label>
+            <input type="text" class="form-control" ng-model="new_session.name">
+        </div>
+        
+        <div class="form-group">
+            <label>Description</label>
+            <input type="text" class="form-control" ng-model="new_session.description">
+        </div>
+        
+        <button class="btn btn-link" ng-click="create_session()">Create Campaign</button>
+    </form>
+</div>
