@@ -1,13 +1,27 @@
 <div id="gm_game_players" ng-show="gm_stage == 'gm_campaign_players'">
     <div class="row">
+        <div class="col-xs-10">
+            <div class="row border-bottom">
+                <div class="col-xs-1" ng-repeat="pc in session_pcs">
+                    <a href ng-click="show_selected_info('pc', pc)">
+                    <p class="text-center">{{pc.name}}</p>
+                    <img class="session_avatar" ng-src={{pc.avatar}}>
+                    </a>
+                </div>
+                <img ng-src="/images/horizontal_line.png" class="horizontal-line">
+            </div>
+
+            <section class="row">
+                <overview-pc></overview-pc>
+            </section>
+        </div>
         <div class="col-xs-2">
-        	<button class="btn btn-primary btn-block" ng-if="manage_game_pcs == 'false'" ng-click="manage_pcs('true')">Add PCs</button>
-        	<button class="btn btn-primary btn-block" ng-if="manage_game_pcs == 'true'" ng-click="manage_pcs('false')">Done</button>
-        	<table id="manage_pcs" ng-show="manage_game_pcs =='true'" class="manage_pcs table">
+            <img class="nav-header" ng-src="/images/gm/available_pcs.png">
+        	<table id="manage_pcs" class="manage_pcs table">
         		 <tr ng-repeat="pc in all_pcs" class="all_pcs">
         			<td>{{pc.name}}</td>
         			<td>{{pc.career_name}}</td>
-        			<td><button ng-click="add_pc_to_session($index)" class="btn btn-increase">+</button></td>
+        			<td><img ng-src="/images/circle_add.png" ng-click="add_pc_to_session($index)" class="circle-add"></td>
         		</tr>
         	</table>
         </div>
