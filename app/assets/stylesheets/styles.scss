@@ -29,6 +29,10 @@ body#gm
 {
 	background-color: rgb(8, 7, 7);
 	color: #ffc000;
+	background-image: image_url("sw.jpg");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
 }
 
 img.nav-header
@@ -82,7 +86,7 @@ div#enter
 
 section#gm-content
 {
-	background-color: rgba(20,10,10,0.5);
+	background-color: rgba(20,10,10,0.90);
 }
 
 div#player
@@ -290,7 +294,7 @@ div#character_overview p
 	border: 2px solid black;
 	border-radius: 5px;
 	margin: 5px;
-	background-color: rgb(253, 247, 232);
+	background-color: black;
 	padding: 5px;
 }
 
@@ -381,11 +385,6 @@ tr.all_pcs.ng-leave.ng-leave-active
 .border-bottom
 {
 	border-bottom: 1px solid black;
-}
-
-.button33
-{
-	width: 31.3%;
 }
 
 #admin_nav
