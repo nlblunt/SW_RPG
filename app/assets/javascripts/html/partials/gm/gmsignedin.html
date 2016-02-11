@@ -14,7 +14,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href>
+                    <a href ng-click="gm_set_stage('gm_equipment')">
                     <img class="nav-item" ng-src="/images/nav/equipment.png">
                     </a>
                 </li>
@@ -51,6 +51,8 @@
         <section id="gm-content" class="col-lg-10">
             <gm-pcs></gm-pcs>
 
+            <gm-equipment></gm-equipment>
+            
             <gm-campaign-setup></gm-campaign-setup>
 
             <gm-campaign-sessions></gm-campaign-sessions>

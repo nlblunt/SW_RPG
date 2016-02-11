@@ -71,6 +71,16 @@ img.gm-button
 	margin-right: 1%;
 }
 
+.add-button
+{
+	width: 100%;
+	height: 32px;
+	background-image: image_url('add_button_bg.png');
+	background-size: 100%;
+	background-repeat: no-repeat;
+	color: black;
+	font-size: 20px;
+}
 .horizontal-line
 {
 	width: 100%
@@ -82,6 +92,10 @@ img.gm-button
 	height: 32px;
 }
 
+.table-margin
+{
+	margin: 0px;
+}
 
 div.main-nav-small
 {

@@ -86,6 +86,13 @@ appControllers.controller('gmController', ['$scope', 'gmFactory', function($scop
 				$scope.sessions = result;
 			});
 		}
+
+		if(stage == "gm_equipment")
+		{
+			$scope.weapons = gmFactory.getWeapons();
+
+			$scope.ranges = ["Ranged - Light", "Ranged - Medium","Ranged - Long"];
+		};
 	};
 	
 	$scope.edit_pc = function(index)
@@ -273,6 +280,14 @@ appControllers.controller('gmController', ['$scope', 'gmFactory', function($scop
     		$scope.messages.unshift(result.time + ": " + result.msg);
     	})
     }
+
+    $scope.add_weapon = function()
+    {
+    	console.log("Clicked");
+    	gmFactory.addWeapon($scope.weapon);
+    	$scope.weapons.push($scope.weapon);
+    };
+
 }]);
 
 appControllers.controller('playerController', ['$scope', '$filter', '$interval', 'playerFactory', function($scope, $filter, $interval, playerFactory)
