@@ -38,6 +38,11 @@ class GmController < ApplicationController
     #Modify PC strain.  Can be + or -
     @pc = Pc.find_by_id(params[:id])
 
+    if @pc == nil
+      render status: :error, json: {e: "Invalid ID"}
+      return
+    end
+
     @pc.modify_strain(params[:amount])
     
     t = Time.now
