@@ -59,31 +59,24 @@ RSpec.describe GmController, type: :controller do
     end
     
     describe "POST pc_modify_strain" do
-       it "Modifies a PC strain" do
+       it "Modifies a PC strain with valid ID & amount" do
           #Create a PC to modify
           pc = FactoryGirl.create(:pc)
-          expect(pc.strain_current).to eq(0)
           
           #Modify the PC strain.  Accepts ID and Modify amount. Incremental
           post :pc_modify_strain, {id: pc.id, amount: 1}
           
-          expect(assigns(:pc).strain_current).to eq(1)
+          expect(response.status).to eq(200)
+       end
+       it "Returns ERROR with invalid ID" do
+          pc = FactoryGirl.create(:pc)
+
+          #Modify the PC strain.  Accepts ID and Modify amount. Incremental
+          post :pc_modify_strain, {id: -1, amount: 1}
           
-          #Repeat to ensure proper incremental
-          post :pc_modify_strain, {id: pc.id, amount: 1}
-          expect(assigns(:pc).strain_current).to eq(2)
-          
-          #Now a negative (healing) amount
-          post :pc_modify_strain, {id: pc.id, amount: -1}
-          expect(assigns(:pc).strain_current).to eq(1)
-          
-          #Make sure strain can't go negative
-          post :pc_modify_strain, {id: pc.id, amount: -100}
-          expect(assigns(:pc).strain_current).to eq(0)
-          
-          #Make sure strain can't go higher than max
-          post :pc_modify_strain, {id: pc.id, amount: 100}
-          expect(assigns(:pc).strain_current).to eq(pc.strain_thresh)
+          resp = JSON.parse(response.body)
+          expect(response.status).to eq(500)
+          expect(resp['e']).to eq("Invalid ID")
        end
     end
     

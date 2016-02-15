@@ -27,26 +27,24 @@
               </tr>
             </table>
           </div>
-          <div class="col-xs-3">
+          <section class="col-xs-1">
             <div class="row">
-              <button class="button33" ng-click="modify_wounds(info_object.id, 1)">Wounds +1</button>
-              <button class="button33" ng-click="modify_wounds(info_object.id, 2)">Wounds +2</button>
-              <button class="button33" ng-click="modify_wounds(info_object.id, 3)">Wounds +3</button>
+              <img class="gm-button" ng-src="/images/gm/wounds1.png" ng-click="modify_wounds(info_object.id, 1)">
+              <img class="gm-button" ng-src="/images/gm/wounds2.png" ng-click="modify_wounds(info_object.id, 2)">
+              <img class="gm-button" ng-src="/images/gm/wounds3.png" ng-click="modify_wounds(info_object.id, 3)">
+              <img class="gm-button" ng-src="/images/gm/wounds-1.png" ng-click="modify_wounds(info_object.id, -1)">
+              <img class="gm-button" ng-src="/images/gm/wounds-2.png" ng-click="modify_wounds(info_object.id, -2)">
+              <img class="gm-button" ng-src="/images/gm/wounds-3.png" ng-click="modify_wounds(info_object.id, -3)">
             </div>
+          </section>
+          <section class="col-xs-1">
             <div class="row">
-              <button class="button33" ng-click="modify_wounds(info_object.id, -1)">Wounds -1</button>
-              <button class="button33" ng-click="modify_wounds(info_object.id, -2)">Wounds -2</button>
-              <button class="button33" ng-click="modify_wounds(info_object.id, -3)">Wounds -3</button>
+              <img class="gm-button" ng-src="/images/gm/strain1.png" ng-click="modify_strain(info_object.id, 1)">
+              <img class="gm-button" ng-src="/images/gm/strain2.png" ng-click="modify_strain(info_object.id, 2)">
+              <img class="gm-button" ng-src="/images/gm/strain3.png" ng-click="modify_strain(info_object.id, 3)">
+              <img class="gm-button" ng-src="/images/gm/strain-1.png" ng-click="modify_strain(info_object.id, -1)">
+              <img class="gm-button" ng-src="/images/gm/strain-2.png" ng-click="modify_strain(info_object.id, -2)">
+              <img class="gm-button" ng-src="/images/gm/strain-3.png" ng-click="modify_strain(info_object.id, -3)">
             </div>
-            <div class="row">
-              <button class="button33" ng-click="modify_strain(info_object.id, 1)">Strain +1</button>
-              <button class="button33" ng-click="modify_strain(info_object.id, 2)">Strain +2</button>
-              <button class="button33" ng-click="modify_strain(info_object.id, 3)">Strain +3</button>
-            </div>
-            <div class="row">
-              <button class="button33" ng-click="modify_strain(info_object.id, -1)">Strain -1</button>
-              <button class="button33" ng-click="modify_strain(info_object.id, -2)">Strain -2</button>
-              <button class="button33" ng-click="modify_strain(info_object.id, -3)">Strain -3</button>
-            </div>
-          </div>
+          </section>
         </div>

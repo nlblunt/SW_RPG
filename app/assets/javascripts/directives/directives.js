@@ -128,6 +128,14 @@ app.directive('gmPcs', function()
     };
 });
 
+app.directive('gmEquipment', function()
+{
+    return{
+        restrict: 'E',
+        templateUrl: 'html/partials/gm/game/equipment.html'
+    };
+});
+
 app.directive('gmCampaignSetup', function()
 {
     return{

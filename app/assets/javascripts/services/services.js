@@ -12,6 +12,12 @@ appServices.factory('gmFactory', ['$resource', '$q', '$http', function($resource
 		gmCheck: {method:'GET', url:'/gm/gm_check'},
 	});
 	
+	//Equipment resource
+	var Weapon = $resource('/weapon/:id.json', {id:'@id'});
+
+    //Armor resource
+    var Armor = $resource('/armor/:id.json',{id:'@id'});
+
 	self.gmCheck = function()
 	{
 		//Return gm info if signed in
@@ -98,7 +104,36 @@ appServices.factory('gmFactory', ['$resource', '$q', '$http', function($resource
 		return deferred.promise;
 	};
 	
+   self.getArmors = function()
+    {
+        var armors = Armor.query();
 
+        return armors;
+    };
+
+	self.getWeapons = function()
+	{
+		var weapons = Weapon.query();
+
+		return weapons;
+	};
+
+	self.addWeapon = function(weapon)
+	{
+		var w = new Weapon();
+		w.name = weapon.name;
+		w.skill = weapon.skill;
+		w.damage = weapon.damage;
+		w.critical = weapon.critical;
+		w.range = weapon.range;
+		w.price = weapon.price;
+		w.special = weapon.special;
+		w.notes = weapon.notes;
+
+		w.$save();
+
+		return;
+	};
 
 	self.deletePc = function(pc_id)
 	{
