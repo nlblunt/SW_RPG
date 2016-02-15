@@ -15,6 +15,9 @@ appServices.factory('gmFactory', ['$resource', '$q', '$http', function($resource
 	//Equipment resource
 	var Weapon = $resource('/weapon/:id.json', {id:'@id'});
 
+    //Armor resource
+    var Armor = $resource('/armor/:id.json',{id:'@id'});
+
 	self.gmCheck = function()
 	{
 		//Return gm info if signed in
@@ -101,6 +104,12 @@ appServices.factory('gmFactory', ['$resource', '$q', '$http', function($resource
 		return deferred.promise;
 	};
 	
+   self.getArmors = function()
+    {
+        var armors = Armor.query();
+
+        return armors;
+    };
 
 	self.getWeapons = function()
 	{
