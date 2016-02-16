@@ -23,5 +23,7 @@ json.array! @pcs do |pc|
     json.avatar pc.avatar
     json.status pc.status
     
+    json.weapons pc.weapons
+    json.armors pc.armors
     json.specialization pc.specializations
 end

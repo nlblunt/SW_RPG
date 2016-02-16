@@ -8,10 +8,14 @@
               <tr>
                 <td class="text-right">PC Name:</td>
                 <td colspan="3">{{info_object.name}}</td>
+                  <td></td>
+                  <td></td>
               </tr>
               <tr>
                 <td class="text-right">Race:</td>
                 <td>{{info_object.race_name}}</td>
+                  <td></td>
+                  <td></td>
               </tr>
               <tr>
                 <td class="text-right">Wounds:</td>
@@ -47,4 +51,20 @@
               <img class="gm-button" ng-src="/images/gm/strain-3.png" ng-click="modify_strain(info_object.id, -3)">
             </div>
           </section>
+            <section class="col-xs-5">
+                <table class="table">
+                    <tr>
+                        <td>Name</td>
+                        <td>Notes</td>
+                    </tr>
+                    <tr ng-repeat="w in info_object.weapons">
+                        <td>{{w.name}}</td>
+                        <td>{{w.notes}}</td>
+                    </tr>
+                    <tr ng-repeat="a in info_object.armors">
+                        <td>{{a.name}}</td>
+                        <td>{{a.notes}}</td>
+                    </tr>
+                </table>
+            </section>
         </div>
