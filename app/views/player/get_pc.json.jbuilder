@@ -22,4 +22,24 @@ json.career_name @pc.career.name
 json.avatar @pc.avatar
 json.status @pc.status
 
+json.weapons @pc.weapons do |w|
+	json.name	w.name
+	json.skill	Skill.find_by_id(w.skill_id).name
+	json.damage w.damage
+	json.critical w.critical
+	json.range	w.range
+	json.price	w.price
+	json.special w.special
+    json.notes w.notes
+end
+
+json.armors @pc.armors do |a|
+    json.name a.name
+    json.description a.description
+    json.defense a.defense
+    json.soak a.soak
+    json.price a.price
+    json.notes a.notes
+end
+
 json.specialization @pc.specializations
