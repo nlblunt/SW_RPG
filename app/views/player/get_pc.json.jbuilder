@@ -22,6 +22,16 @@ json.career_name @pc.career.name
 json.avatar @pc.avatar
 json.status @pc.status
 
+json.skills @pc.skills
+
+json.skills @pc.pcs_skills do |s|
+    json.id   s.skill.id
+    json.name s.skill.name
+    json.attrib s.skill.attrib
+    json.rank s.rank
+    json.career s.cskill
+end
+    
 json.weapons @pc.weapons do |w|
 	json.name	w.name
 	json.skill	Skill.find_by_id(w.skill_id).name
