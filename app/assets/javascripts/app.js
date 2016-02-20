@@ -7,6 +7,7 @@
 		'ngResource',
 		'ngAnimate',
 		'ui.bootstrap',
+		'ngDialog',
 		'appControllers',
 		'appDirectives',
 		'appServices'

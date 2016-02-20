@@ -9,6 +9,7 @@
 //= require angular-rails-templates
 //= require angular-resource/angular-resource
 //= require angular-bootstrap/ui-bootstrap-tpls
+//= require ng-dialog/js/ngDialog
 //= require directives/directives
 //= require services/services
 //= require controllers/controllers
