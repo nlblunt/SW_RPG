@@ -89,9 +89,14 @@ appControllers.controller('gmController', ['$scope', 'gmFactory', function($scop
 
 		if(stage == "gm_equipment")
 		{
+			//Get the list of game weapons
 			$scope.weapons = gmFactory.getWeapons();
 
+		 //Set the 'ranges' available for adding new weapons
 			$scope.ranges = ["Ranged - Light", "Ranged - Medium","Ranged - Long"];
+			
+			//Get the list of game armor
+			$scope.armors = gmFactory.getArmors();
 		};
 	};
 	
@@ -283,9 +288,14 @@ appControllers.controller('gmController', ['$scope', 'gmFactory', function($scop
 
     $scope.add_weapon = function()
     {
-    	console.log("Clicked");
     	gmFactory.addWeapon($scope.weapon);
     	$scope.weapons.push($scope.weapon);
+    };
+    
+    $scope.add_armor = function()
+    {
+    	gmFactory.addArmor($scope.armor);
+    	$scope.armors.push($scope.armor);
     };
 
 }]);

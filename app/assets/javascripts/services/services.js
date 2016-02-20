@@ -15,8 +15,8 @@ appServices.factory('gmFactory', ['$resource', '$q', '$http', function($resource
 	//Equipment resource
 	var Weapon = $resource('/weapon/:id.json', {id:'@id'});
 
-    //Armor resource
-    var Armor = $resource('/armor/:id.json',{id:'@id'});
+ //Armor resource
+ var Armor = $resource('/armor/:id.json',{id:'@id'});
 
 	self.gmCheck = function()
 	{
@@ -111,6 +111,20 @@ appServices.factory('gmFactory', ['$resource', '$q', '$http', function($resource
         return armors;
     };
 
+	self.addArmor = function(armor)
+	{
+		var a = new Armor();
+		a.name = armor.name;
+		a.soak = armor.soak;
+		a.defense = armor.defense;
+		a.price = armor.price;
+		a.description = armor.description;
+		
+		a.$save();
+		
+		return;
+	}
+	
 	self.getWeapons = function()
 	{
 		var weapons = Weapon.query();

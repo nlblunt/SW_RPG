@@ -50,4 +50,23 @@
 	</table>
 	<button class="add-button text-center" ng-disabled="weapon_form.$invalid" ng-click="add_weapon()">Add New Weapon</button>
 	</form>
+		<table class="table table-margin table-border">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Soak</th>
+					<th>Defence</th>
+					<th>Price</th>
+					<th>Description</th>
+			</thead>
+			<tbody>
+				<tr ng-repeat="armor in armors">
+					<td>{{armor.name}}</td>
+					<td>{{armor.soak}}</td>
+					<td>{{armor.defense}}</td>
+					<td>{{armor.price}}</td>
+					<td>{{armor.description}}</td>
+				</tr>
+			</tbody>
+		</table>
 </div>
