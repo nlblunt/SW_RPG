@@ -50,7 +50,9 @@
 	</table>
 	<button class="add-button text-center" ng-disabled="weapon_form.$invalid" ng-click="add_weapon()">Add New Weapon</button>
 	</form>
-		<table class="table table-margin table-border">
+	
+		<table class="table table-margin table-bordered">
+		<caption>Armors</caption>
 			<thead>
 				<tr>
 					<th>Name</th>
@@ -69,4 +71,22 @@
 				</tr>
 			</tbody>
 		</table>
+    
+        <table class="table table-margin table-bordered">
+		<caption>Items</caption>
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Price</th>
+					<th>Description</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in items">
+					<td>{{item.name}}</td>
+					<td>{{item.price}}</td>
+					<td>{{item.description}}</td>
+				</tr>
+			</tbody>
+    	</table>
 </div>
