@@ -1,17 +1,22 @@
         <div ng-if="info_type == 'pc'">
+        <section class="row">
           <div class="col-xs-2">
             <img class="session_avatar" ng-src={{info_object.avatar}}>  
           </div>
           
           <div class="col-xs-3">
-            <table class="table">
+            <table class="table table-condensed">
               <tr>
                 <td class="text-right">PC Name:</td>
                 <td colspan="3">{{info_object.name}}</td>
+                  <td></td>
+                  <td></td>
               </tr>
               <tr>
                 <td class="text-right">Race:</td>
                 <td>{{info_object.race_name}}</td>
+                  <td></td>
+                  <td></td>
               </tr>
               <tr>
                 <td class="text-right">Wounds:</td>
@@ -25,7 +30,33 @@
                 <td class="text-right">Max:</td>
                 <td>{{info_object.strain_thresh}}</td>
               </tr>
+                <tr>
+                    <td>Credits</td>
+                    <td>{{info_object.credits}}</td>
+                    <td>XP</td>
+                    <td>{{info_object.xp}}</td>
+                </tr>
             </table>
+              
+              <table class="table table-condensed">
+                <tr>
+                    <td>Agility</td>  
+                    <td>{{info_object.agility}}</td>
+                    <td>Brawn</td>
+                    <td>{{info_object.brawn}}</td>
+                    <td>Cunning</td>
+                    <td>{{info_object.cunning}}</td>
+                </tr>
+                <tr>
+                    <td>Intellect</td>
+                    <td>{{info_object.intellect}}</td>
+                    <td>Presence</td>
+                    <td>{{info_object.presence}}</td>
+                    <td>Willpower</td>
+                    <td>{{info_object.willpower}}</td>
+                  </tr>
+              </table>
+              
           </div>
           <section class="col-xs-1">
             <div class="row">
@@ -47,4 +78,39 @@
               <img class="gm-button" ng-src="/images/gm/strain-3.png" ng-click="modify_strain(info_object.id, -3)">
             </div>
           </section>
+            </section>
+            
+            <section class="row">
+                <secion class="col-md-6">
+                    <table class="table table-condensed">
+                        <tr>
+                            <th>Skill</th>
+                            <th>Attrib</th>
+                            <th>Rank</th>
+                        </tr>
+                        <tr ng-repeat="skill in info_object.skills">
+                            <td>{{skill.name}}</td>
+                            <td>{{skill.attrib}}</td>
+                            <td>{{skill.rank}}</td>
+                        </tr>
+                    </table>
+                </secion>
+                
+                <section class="col-md-6">
+                <table class="table table-condensed">
+                    <tr>
+                        <td>Name</td>
+                        <td>Notes</td>
+                    </tr>
+                    <tr ng-repeat="w in info_object.weapons">
+                        <td>{{w.name}}</td>
+                        <td>{{w.notes}}</td>
+                    </tr>
+                    <tr ng-repeat="a in info_object.armors">
+                        <td>{{a.name}}</td>
+                        <td>{{a.notes}}</td>
+                    </tr>
+                </table>
+                </section>
+            </section>
         </div>
