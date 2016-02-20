@@ -7,6 +7,7 @@
     "angular-resource": "latest",
     "angular-mocks": "latest",
     "ng-file-upload": "latest",
-    "angular-bootstrap": "latest"
+    "angular-bootstrap": "latest",
+    "ng-dialog": "latest"
   }
 }

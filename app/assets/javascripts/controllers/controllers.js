@@ -7,7 +7,7 @@ appControllers.controller('homeController', ['$scope', function($scope)
    $scope.$root.body_id = "welcome";
 }]);
 
-appControllers.controller('gmController', ['$scope', 'gmFactory', function($scope, gmFactory)
+appControllers.controller('gmController', ['$scope', 'gmFactory', 'ngDialog', function($scope, gmFactory, ngDialog)
 {
 	//Controller for GameMaster (GM)
 	
@@ -39,6 +39,13 @@ appControllers.controller('gmController', ['$scope', 'gmFactory', function($scop
 		//GM is not signed in
 		$scope.gm_signed_in = false;
 	});
+	
+	$scope.open_new_weapon_dialog = function()
+	{
+		ngDialog.open({template: 'html/dialogs/new_weapon_dialog.html',
+					  controller: 'gmController',
+					  scope: $scope});
+	}
 	
 	$scope.gm_sign_in = function()
 	{
@@ -285,7 +292,23 @@ appControllers.controller('gmController', ['$scope', 'gmFactory', function($scop
     		$scope.messages.unshift(result.time + ": " + result.msg);
     	})
     }
-
+	
+	//Save the new weapon
+	$scope.save_weapon = function()
+	{
+		//Save the weapon from the form
+		gmFactory.addWeapon($scope.weapon);
+		
+		//Push the new weapon into the weapons list
+    	$scope.weapons.push($scope.weapon);
+		
+		//Clear out the form inputs
+		$scope.weapon = "";
+		
+		//Close the dialog box
+		ngDialog.close();
+	};
+	
     $scope.add_weapon = function()
     {
     	gmFactory.addWeapon($scope.weapon);

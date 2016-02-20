@@ -1,5 +1,4 @@
-<div id="gm_equipment" ng-show="gm_stage == 'gm_equipment'">
-	<form name="weapon_form" novalidate>			
+<div id="gm_equipment" ng-show="gm_stage == 'gm_equipment'">			
 	<table class="table table-margin table-bordered">
 	<caption>Weapons</caption>
 		<thead>
@@ -25,31 +24,9 @@
 				<td>{{weapon.special}}</td>
 				<td>{{weapon.notes}}</td>
 			</tr>
-			<tr>
-
-				<td><input name="name" type="text" ng-model="weapon.name" class="form-control" required></td>
-				<td><select ng-model="weapon.skill" class="form-control" required>
-					<option value="Ranged - Light">Ranged - Light</option>
-					<option value="Ranged - Heavy">Ranged - Heavy</option>
-					<option value="Gunnery">Gunnery</option>
-					<option value="Brawl">Brawl</option>
-					<option value="Melee">Melee</option>
-				</select></td>
-				<td><input type="text" ng-model="weapon.damage" class="form-control" required></td>
-				<td><input type="text" ng-model="weapon.critical" class="form-control" required></td>
-				<td><select ng-model="weapon.range" class="form-control" required>
-					<option value="Short">Short</option>
-					<option value="Medium">Medium</option>
-					<option value="Long">Long</option>
-					</select></td>
-				<td><input type="text" ng-model="weapon.price" class="form-control" required></td>
-				<td><input type="text" ng-model="weapon.special" class="form-control"></td>
-				<td><input type="text" ng-model="weapon.notes" class="form-control"></td>
-			</tr>
 		</tbody>
 	</table>
-	<button class="add-button text-center" ng-disabled="weapon_form.$invalid" ng-click="add_weapon()">Add New Weapon</button>
-	</form>
+	<button class="add-button text-center" ng-click="open_new_weapon_dialog()">Add New Weapon</button>
 	
 		<table class="table table-margin table-bordered">
 		<caption>Armors</caption>
