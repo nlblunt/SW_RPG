@@ -40,12 +40,23 @@ appControllers.controller('gmController', ['$scope', 'gmFactory', 'ngDialog', fu
 		$scope.gm_signed_in = false;
 	});
 	
+	
+	/* OPEN DIALOG FUNCTIONS */
 	$scope.open_new_weapon_dialog = function()
 	{
 		ngDialog.open({template: 'html/dialogs/new_weapon_dialog.html',
 					  controller: 'gmController',
 					  scope: $scope});
-	}
+	};
+	
+	$scope.open_new_armor_dialog = function()
+	{
+		ngDialog.open({template: 'html/dialogs/new_armor_dialog.html',
+					  controller: 'gmController',
+					  scope: $scope});
+	};
+	/* END OPEN DIALOG FUNCTIONS */
+	
 	
 	$scope.gm_sign_in = function()
 	{
@@ -309,11 +320,20 @@ appControllers.controller('gmController', ['$scope', 'gmFactory', 'ngDialog', fu
 		ngDialog.close();
 	};
 	
-    $scope.add_weapon = function()
-    {
-    	gmFactory.addWeapon($scope.weapon);
-    	$scope.weapons.push($scope.weapon);
-    };
+	$scope.save_armor = function()
+	{
+		//Save the armor from the form
+		gmFactory.addArmor($scope.armor);
+		
+		//Push the new armor into the armor list
+		$scope.armors.push($scope.armor);
+		
+		//Clear out the form inputs
+		$scope.armor = "";
+		
+		//Close the dialog box
+		ngDialog.close();
+	};
     
     $scope.add_armor = function()
     {

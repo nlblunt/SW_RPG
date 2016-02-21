@@ -28,42 +28,45 @@
 	</table>
 	<button class="add-button text-center" ng-click="open_new_weapon_dialog()">Add New Weapon</button>
 	
-		<table class="table table-margin table-bordered">
-		<caption>Armors</caption>
-			<thead>
-				<tr>
-					<th>Name</th>
-					<th>Soak</th>
-					<th>Defence</th>
-					<th>Price</th>
-					<th>Description</th>
-			</thead>
-			<tbody>
-				<tr ng-repeat="armor in armors">
-					<td>{{armor.name}}</td>
-					<td>{{armor.soak}}</td>
-					<td>{{armor.defense}}</td>
-					<td>{{armor.price}}</td>
-					<td>{{armor.description}}</td>
-				</tr>
-			</tbody>
-		</table>
+	<table class="table table-margin table-bordered">
+	<caption>Armors</caption>
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Soak</th>
+				<th>Defence</th>
+				<th>Price</th>
+				<th>Description</th>
+				<th>Notes</th>
+		</thead>
+		<tbody>
+			<tr ng-repeat="armor in armors">
+				<td>{{armor.name}}</td>
+				<td>{{armor.soak}}</td>
+				<td>{{armor.defense}}</td>
+				<td>{{armor.price}}</td>
+				<td>{{armor.description}}</td>
+				<td>{{armor.notes}}</td>
+			</tr>
+		</tbody>
+	</table>
+	<button class="add-button text-center" ng-click="open_new_armor_dialog()">Add New Armor</button>
     
-        <table class="table table-margin table-bordered">
-		<caption>Items</caption>
-			<thead>
-				<tr>
-					<th>Name</th>
-					<th>Price</th>
-					<th>Description</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr ng-repeat="item in items">
-					<td>{{item.name}}</td>
-					<td>{{item.price}}</td>
-					<td>{{item.description}}</td>
-				</tr>
-			</tbody>
-    	</table>
+	<table class="table table-margin table-bordered">
+	<caption>Items</caption>
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Price</th>
+				<th>Description</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="item in items">
+				<td>{{item.name}}</td>
+				<td>{{item.price}}</td>
+				<td>{{item.description}}</td>
+			</tr>
+		</tbody>
+	</table>
 </div>
