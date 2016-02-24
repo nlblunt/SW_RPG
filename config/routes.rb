@@ -2,6 +2,7 @@ SWRpg::Application.routes.draw do
   #Resources
   resources :weapon
   resources :armor
+  resources :item
 
   #GM CONTROLLER ROUTES
   get 'gm/gm_check' => "gm#gm_check"

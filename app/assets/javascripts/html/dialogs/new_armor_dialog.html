@@ -1,0 +1,23 @@
+<form name="armor_form">
+	<label>Armor Name</label>
+	<input name="name" type="text" ng-model="armor.name" class="form-control" required>
+	
+	<label>Soak</label>
+	<input type="text" ng-model="armor.soak" class="form-control" required>
+	
+	<label>Defence</label>
+	<input type="text" ng-model="armor.defense" class="form-control" required>
+	
+	<label>Price</label>
+	<input type="text" ng-model="armor.price" class="form-control" required>
+	
+	<label>Description</label>
+	<input type="text" ng-model="armor.description" class="form-control">
+	
+	<label>Notes</label>
+	<textarea rows="4" ng-model="armor.notes" class="form-control"></textarea>
+	
+	<button ng-if="type == 'new'" type="submit" class="btn btn-default" ng-disabled="armor_form.$invalid" ng-click="save_armor()">Save Armor</button>
+    
+    <button ng-if="type == 'edit'" type="submit" class="btn btn-default" ng-disabled="armor_form.$invalid" ng-click="edit_armor()">Edit Armor</button>
+</form>

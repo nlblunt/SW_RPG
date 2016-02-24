@@ -12,12 +12,28 @@ appServices.factory('gmFactory', ['$resource', '$q', '$http', function($resource
 		gmCheck: {method:'GET', url:'/gm/gm_check'},
 	});
 	
-	//Equipment resource
-	var Weapon = $resource('/weapon/:id.json', {id:'@id'});
+	/*EQUIPMENT RESOURCES*/
+	//Weapon resource
+	var Weapon = $resource('/weapon/:id.json', {id:'@id'},
+        {
+            'update': {method:'PUT'}
+        }
+    );
 
- //Armor resource
- var Armor = $resource('/armor/:id.json',{id:'@id'});
+	//Armor resource
+	var Armor = $resource('/armor/:id.json',{id:'@id'},
+        {
+            'update': {method:'PATCH'}
+        }
+     );
 
+	var Item = $resource('/item/:id.json',{id:'@id'},
+        {
+            'update': {method:'PATCH'}
+        }
+    );
+	/*END EQUIPMENT RESOURCES*/
+	
 	self.gmCheck = function()
 	{
 		//Return gm info if signed in
@@ -104,7 +120,8 @@ appServices.factory('gmFactory', ['$resource', '$q', '$http', function($resource
 		return deferred.promise;
 	};
 	
-   self.getArmors = function()
+	/* EQUIPMENT FUNCTIONS */
+    self.getArmors = function()
     {
         var armors = Armor.query();
 
@@ -123,8 +140,22 @@ appServices.factory('gmFactory', ['$resource', '$q', '$http', function($resource
 		a.$save();
 		
 		return;
-	}
+	};
+    
+    self.deleteArmor = function(a_id)
+    {
+        Armor.delete({id: a_id});
+        
+        return;
+    };
 	
+    self.editArmor = function(armor)
+    {
+        Armor.update({id: armor.id}, armor);
+        
+        return;
+    };
+    
 	self.getWeapons = function()
 	{
 		var weapons = Weapon.query();
@@ -148,7 +179,56 @@ appServices.factory('gmFactory', ['$resource', '$q', '$http', function($resource
 
 		return;
 	};
-
+	
+    self.deleteWeapon = function(w_id)
+    {
+        Weapon.delete({id: w_id});
+                
+        return;
+    };
+    
+    self.editWeapon = function(weapon)
+    {
+        Weapon.update({id: weapon.id}, weapon);
+        
+        return;
+    };
+    
+	self.getItems = function()
+	{
+		var items = Item.query();
+		
+		return items;
+	};
+	
+	self.addItem = function(item)
+	{
+		var i = new Item();
+		i.name = item.name;
+		i.price = item.price;
+		i.description = item.description;
+		i.notes = item.notes;
+		
+		i.$save();
+		
+		return;
+	};
+    
+    self.deleteItem = function(i_id)
+    {
+        Item.delete({id: i_id});
+        
+        return;
+    };
+    
+    self.editItem = function(item)
+    {
+        Item.update({id: item.id}, item);
+        
+        return;
+    };
+	/* END EQUIPMENT FUNCTIONS */
+	
 	self.deletePc = function(pc_id)
 	{
 		var deferred = $q.defer();

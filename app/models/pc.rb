@@ -9,6 +9,8 @@ class Pc < ActiveRecord::Base
     
     has_and_belongs_to_many :weapons
     has_and_belongs_to_many :armors
+    has_and_belongs_to_many :items
+    
     #Initialize the new PC
     #Setup skill table
     #Sets attributres based on race

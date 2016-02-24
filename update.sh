@@ -7,7 +7,7 @@ echo "Checking Gemfile"
 bundle install
 
 echo "Checking DB Migrations"
-rake db:migrate
+RAILS_ENV=production rake db:migrate
 
 echo "Rebuilding assets"
 rake assets:clobber

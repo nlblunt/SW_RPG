@@ -13,10 +13,26 @@ class ArmorController < ApplicationController
 		if a.valid?
 			render json: {msg: "Armor created"}
 		else
-			render status: :error, json: {e: "Error creating armor"}
+			render status: :error, json: {e: "Error Creating Armor"}
 		end
 	end
 
+    def update
+        #Update the armor
+        a = Armor.find_by_id(params[:id])
+        a.update(armor_params)
+        
+        render json: {msg: "Armor Updated"}
+    end
+    
+    def destroy
+        #Delete the armor
+        a = Armor.find_by_id(params[:id])
+        a.delete
+        
+        render json: {msg: "Armor Deleted"}
+    end
+    
 	private
 	def armor_params
 		params.require(:armor).permit(:name, :defense, :soak, :description, :price, :notes)

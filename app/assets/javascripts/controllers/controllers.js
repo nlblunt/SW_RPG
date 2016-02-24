@@ -40,12 +40,66 @@ appControllers.controller('gmController', ['$scope', 'gmFactory', 'ngDialog', fu
 		$scope.gm_signed_in = false;
 	});
 	
-	$scope.open_new_weapon_dialog = function()
+	
+	/* OPEN DIALOG FUNCTIONS */
+	$scope.open_new_weapon_dialog = function(index, type, weapon)
 	{
+        if(type == "edit")
+        {
+            $scope.weapon = weapon;
+            $scope.type = "edit";
+            $scope.index = index;
+        }
+        else
+        {
+            $scope.weapon = "";
+            $scope.type = "new";
+        }
+        
 		ngDialog.open({template: 'html/dialogs/new_weapon_dialog.html',
 					  controller: 'gmController',
 					  scope: $scope});
-	}
+	};
+	
+	$scope.open_new_armor_dialog = function(index, type, armor)
+	{
+        if(type == "edit")
+        {
+            $scope.armor = armor;
+            $scope.type = "edit";
+            $scope.index = index;
+        }
+        else
+        {
+            $scope.armor = "";
+            $scope.type = "new";
+        }
+        
+		ngDialog.open({template: 'html/dialogs/new_armor_dialog.html',
+					  controller: 'gmController',
+					  scope: $scope});
+	};
+	
+	$scope.open_new_item_dialog = function(index,type, item)
+	{
+        if(type == "edit")
+        {
+            $scope.item = item;
+            $scope.type = "edit";
+            $scope.index = index;
+        }
+        else
+        {
+            $scope.item = "";
+            $scope.type = "new";
+        }
+        
+		ngDialog.open({template: 'html/dialogs/new_item_dialog.html',
+					   controller: 'gmController',
+					  scope: $scope});
+	};
+	/* END OPEN DIALOG FUNCTIONS */
+	
 	
 	$scope.gm_sign_in = function()
 	{
@@ -104,6 +158,9 @@ appControllers.controller('gmController', ['$scope', 'gmFactory', 'ngDialog', fu
 			
 			//Get the list of game armor
 			$scope.armors = gmFactory.getArmors();
+            
+            //Get the list of game items
+            $scope.items = gmFactory.getItems();
 		};
 	};
 	
@@ -280,7 +337,7 @@ appControllers.controller('gmController', ['$scope', 'gmFactory', 'ngDialog', fu
             $scope.info_object.strain_current = result.strain;
             $scope.messages.unshift(result.time + ": " + result.msg);
         })
-    }
+    };
 
     //GM OVERVIEW: Add / Remove wounds
     $scope.modify_wounds = function(pc_id, amount)
@@ -293,6 +350,7 @@ appControllers.controller('gmController', ['$scope', 'gmFactory', 'ngDialog', fu
     	})
     }
 	
+	/*GM EQUIPMENT MANAGEMENT*/
 	//Save the new weapon
 	$scope.save_weapon = function()
 	{
@@ -308,18 +366,115 @@ appControllers.controller('gmController', ['$scope', 'gmFactory', 'ngDialog', fu
 		//Close the dialog box
 		ngDialog.close();
 	};
-	
-    $scope.add_weapon = function()
+    
+    //Delete the weapon
+    $scope.delete_weapon = function(index, w_id)
     {
-    	gmFactory.addWeapon($scope.weapon);
-    	$scope.weapons.push($scope.weapon);
+        //Delete the weapon
+        gmFactory.deleteWeapon(w_id);
+        $scope.weapons.splice(index, 1);
     };
     
-    $scope.add_armor = function()
+    //Edit the weapon
+    $scope.edit_weapon = function()
     {
-    	gmFactory.addArmor($scope.armor);
-    	$scope.armors.push($scope.armor);
+        //Edit the armor
+        gmFactory.editWeapon($scope.weapon);
+        
+        //Update the list without recalling server
+        $scope.weapons.splice($scope.index, 1);
+        $scope.weapons.push($scope.weapon);
+        
+        //Clear out the form inputs
+        $scope.weapon = "";
+        
+        //Close the dialog box
+        ngDialog.close();
+    }
+	
+	//Save the new armor
+	$scope.save_armor = function()
+	{
+		//Save the armor from the form
+		gmFactory.addArmor($scope.armor);
+		
+		//Push the new armor into the armor list
+		$scope.armors.push($scope.armor);
+		
+		//Clear out the form inputs
+		$scope.armor = "";
+		
+		//Close the dialog box
+		ngDialog.close();
+	};
+    
+    //Delete the armor
+    $scope.delete_armor = function(index, a_id)
+    {
+        //Delete the armor
+        gmFactory.deleteArmor(a_id);
+        $scope.armors.splice(index,1);
     };
+    
+    //Edit the armor
+    $scope.edit_armor = function()
+    {
+        //Edit the armor
+        gmFactory.editArmor($scope.armor);
+        
+        //Update the list without recalling server
+        $scope.armors.splice($scope.index, 1);
+        $scope.armors.push($scope.armor);
+        
+        //Clear out the form inputs
+        $scope.armor = "";
+        
+        //Close the dialog box
+        ngDialog.close();
+    }
+    
+	//Save the new item
+	$scope.save_item = function()
+	{
+		//Save the item from the form
+		gmFactory.addItem($scope.item);
+		
+		//Push the new item into the item list
+		$scope.items.push($scope.item);
+		
+		//Clear out the form inputs
+		$scope.item = "";
+		
+		//Close the dialog box
+		ngDialog.close();
+	};
+    
+    //Delete the item
+    $scope.delete_item = function(index, i_id)
+    {
+        //Delete the ittm
+        gmFactory.deleteItem(i_id);
+        $scope.items.splice(index,1);
+    };
+    
+    //Edit the item
+    $scope.edit_item = function()
+    {
+        //Edit the armor
+        gmFactory.editItem($scope.item);
+        
+        //Update the list without recalling server
+        $scope.items.splice($scope.index, 1);
+        $scope.items.push($scope.item);
+        
+        //Clear out the form inputs
+        $scope.item = "";
+        
+        //Close the dialog box
+        ngDialog.close();
+    }
+    
+	/*END GM EQUIPMENT MANAGEMENT*/
 
 }]);
 

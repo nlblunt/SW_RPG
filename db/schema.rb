@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160201183905) do
+ActiveRecord::Schema.define(version: 20160221232303) do
 
   create_table "armors", force: :cascade do |t|
     t.string   "name"
@@ -63,6 +63,20 @@ ActiveRecord::Schema.define(version: 20160201183905) do
 
   add_index "gms", ["email"], name: "index_gms_on_email", unique: true
   add_index "gms", ["reset_password_token"], name: "index_gms_on_reset_password_token", unique: true
+
+  create_table "items", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "price"
+    t.text     "description"
+    t.text     "notes"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "items_pcs", id: false, force: :cascade do |t|
+    t.integer "item_id"
+    t.integer "pc_id"
+  end
 
   create_table "pcs", force: :cascade do |t|
     t.string   "name"
