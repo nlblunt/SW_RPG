@@ -14,12 +14,24 @@ appServices.factory('gmFactory', ['$resource', '$q', '$http', function($resource
 	
 	/*EQUIPMENT RESOURCES*/
 	//Weapon resource
-	var Weapon = $resource('/weapon/:id.json', {id:'@id'});
+	var Weapon = $resource('/weapon/:id.json', {id:'@id'},
+        {
+            'update': {method:'PUT'}
+        }
+    );
 
 	//Armor resource
-	var Armor = $resource('/armor/:id.json',{id:'@id'});
+	var Armor = $resource('/armor/:id.json',{id:'@id'},
+        {
+            'update': {method:'PATCH'}
+        }
+     );
 
-	var Item = $resource('/item/:id.json',{id:'@id'});
+	var Item = $resource('/item/:id.json',{id:'@id'},
+        {
+            'update': {method:'PATCH'}
+        }
+    );
 	/*END EQUIPMENT RESOURCES*/
 	
 	self.gmCheck = function()
@@ -135,8 +147,15 @@ appServices.factory('gmFactory', ['$resource', '$q', '$http', function($resource
         Armor.delete({id: a_id});
         
         return;
-    }
+    };
 	
+    self.editArmor = function(armor)
+    {
+        Armor.update({id: armor.id}, armor);
+        
+        return;
+    };
+    
 	self.getWeapons = function()
 	{
 		var weapons = Weapon.query();
@@ -168,6 +187,13 @@ appServices.factory('gmFactory', ['$resource', '$q', '$http', function($resource
         return;
     };
     
+    self.editWeapon = function(weapon)
+    {
+        Weapon.update({id: weapon.id}, weapon);
+        
+        return;
+    };
+    
 	self.getItems = function()
 	{
 		var items = Item.query();
@@ -191,6 +217,13 @@ appServices.factory('gmFactory', ['$resource', '$q', '$http', function($resource
     self.deleteItem = function(i_id)
     {
         Item.delete({id: i_id});
+        
+        return;
+    };
+    
+    self.editItem = function(item)
+    {
+        Item.update({id: item.id}, item);
         
         return;
     };

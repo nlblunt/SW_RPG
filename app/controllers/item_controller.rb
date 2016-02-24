@@ -16,6 +16,14 @@ class ItemController < ApplicationController
         end
     end
     
+    def update
+        #Update the item
+        i = Item.find_by_id(params[:id])
+        i.update(item_params)
+        
+        render json: {msg: "Item Updated"}
+    end
+    
     def destroy
         i = Item.find_by_id(params[:id])
         i.delete

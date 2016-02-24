@@ -15,7 +15,7 @@
 		</thead>
 		<tbody>
 			<tr ng-repeat="weapon in weapons">
-				<td><img class="circle-delete-sm" ng-src="/images/circle_delete.png" ng-click="delete_weapon($index, weapon.id)">  {{weapon.name}}</td>
+                <td><img class="circle-delete-sm" ng-src="/images/circle_delete.png" ng-click="delete_weapon($index, weapon.id)"><a href ng-click="open_new_weapon_dialog($index, 'edit', weapon)">  {{weapon.name}}</a></td>
 				<td>{{weapon.skill}}</td>
 				<td>{{weapon.damage}}</td>
 				<td>{{weapon.critical}}</td>
@@ -41,7 +41,7 @@
 		</thead>
 		<tbody>
 			<tr ng-repeat="armor in armors">
-				<td><img class="circle-delete-sm" ng-src="/images/circle_delete.png" ng-click="delete_armor($index, armor.id)">  {{armor.name}}</td>
+                <td><img class="circle-delete-sm" ng-src="/images/circle_delete.png" ng-click="delete_armor($index, armor.id)"><a href ng-click="open_new_armor_dialog($index, 'edit', armor)">  {{armor.name}}</a></td>
 				<td>{{armor.soak}}</td>
 				<td>{{armor.defense}}</td>
 				<td>{{armor.price}}</td>
@@ -59,13 +59,15 @@
 				<th>Name</th>
 				<th>Price</th>
 				<th>Description</th>
+                <th>Notes</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr ng-repeat="item in items">
-				<td><img class="circle-delete-sm" ng-src="/images/circle_delete.png" ng-click="delete_item($index, item.id)">  {{item.name}}</td>
+                <td><img class="circle-delete-sm" ng-src="/images/circle_delete.png" ng-click="delete_item($index, item.id)"><a href ng-click="open_new_item_dialog($index, 'edit', item)">  {{item.name}}</a></td>
 				<td>{{item.price}}</td>
 				<td>{{item.description}}</td>
+                <td>{{item.notes}}</td>
 			</tr>
 		</tbody>
 	</table>

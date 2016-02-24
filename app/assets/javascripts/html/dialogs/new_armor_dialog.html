@@ -17,5 +17,7 @@
 	<label>Notes</label>
 	<textarea rows="4" ng-model="armor.notes" class="form-control"></textarea>
 	
-	<button type="submit" class="btn btn-default" ng-disabled="armor_form.$invalid" ng-click="save_armor()">Save Armor</button>
+	<button ng-if="type == 'new'" type="submit" class="btn btn-default" ng-disabled="armor_form.$invalid" ng-click="save_armor()">Save Armor</button>
+    
+    <button ng-if="type == 'edit'" type="submit" class="btn btn-default" ng-disabled="armor_form.$invalid" ng-click="edit_armor()">Edit Armor</button>
 </form>

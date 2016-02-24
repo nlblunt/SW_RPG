@@ -17,6 +17,14 @@ class ArmorController < ApplicationController
 		end
 	end
 
+    def update
+        #Update the armor
+        a = Armor.find_by_id(params[:id])
+        a.update(armor_params)
+        
+        render json: {msg: "Armor Updated"}
+    end
+    
     def destroy
         #Delete the armor
         a = Armor.find_by_id(params[:id])
