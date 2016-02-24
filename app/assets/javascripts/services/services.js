@@ -128,7 +128,14 @@ appServices.factory('gmFactory', ['$resource', '$q', '$http', function($resource
 		a.$save();
 		
 		return;
-	}
+	};
+    
+    self.deleteArmor = function(a_id)
+    {
+        Armor.delete({id: a_id});
+        
+        return;
+    }
 	
 	self.getWeapons = function()
 	{
@@ -154,6 +161,13 @@ appServices.factory('gmFactory', ['$resource', '$q', '$http', function($resource
 		return;
 	};
 	
+    self.deleteWeapon = function(w_id)
+    {
+        Weapon.delete({id: w_id});
+                
+        return;
+    };
+    
 	self.getItems = function()
 	{
 		var items = Item.query();
@@ -173,6 +187,13 @@ appServices.factory('gmFactory', ['$resource', '$q', '$http', function($resource
 		
 		return;
 	};
+    
+    self.deleteItem = function(i_id)
+    {
+        Item.delete({id: i_id});
+        
+        return;
+    };
 	/* END EQUIPMENT FUNCTIONS */
 	
 	self.deletePc = function(pc_id)

@@ -18,6 +18,21 @@ class WeaponController < ApplicationController
 		end
 	end
 
+    def show
+        #Get individual weapon
+        w = Weapon.find_by_id(params[:id])
+        
+        render json: w
+    end
+    
+    def destroy
+        #Delete weapon
+        w = Weapon.find_by_id(params[:id])
+        w.delete
+        
+        render json: {msg: "Weapon Deleted"}
+    end
+    
 	private
 	def weapon_params
 		params.require(:weapon).permit(:name, :damage, :critical, :range, :price, :special, :notes)

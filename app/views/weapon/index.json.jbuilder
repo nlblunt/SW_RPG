@@ -1,4 +1,5 @@
 json.array! @weapons do |w|
+    json.id w.id
 	json.name	w.name
 	json.skill	Skill.find_by_id(w.skill_id).name
 	json.damage w.damage

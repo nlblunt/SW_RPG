@@ -301,7 +301,7 @@ appControllers.controller('gmController', ['$scope', 'gmFactory', 'ngDialog', fu
             $scope.info_object.strain_current = result.strain;
             $scope.messages.unshift(result.time + ": " + result.msg);
         })
-    }
+    };
 
     //GM OVERVIEW: Add / Remove wounds
     $scope.modify_wounds = function(pc_id, amount)
@@ -362,6 +362,30 @@ appControllers.controller('gmController', ['$scope', 'gmFactory', 'ngDialog', fu
 		//Close the dialog box
 		ngDialog.close();
 	};
+    
+    //Delete the weapon
+    $scope.delete_weapon = function(index, w_id)
+    {
+        //Delete the weapon
+        gmFactory.deleteWeapon(w_id);
+        $scope.weapons.splice(index, 1);
+    };
+    
+    //Delete the armor
+    $scope.delete_armor = function(index, a_id)
+    {
+        //Delete the armor
+        gmFactory.deleteArmor(a_id);
+        $scope.armors.splice(index,1);
+    };
+    
+    //Delete the item
+    $scope.delete_item = function(index, i_id)
+    {
+        //Delete the ittm
+        gmFactory.deleteItem(i_id);
+        $scope.items.splice(index,1);
+    };
 	/*END GM EQUIPMENT MANAGEMENT*/
 
 }]);

@@ -15,7 +15,7 @@
 		</thead>
 		<tbody>
 			<tr ng-repeat="weapon in weapons">
-				<td>{{weapon.name}}</td>
+				<td><img class="circle-delete-sm" ng-src="/images/circle_delete.png" ng-click="delete_weapon($index, weapon.id)">  {{weapon.name}}</td>
 				<td>{{weapon.skill}}</td>
 				<td>{{weapon.damage}}</td>
 				<td>{{weapon.critical}}</td>
@@ -41,7 +41,7 @@
 		</thead>
 		<tbody>
 			<tr ng-repeat="armor in armors">
-				<td>{{armor.name}}</td>
+				<td><img class="circle-delete-sm" ng-src="/images/circle_delete.png" ng-click="delete_armor($index, armor.id)">  {{armor.name}}</td>
 				<td>{{armor.soak}}</td>
 				<td>{{armor.defense}}</td>
 				<td>{{armor.price}}</td>
@@ -63,7 +63,7 @@
 		</thead>
 		<tbody>
 			<tr ng-repeat="item in items">
-				<td>{{item.name}}</td>
+				<td><img class="circle-delete-sm" ng-src="/images/circle_delete.png" ng-click="delete_item($index, item.id)">  {{item.name}}</td>
 				<td>{{item.price}}</td>
 				<td>{{item.description}}</td>
 			</tr>

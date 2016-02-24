@@ -16,6 +16,13 @@ class ItemController < ApplicationController
         end
     end
     
+    def destroy
+        i = Item.find_by_id(params[:id])
+        i.delete
+        
+        render json: {msg: "Item Deleted"}
+    end
+    
     private
     def item_params
         params.require(:item).permit(:name, :price, :description, :notes)
