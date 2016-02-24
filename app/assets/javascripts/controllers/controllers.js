@@ -55,6 +55,13 @@ appControllers.controller('gmController', ['$scope', 'gmFactory', 'ngDialog', fu
 					  controller: 'gmController',
 					  scope: $scope});
 	};
+	
+	$scope.open_new_item_dialog = function()
+	{
+		ngDialog.open({template: 'html/dialogs/new_item_dialog.html',
+					   controller: 'gmController',
+					  scope: $scope});
+	};
 	/* END OPEN DIALOG FUNCTIONS */
 	
 	
@@ -115,6 +122,9 @@ appControllers.controller('gmController', ['$scope', 'gmFactory', 'ngDialog', fu
 			
 			//Get the list of game armor
 			$scope.armors = gmFactory.getArmors();
+            
+            //Get the list of game items
+            $scope.items = gmFactory.getItems();
 		};
 	};
 	
@@ -304,6 +314,7 @@ appControllers.controller('gmController', ['$scope', 'gmFactory', 'ngDialog', fu
     	})
     }
 	
+	/*GM EQUIPMENT MANAGEMENT*/
 	//Save the new weapon
 	$scope.save_weapon = function()
 	{
@@ -320,6 +331,7 @@ appControllers.controller('gmController', ['$scope', 'gmFactory', 'ngDialog', fu
 		ngDialog.close();
 	};
 	
+	//Save the new armor
 	$scope.save_armor = function()
 	{
 		//Save the armor from the form
@@ -335,11 +347,22 @@ appControllers.controller('gmController', ['$scope', 'gmFactory', 'ngDialog', fu
 		ngDialog.close();
 	};
     
-    $scope.add_armor = function()
-    {
-    	gmFactory.addArmor($scope.armor);
-    	$scope.armors.push($scope.armor);
-    };
+	//Save the new item
+	$scope.save_item = function()
+	{
+		//Save the item from the form
+		gmFactory.addItem($scope.item);
+		
+		//Push the new item into the item list
+		$scope.items.push($scope.item);
+		
+		//Clear out the form inputs
+		$scope.item = "";
+		
+		//Close the dialog box
+		ngDialog.close();
+	};
+	/*END GM EQUIPMENT MANAGEMENT*/
 
 }]);
 

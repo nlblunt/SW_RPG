@@ -12,12 +12,16 @@ appServices.factory('gmFactory', ['$resource', '$q', '$http', function($resource
 		gmCheck: {method:'GET', url:'/gm/gm_check'},
 	});
 	
-	//Equipment resource
+	/*EQUIPMENT RESOURCES*/
+	//Weapon resource
 	var Weapon = $resource('/weapon/:id.json', {id:'@id'});
 
- //Armor resource
- var Armor = $resource('/armor/:id.json',{id:'@id'});
+	//Armor resource
+	var Armor = $resource('/armor/:id.json',{id:'@id'});
 
+	var Item = $resource('/item/:id.json',{id:'@id'});
+	/*END EQUIPMENT RESOURCES*/
+	
 	self.gmCheck = function()
 	{
 		//Return gm info if signed in
@@ -104,7 +108,8 @@ appServices.factory('gmFactory', ['$resource', '$q', '$http', function($resource
 		return deferred.promise;
 	};
 	
-   self.getArmors = function()
+	/* EQUIPMENT FUNCTIONS */
+    self.getArmors = function()
     {
         var armors = Armor.query();
 
@@ -148,7 +153,28 @@ appServices.factory('gmFactory', ['$resource', '$q', '$http', function($resource
 
 		return;
 	};
-
+	
+	self.getItems = function()
+	{
+		var items = Item.query();
+		
+		return items;
+	};
+	
+	self.addItem = function(item)
+	{
+		var i = new Item();
+		i.name = item.name;
+		i.price = item.price;
+		i.description = item.description;
+		i.notes = item.notes;
+		
+		i.$save();
+		
+		return;
+	};
+	/* END EQUIPMENT FUNCTIONS */
+	
 	self.deletePc = function(pc_id)
 	{
 		var deferred = $q.defer();
