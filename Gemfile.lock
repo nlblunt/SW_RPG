@@ -309,7 +309,7 @@ DEPENDENCIES
   paperclip
   pg
   prerender_rails
-  rails (~> 4.2.0)
+  rails (~> 4.2.5.1)
   rails_12factor
   rails_layout
   rake
