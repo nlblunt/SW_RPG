@@ -194,6 +194,23 @@ appServices.factory('gmFactory', ['$resource', '$q', '$http', function($resource
         return;
     };
     
+    self.addWeaponToPc = function(pc_id, weapon_id)
+    {
+        var deferred = $q.defer();
+        
+        $http.post('/player/add_weapon.json', {id: pc_id, w_id: weapon_id})
+        .then(function(result)
+        {
+            deferred.resolve(result.data);
+        });
+        
+        return deferred.promise;
+    };
+    
+    self.deleteWeaponFromPc = function(pc_id)
+    {
+        
+    }
 	self.getItems = function()
 	{
 		var items = Item.query();

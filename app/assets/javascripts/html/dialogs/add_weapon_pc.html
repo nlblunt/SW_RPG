@@ -1,0 +1,16 @@
+<table class="table">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Name</th>
+            <th>Notes</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="w in weapons">
+            <td><img ng-click="add_weapon_to_pc($index, w.id)" ng-src="/images/circle_add.png" class="circle-add-sm"></td>
+            <td>{{w.name}}</td>
+            <td>{{w.notes}}</td>
+        </tr>
+    </tbody>
+</table>

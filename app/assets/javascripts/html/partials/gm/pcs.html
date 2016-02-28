@@ -35,7 +35,7 @@
                     </div>
                 </div>
                 
-                <table id="pc_attributes" class="table">
+                <table id="pc_attributes" class="table table-condensed">
                     <thead>
                         <tr>
                             <td><label>Attribute</label></td>
@@ -66,7 +66,7 @@
                     </tbody>
                 </table>
 
-                <table id="pc_health" class="table">
+                <table id="pc_health" class="table table-condensed">
                 <thead>
                     <tr>
                         <td><label>Current Wounds</label></td>
@@ -90,10 +90,46 @@
                 </table>
             </form>   
         
-           
+                
+           <table class="table table-condensed">
+               <caption><img class="circle-add-sm" ng-click="open_add_weapon_pc_dialog()" ng-src="/images/circle_add.png">&nbsp Weapons</caption>
+               <tr>
+                   <th>Name</th>
+                   <th>Notes</th>
+               </tr>
+               <tr ng-repeat="w in character.weapons">
+                   <td>{{w.name}}</td>
+                   <td>{{w.notes}}</td>
+               </tr>
+            </table>
+            
+            <table class="table table-condensed">
+                <caption><img class="circle-add-sm" ng-src="/images/circle_add.png">&nbsp Armor</caption>
+                <tr>
+                    <th>Name</th>
+                    <th>Notes</th>
+                </tr>
+                <tr ng-repeat="a in character.armors">
+                    <td>{{a.name}}</td>
+                    <td>{{a.notes}}</td>
+                </tr>
+            </table>
+            
+            <table class="table table-condense">
+                <caption><img class="circle-add-sm" ng-src="/images/circle_add.png">&nbsp Items</caption>
+                <tr>
+                    <th>Name</th>
+                    <th>Notes</th>
+                </tr>
+                <tr ng-repeat="i in character.items">
+                    <td>{{i.names}}</td>
+                    <td>{{i.notes}}</td>
+                </tr>
+            </table>
         </div>
+        
         <div class="col-md-6">
-            <table class="table">
+            <table class="table table-condensed">
                 <thead>
                     <tr>
                         <td>Name</td>
@@ -110,7 +146,7 @@
                             <td ng-if="skill.career == false"></td>
                         <td class="rank"><input ng-change="skill_rank_changed({{skill}}, skill.rank)" class="form-control" ng-model=skill.rank></td>
                     </tr>
-        </tbody>
+                </tbody>
             </table>
         </div>
     </div>
