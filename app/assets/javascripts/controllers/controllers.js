@@ -98,6 +98,16 @@ appControllers.controller('gmController', ['$scope', 'gmFactory', 'ngDialog', fu
 					   controller: 'gmController',
 					  scope: $scope});
 	};
+    
+    $scope.open_add_weapon_pc_dialog = function()
+    {
+        //Get the list of game weapons
+        $scope.weapons = gmFactory.getWeapons();
+        
+        ngDialog.open({template: 'html/dialogs/add_weapon_pc.html',
+                      controller: 'gmController',
+                      scope: $scope});
+    };
 	/* END OPEN DIALOG FUNCTIONS */
 	
 	
@@ -392,6 +402,28 @@ appControllers.controller('gmController', ['$scope', 'gmFactory', 'ngDialog', fu
         ngDialog.close();
     }
 	
+    //Add the weapon to the PC
+    $scope.add_weapon_to_pc = function(index, w_id)
+    {
+        gmFactory.addWeaponToPc($scope.character.id, w_id)
+        .then(function()
+        {
+            //Success.  Push item to PC to avoid API call
+            $scope.character.weapons.push($scope.weapons[index]);
+        });
+        
+        //Close the dialog box
+        ngDialog.close();
+        
+        return;
+    };
+    
+    //Delete the weapon from the PC
+    $scope.delete_weapon_from_pc = function(w_id)
+    {
+        
+    };
+    
 	//Save the new armor
 	$scope.save_armor = function()
 	{
