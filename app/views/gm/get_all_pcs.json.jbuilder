@@ -31,15 +31,16 @@ json.array! @pcs do |pc|
         json.career s.cskill
     end
     
-    json.weapons pc.weapons do |w|
-        json.name	w.name
-        json.skill	Skill.find_by_id(w.skill_id).name
-        json.damage w.damage
-        json.critical w.critical
-        json.range	w.range
-        json.price	w.price
-        json.special w.special
-        json.notes w.notes
+    json.weapons pc.pcs_weapons do |w|
+        json.id     w.id
+        json.name	w.weapon.name
+        json.skill	Skill.find_by_id(w.weapon.skill_id).name
+        json.damage w.weapon.damage
+        json.critical w.weapon.critical
+        json.range	w.weapon.range
+        json.price	w.weapon.price
+        json.special w.weapon.special
+        json.notes w.weapon.notes
     end
 
     json.armors pc.armors do |a|

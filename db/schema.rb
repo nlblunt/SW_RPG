@@ -125,7 +125,7 @@ ActiveRecord::Schema.define(version: 20160221232303) do
     t.integer "specialization_id"
   end
 
-  create_table "pcs_weapons", id: false, force: :cascade do |t|
+  create_table "pcs_weapons", force: :cascade do |t|
     t.integer "pc_id"
     t.integer "weapon_id"
   end

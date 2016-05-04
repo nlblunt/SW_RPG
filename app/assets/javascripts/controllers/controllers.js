@@ -202,6 +202,8 @@ appControllers.controller('gmController', ['$scope', 'gmFactory', 'ngDialog', fu
 			$scope.skills = result;
 		});
 		
+        console.log("test");
+        console.log($scope.character);
 		$scope.edit_pc_state = true;
 	};
 	
