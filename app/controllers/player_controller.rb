@@ -118,6 +118,12 @@ class PlayerController < ApplicationController
       end
   end
     
+  def delete_weapon
+    #Delete the weapon from the PC
+    pc = Pc.find(params[:id])
+    
+  end
+  
   def get_pc_armor
     pc = Pc.find(params[:id])
 

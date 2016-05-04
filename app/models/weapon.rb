@@ -1,4 +1,5 @@
 class Weapon < ActiveRecord::Base
     belongs_to :skill
-    has_and_belongs_to_many :pcs
+    has_many :pcs_weapons
+    has_many :pcs, :through => :pcs_weapons
 end

@@ -7,7 +7,8 @@ class Pc < ActiveRecord::Base
     has_and_belongs_to_many :specializations
     has_and_belongs_to_many :sessions
     
-    has_and_belongs_to_many :weapons
+    has_many :pcs_weapons
+    has_many :weapons, :through => :pcs_weapons
     has_and_belongs_to_many :armors
     has_and_belongs_to_many :items
     

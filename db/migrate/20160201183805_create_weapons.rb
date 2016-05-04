@@ -13,7 +13,7 @@ class CreateWeapons < ActiveRecord::Migration
       t.timestamps null: false
     end
 
-    create_table :pcs_weapons, id: false do |t|
+    create_table :pcs_weapons do |t|
       t.belongs_to :pc
       t.belongs_to :weapon
     end

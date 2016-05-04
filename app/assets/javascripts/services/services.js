@@ -2,7 +2,7 @@ var appServices = angular.module('appServices', ['ngResource', 'ngFileUpload']);
 
 /* Factory for GM resource */
 
-appServices.factory('gmFactory', ['$resource', '$q', '$http', function($resource, $q, $http)
+appServices.factory('gmFactory', ['$resource', '$q', '$http', function ($resource, $q, $http)
 {
 	var self = {};
 	
@@ -207,10 +207,19 @@ appServices.factory('gmFactory', ['$resource', '$q', '$http', function($resource
         return deferred.promise;
     };
     
-    self.deleteWeaponFromPc = function(pc_id)
+    self.deleteWeaponFromPc = function(pc_id, weapon_name)
     {
+        var deferred = $q.defer();
         
-    }
+        $http.post('/player/delete_weapon.json', {id: pc_id, w_name: weapon_name})
+        .then(function(result)
+             {
+            deferred.resolve(result.data);
+        });
+        
+        return deferred.promise;
+    };
+    
 	self.getItems = function()
 	{
 		var items = Item.query();

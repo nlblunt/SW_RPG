@@ -419,8 +419,14 @@ appControllers.controller('gmController', ['$scope', 'gmFactory', 'ngDialog', fu
     };
     
     //Delete the weapon from the PC
-    $scope.delete_weapon_from_pc = function(w_id)
+    $scope.delete_weapon_from_pc = function(w_name)
     {
+        gmFactory.deleteWeaponFromPc($scope.character.id, w_name)
+        .then(function()
+         {
+            //Success
+            console.log("Delete Successful");
+        });
         
     };
     
