@@ -119,9 +119,16 @@ class PlayerController < ApplicationController
   end
     
   def delete_weapon
-    #Delete the weapon from the PC
-    pc = Pc.find(params[:id])
+      #Get the pcs_weapon row to delete
+      pcs_weapon = PcsWeapon.find_by_id(params[:id])
     
+      #delete the pcs_weapon row
+      if pcs_weapon.valid?
+          pcs_weapon.delete
+          render json: {msg: "Weapon deleted"}
+      else
+          render status: :error, json: {e: "Error deleting weapon"}
+      end
   end
   
   def get_pc_armor

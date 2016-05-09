@@ -412,6 +412,8 @@ appControllers.controller('gmController', ['$scope', 'gmFactory', 'ngDialog', fu
         {
             //Success.  Push item to PC to avoid API call
             $scope.character.weapons.push($scope.weapons[index]);
+            
+            //TODO Modify API call to refresh current player to get weapon ID
         });
         
         //Close the dialog box
@@ -421,15 +423,21 @@ appControllers.controller('gmController', ['$scope', 'gmFactory', 'ngDialog', fu
     };
     
     //Delete the weapon from the PC
-    $scope.delete_weapon_from_pc = function(w_name)
+    $scope.delete_weapon_from_pc = function(index, id)
     {
-        gmFactory.deleteWeaponFromPc($scope.character.id, w_name)
-        .then(function()
-         {
+        gmFactory.deleteWeaponFromPc(id)
+        .then(function(result)
+        {
             //Success
-            console.log("Delete Successful");
+            console.log(result);
+            
+            //Remove item from player screen
+            $scope.character.weapons.splice(index,1);
+        },
+        function(result)
+        {
+            console.log(result);
         });
-        
     };
     
 	//Save the new armor

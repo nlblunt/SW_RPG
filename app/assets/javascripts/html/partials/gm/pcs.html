@@ -99,7 +99,7 @@
                    <th>Notes</th>
                </tr>
                <tr ng-repeat="w in character.weapons">
-                   <td><img class="circle-add-sm" ng-click="delete_weapon_from_pc(w.name)" ng-src="/images/circle_delete.png"></td>
+                   <td><img class="circle-add-sm" ng-click="delete_weapon_from_pc($index, w.id)" ng-src="/images/circle_delete.png"></td>
                    <td>{{w.name}}</td>
                    <td>{{w.notes}}</td>
                </tr>

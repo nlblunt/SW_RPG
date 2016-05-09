@@ -207,14 +207,18 @@ appServices.factory('gmFactory', ['$resource', '$q', '$http', function ($resourc
         return deferred.promise;
     };
     
-    self.deleteWeaponFromPc = function(pc_id, weapon_name)
+    self.deleteWeaponFromPc = function(id)
     {
         var deferred = $q.defer();
         
-        $http.post('/player/delete_weapon.json', {id: pc_id, w_name: weapon_name})
+        $http.post('/player/delete_weapon.json', {id: id})
         .then(function(result)
-             {
-            deferred.resolve(result.data);
+        {
+            deferred.resolve(result.data.msg);
+        },
+             function(result)
+        {
+            deferred.reject(result.data.e);
         });
         
         return deferred.promise;

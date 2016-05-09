@@ -37,6 +37,7 @@ SWRpg::Application.routes.draw do
   post "player/get_pc_armor" => "player#get_pc_armor"
   post "player/get_pc_items" => "player#get_pc_items"
   post "player/add_weapon" => "player#add_weapon"
+  post "player/delete_weapon" => "player#delete_weapon"
   
   #RACE CONTROLLER ROUTES
   get 'race/index'
