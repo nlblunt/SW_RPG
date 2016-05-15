@@ -2,7 +2,7 @@ var appControllers = angular.module('appControllers', ['appDirectives', 'appServ
 
 appControllers.controller('homeController', ['$scope', function($scope)
 {
-   $scope.$root.display_title = "Title";
+   $scope.$root.display_title = " : Edge Of The Galaxy";
    $scope.$root.metadescription = "Description";
    $scope.$root.body_id = "welcome";
 }]);
@@ -105,6 +105,26 @@ appControllers.controller('gmController', ['$scope', 'gmFactory', 'ngDialog', fu
         $scope.weapons = gmFactory.getWeapons();
         
         ngDialog.open({template: 'html/dialogs/add_weapon_pc.html',
+                      controller: 'gmController',
+                      scope: $scope});
+    };
+    
+    $scope.open_add_armor_pc_dialog = function()
+    {
+        //Get the list of game armor
+        $scope.armors = gmFactory.getArmors();
+
+        ngDialog.open({template: 'html/dialogs/add_armor_pc.html',
+                      controller: 'gmController',
+                      scope: $scope});      
+    };
+    
+    $scope.open_add_item_pc_dialog = function()
+    {
+        //Get the list of game items
+        $scope.items = gmFactory.getItems();
+        
+        ngDialog.open({template: 'html/dialogs/add_item_pc.html',
                       controller: 'gmController',
                       scope: $scope});
     };
@@ -402,7 +422,7 @@ appControllers.controller('gmController', ['$scope', 'gmFactory', 'ngDialog', fu
         
         //Close the dialog box
         ngDialog.close();
-    }
+    };
 	
     //Add the weapon to the PC
     $scope.add_weapon_to_pc = function(index, w_id)
@@ -479,7 +499,43 @@ appControllers.controller('gmController', ['$scope', 'gmFactory', 'ngDialog', fu
         
         //Close the dialog box
         ngDialog.close();
-    }
+    };
+    
+    //Add the armor to the PC
+    $scope.add_armor_to_pc = function(index, a_id)
+    {
+        gmFactory.addArmorToPc($scope.character.id, a_id)
+        .then(function()
+        {
+            //Success.  Push item to PC to avoid API call
+            $scope.character.armors.push($scope.armors[index]);
+            
+            //TODO Modify API call to refresh current player to get weapon ID
+        });
+        
+        //Close the dialog box
+        ngDialog.close();
+        
+        return;
+    };
+    
+    //Delete the armor from the PC
+    $scope.delete_armor_from_pc = function(index, id)
+    {
+        gmFactory.deleteArmorFromPc(id)
+        .then(function(result)
+        {
+            //Success
+            console.log(result);
+            
+            //Remove item from player screen
+            $scope.character.armors.splice(index,1);
+        },
+        function(result)
+        {
+            console.log(result);
+        });
+    };
     
 	//Save the new item
 	$scope.save_item = function()
@@ -522,6 +578,41 @@ appControllers.controller('gmController', ['$scope', 'gmFactory', 'ngDialog', fu
         ngDialog.close();
     }
     
+    //Add the item to the PC
+    $scope.add_item_to_pc = function(index, i_id)
+    {
+        gmFactory.addItemToPc($scope.character.id, i_id)
+        .then(function()
+        {
+            //Success.  Push item to PC to avoid API call
+            $scope.character.items.push($scope.items[index]);
+            
+            //TODO Modify API call to refresh current player to get weapon ID
+        });
+        
+        //Close the dialog box
+        ngDialog.close();
+        
+        return;
+    };
+    
+    //Delete the item from the PC
+    $scope.delete_item_from_pc = function(index, id)
+    {
+        gmFactory.deleteItemFromPc(id)
+        .then(function(result)
+        {
+            //Success
+            console.log(result);
+            
+            //Remove item from player screen
+            $scope.character.items.splice(index,1);
+        },
+        function(result)
+        {
+            console.log(result);
+        });
+    };
 	/*END GM EQUIPMENT MANAGEMENT*/
 
 }]);

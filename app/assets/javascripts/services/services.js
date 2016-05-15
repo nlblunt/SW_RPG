@@ -156,6 +156,40 @@ appServices.factory('gmFactory', ['$resource', '$q', '$http', function ($resourc
         return;
     };
     
+    self.addArmorToPc = function(pc_id, armor_id)
+    {
+        var deferred = $q.defer();
+        
+        $http.post('/player/add_armor.json', {id: pc_id, a_id: armor_id})
+        .then(function(result)
+        {
+            deferred.resolve(result.data.msg);    
+        },
+             function(result)
+        {
+            deferred.reject(result.data.e);
+        });
+        
+        return deferred.promise;
+    };
+    
+    self.deleteArmorFromPc = function(id)
+    {
+        var deferred = $q.defer();
+        
+        $http.post('/player/delete_armor.json', {id: id})
+        .then(function(result)
+        {
+            deferred.resolve(result.data.msg);
+        },
+             function(result)
+        {
+            deferred.reject(result.data.e);
+        });
+        
+        return deferred.promise;
+    };
+    
 	self.getWeapons = function()
 	{
 		var weapons = Weapon.query();
@@ -256,6 +290,36 @@ appServices.factory('gmFactory', ['$resource', '$q', '$http', function ($resourc
         Item.update({id: item.id}, item);
         
         return;
+    };
+    
+    self.addItemToPc = function(pc_id, item_id)
+    {
+        var deferred = $q.defer();
+        
+        $http.post('/player/add_item.json', {id: pc_id, i_id: item_id})
+        .then(function(result)
+        {
+            deferred.resolve(result.data);
+        });
+        
+        return deferred.promise;
+    };
+    
+    self.deleteItemFromPc = function(id)
+    {
+            var deferred = $q.defer();
+        
+        $http.post('/player/delete_item.json', {id: id})
+        .then(function(result)
+        {
+            deferred.resolve(result.data.msg);
+        },
+             function(result)
+        {
+            deferred.reject(result.data.e);
+        });
+        
+        return deferred.promise;
     };
 	/* END EQUIPMENT FUNCTIONS */
 	

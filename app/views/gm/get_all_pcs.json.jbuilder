@@ -43,13 +43,22 @@ json.array! @pcs do |pc|
         json.notes w.weapon.notes
     end
 
-    json.armors pc.armors do |a|
-        json.name a.name
-        json.description a.description
-        json.defense a.defense
-        json.soak a.soak
-        json.price a.price
-        json.notes a.notes
+    json.armors pc.armors_pcs do |a|
+        json.id a.id
+        json.name a.armor.name
+        json.description a.armor.description
+        json.defense a.armor.defense
+        json.soak a.armor.soak
+        json.price a.armor.price
+        json.notes a.armor.notes
     end
+    
+    json.items pc.items_pcs do |i|
+        json.id i.id
+        json.name i.item.name
+        json.description i.item.description
+        json.cost i.item.price
+    end
+    
     json.specialization pc.specializations
 end

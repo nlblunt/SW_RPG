@@ -96,36 +96,40 @@
                <tr>
                    <th></th>
                    <th>Name</th>
-                   <th>Notes</th>
+                   <th>Description</th>
                </tr>
                <tr ng-repeat="w in character.weapons">
-                   <td><img class="circle-add-sm" ng-click="delete_weapon_from_pc($index, w.id)" ng-src="/images/circle_delete.png"></td>
+                   <td><img class="circle-delete-sm" ng-click="delete_weapon_from_pc($index, w.id)" ng-src="/images/circle_delete.png"></td>
                    <td>{{w.name}}</td>
-                   <td>{{w.notes}}</td>
+                   <td>{{w.description}}</td>
                </tr>
             </table>
             
             <table class="table table-condensed">
-                <caption><img class="circle-add-sm" ng-src="/images/circle_add.png">&nbsp Armor</caption>
+                <caption><img class="circle-add-sm" ng-click="open_add_armor_pc_dialog()" ng-src="/images/circle_add.png">&nbsp Armor</caption>
                 <tr>
+                    <th></th>
                     <th>Name</th>
-                    <th>Notes</th>
+                    <th>Description</th>
                 </tr>
                 <tr ng-repeat="a in character.armors">
+                    <td><img class="circle-delete-sm" ng-click="delete_armor_from_pc($index, a.id)" ng-src="/images/circle_delete.png"></td>
                     <td>{{a.name}}</td>
-                    <td>{{a.notes}}</td>
+                    <td>{{a.description}}</td>
                 </tr>
             </table>
             
             <table class="table table-condense">
-                <caption><img class="circle-add-sm" ng-src="/images/circle_add.png">&nbsp Items</caption>
+                <caption><img class="circle-add-sm" ng-click="open_add_item_pc_dialog()" ng-src="/images/circle_add.png">&nbsp Items</caption>
                 <tr>
+                    <th></th>
                     <th>Name</th>
-                    <th>Notes</th>
+                    <th>Description</th>
                 </tr>
                 <tr ng-repeat="i in character.items">
-                    <td>{{i.names}}</td>
-                    <td>{{i.notes}}</td>
+                    <td><img class="circle-delete-sm" ng-click="delete_item_from_pc($index, i.id)" ng-src="/images/circle_delete.png"></td>
+                    <td>{{i.name}}</td>
+                    <td>{{i.description}}</td>
                 </tr>
             </table>
         </div>

@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20160221232303) do
     t.datetime "updated_at",  null: false
   end
 
-  create_table "armors_pcs", id: false, force: :cascade do |t|
+  create_table "armors_pcs", force: :cascade do |t|
     t.integer "armor_id"
     t.integer "pc_id"
   end
@@ -73,7 +73,7 @@ ActiveRecord::Schema.define(version: 20160221232303) do
     t.datetime "updated_at",  null: false
   end
 
-  create_table "items_pcs", id: false, force: :cascade do |t|
+  create_table "items_pcs", force: :cascade do |t|
     t.integer "item_id"
     t.integer "pc_id"
   end
