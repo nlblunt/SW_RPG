@@ -17,10 +17,11 @@ body#player
 
 body#character
 {
-	background-image: image_url("scroll.PNG");
+	//background-image: image_url("scroll.PNG");
 	background-size: 100%;
 	background-repeat: no-repeat;
-	background-color: rgb(253, 234, 203);
+    background-color: #F5F5F5;
+	//background-color: rgb(253, 234, 203);
 	font-family: 'Rock Salt', cursive;
 	font-size: 12px;
 }
@@ -33,6 +34,20 @@ body#gm
 	background-size: 100%;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
+}
+
+.character-heading
+{
+    color: rgb(169, 69, 68);
+}
+
+.character-section
+{
+    background-color: white;
+    border-bottom: 1px solid rgb(200, 200, 200);
+    border-right: 1px solid rgb(200, 200, 200);
+    width: 100%;
+    margin: 5px;
 }
 
 img.nav-header
@@ -144,10 +159,11 @@ form#editplayer
 
 div#characterselected
 {
-	width: 80%;
-	margin-left: 10%;
-	margin-right: 10%;
-	margin-top: 50px;
+	//width: 80%;
+	//margin-left: 10%;
+	//margin-right: 10%;
+	width: 100%;
+    margin-top: 50px;
 }
 
 div#characterselect img

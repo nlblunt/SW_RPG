@@ -44,7 +44,7 @@ json.weapons @pc.pcs_weapons do |w|
     json.notes w.weapon.notes
 end
 
-json.armors pc.armors_pcs do |a|
+json.armors @pc.armors_pcs do |a|
     json.id a.id
     json.name a.armor.name
     json.description a.armor.description
@@ -54,7 +54,7 @@ json.armors pc.armors_pcs do |a|
     json.notes a.armor.notes
 end
 
-json.items pc.items_pcs do |i|
+json.items @pc.items_pcs do |i|
     json.id i.id
     json.name i.item.name
     json.description i.item.description
