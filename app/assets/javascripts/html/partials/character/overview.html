@@ -1,7 +1,7 @@
 <div id="character_overview" ng-show="character_stage == 'overview'">
     <section class="character-section">
         <img ng-src={{character.avatar}} class="character-avatar">
-        <h2>{{character.name}}</h2>
+        <h2 class="character-heading">{{character.name}}</h2>
         <p>Race: {{character.race_name}}</p>
         <p>Career: {{character.career_name}}</p>
         <p>XP: {{character.xp}}</p>
@@ -9,7 +9,7 @@
     </section>
     
     <section class="character-section">
-    <h2>Health</h2>
+    <h2 class="character-heading">Health</h2>
     <table class="table">
         <tr>
             <td>Wounds</td>
@@ -33,7 +33,7 @@
     </section>
 
     <section class="character-section">
-    <h2>Attributes</h2>
+    <h2 class="character-heading">Attributes</h2>
     <table class="table">
         <tr>
             <td>Agility</td>
