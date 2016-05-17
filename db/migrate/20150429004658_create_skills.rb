@@ -3,6 +3,7 @@ class CreateSkills < ActiveRecord::Migration
     create_table :skills do |t|
       t.string :name
       t.string :attrib
+      t.text :description
 
 
       t.timestamps null: false

@@ -2,7 +2,7 @@ class CreateArmors < ActiveRecord::Migration
   def change
     create_table :armors do |t|
       t.string :name
-      t.string :description
+      t.text :description
       t.integer :defense
       t.integer :soak
       t.integer :price

@@ -8,6 +8,7 @@ class CreateWeapons < ActiveRecord::Migration
       t.string :range
       t.integer :price
       t.string :special
+      t.text :description
       t.text :notes
       
       t.timestamps null: false
