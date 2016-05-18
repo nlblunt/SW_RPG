@@ -672,13 +672,13 @@ appControllers.controller('playerController', ['$scope', '$filter', '$interval',
 				$scope.signed_in = true;
 				$scope.stage = "characterselect";
 
-//Get a list of players PCs
-		playerFactory.getPlayerPcs($scope.player.id)
-		.then(function(result)
-		{
-			//Assign the list of PCs to $scope.pcs
-			$scope.pcs = result;
-		});
+                //Get a list of players PCs
+                playerFactory.getPlayerPcs($scope.player.id)
+                .then(function(result)
+                {
+                    //Assign the list of PCs to $scope.pcs
+                    $scope.pcs = result;
+                });
 			});
 
 		return;
@@ -759,171 +759,171 @@ appControllers.controller('playerController', ['$scope', '$filter', '$interval',
 	{
 			for (var i = 0; i < len; i++)
 			{
-				$scope.skills[i].dice = new Array;
+				$scope.character.skills[i].dice = new Array;
 				
 				//Attribute is greater than rank
-				var attrib = $scope.skills[i].attrib;
+				var attrib = $scope.character.skills[i].attrib;
 				
 				switch(attrib)
 				{
 					case "Agility":
-						if ($scope.character.agility >= $scope.skills[i].rank)
+						if ($scope.character.agility >= $scope.character.skills[i].rank)
 						{
-							for(var j=0; j<$scope.skills[i].rank; j++)
+							for(var j=0; j<$scope.character.skills[i].rank; j++)
 							{
-								$scope.skills[i].dice.push({die: "Proficient.png"});
+								$scope.character.skills[i].dice.push({die: "Proficient.png"});
 							}
 							
-							for(var h=0; h<$scope.character.agility - $scope.skills[i].rank; h++)
+							for(var h=0; h<$scope.character.agility - $scope.character.skills[i].rank; h++)
 							{
-								$scope.skills[i].dice.push({die: "Standard.png"});
+								$scope.character.skills[i].dice.push({die: "Standard.png"});
 							}
 						}
 						else
 						{
 							for(var j=0; j<$scope.character.agility; j++)
 							{
-								$scope.skills[i].dice.push({die: "Proficient.png"});
+								$scope.character.skills[i].dice.push({die: "Proficient.png"});
 							}
 							
-							for(var h=0; h<$scope.skills[i].rank - $scope.character.agility; h++)
+							for(var h=0; h<$scope.character.skills[i].rank - $scope.character.agility; h++)
 							{
-								$scope.skills[i].dice.push({die: "Standard.png"});
+								$scope.character.skills[i].dice.push({die: "Standard.png"});
 							}
 						}
 						break;
 						
 					case "Brawn":
-						if ($scope.character.brawn >= $scope.skills[i].rank)
+						if ($scope.character.brawn >= $scope.character.skills[i].rank)
 						{
-							for(var j=0; j<$scope.skills[i].rank; j++)
+							for(var j=0; j<$scope.character.skills[i].rank; j++)
 							{
-								$scope.skills[i].dice.push({die: "Proficient.png"});
+								$scope.character.skills[i].dice.push({die: "Proficient.png"});
 							}
 							
-							for(var h=0; h<$scope.character.brawn - $scope.skills[i].rank; h++)
+							for(var h=0; h<$scope.character.brawn - $scope.character.skills[i].rank; h++)
 							{
-								$scope.skills[i].dice.push({die: "Standard.png"});
+								$scope.character.skills[i].dice.push({die: "Standard.png"});
 							}
 						}
 						else
 						{
 							for(var j=0; j<$scope.character.brawn; j++)
 							{
-								$scope.skills[i].dice.push({die: "Proficient.png"});
+								$scope.character.skills[i].dice.push({die: "Proficient.png"});
 							}
 							
-							for(var h=0; h<$scope.skills[i].rank - $scope.character.brawn; h++)
+							for(var h=0; h<$scope.character.skills[i].rank - $scope.character.brawn; h++)
 							{
-								$scope.skills[i].dice.push({die: "Standard.png"});
+								$scope.character.skills[i].dice.push({die: "Standard.png"});
 							}
 						}
 						break;
 						
 					case "Cunning":
-						if ($scope.character.cunning >= $scope.skills[i].rank)
+						if ($scope.character.cunning >= $scope.character.skills[i].rank)
 						{
-							for(var j=0; j<$scope.skills[i].rank; j++)
+							for(var j=0; j<$scope.character.skills[i].rank; j++)
 							{
-								$scope.skills[i].dice.push({die: "Proficient.png"});
+								$scope.character.skills[i].dice.push({die: "Proficient.png"});
 							}
 							
-							for(var h=0; h<$scope.character.cunning - $scope.skills[i].rank; h++)
+							for(var h=0; h<$scope.character.cunning - $scope.character.skills[i].rank; h++)
 							{
-								$scope.skills[i].dice.push({die: "Standard.png"});
+								$scope.character.skills[i].dice.push({die: "Standard.png"});
 							}
 						}
 						else
 						{
 							for(var j=0; j<$scope.character.cunning; j++)
 							{
-								$scope.skills[i].dice.push({die: "Proficient.png"});
+								$scope.character.skills[i].dice.push({die: "Proficient.png"});
 							}
 							
-							for(var h=0; h<$scope.skills[i].rank - $scope.character.cunning; h++)
+							for(var h=0; h<$scope.character.skills[i].rank - $scope.character.cunning; h++)
 							{
-								$scope.skills[i].dice.push({die: "Standard.png"});
+								$scope.character.skills[i].dice.push({die: "Standard.png"});
 							}
 						}
 						break;
 						
 					case "Intellect":
-						if ($scope.character.intellect >= $scope.skills[i].rank)
+						if ($scope.character.intellect >= $scope.character.skills[i].rank)
 						{
-							for(var j=0; j<$scope.skills[i].rank; j++)
+							for(var j=0; j<$scope.character.skills[i].rank; j++)
 							{
-								$scope.skills[i].dice.push({die: "Proficient.png"});
+								$scope.character.skills[i].dice.push({die: "Proficient.png"});
 							}
 							
-							for(var h=0; h<$scope.character.intellect - $scope.skills[i].rank; h++)
+							for(var h=0; h<$scope.character.intellect - $scope.character.skills[i].rank; h++)
 							{
-								$scope.skills[i].dice.push({die: "Standard.png"});
+								$scope.character.skills[i].dice.push({die: "Standard.png"});
 							}
 						}
 						else
 						{
 							for(var j=0; j<$scope.character.intellect; j++)
 							{
-								$scope.skills[i].dice.push({die: "Proficient.png"});
+								$scope.character.skills[i].dice.push({die: "Proficient.png"});
 							}
 							
-							for(var h=0; h<$scope.skills[i].rank - $scope.character.intellect; h++)
+							for(var h=0; h<$scope.character.skills[i].rank - $scope.character.intellect; h++)
 							{
-								$scope.skills[i].dice.push({die: "Standard.png"});
+								$scope.character.skills[i].dice.push({die: "Standard.png"});
 							}
 						}
 						break;
 						
 					case "Presence":
-						if ($scope.character.presence >= $scope.skills[i].rank)
+						if ($scope.character.presence >= $scope.character.skills[i].rank)
 						{
-							for(var j=0; j<$scope.skills[i].rank; j++)
+							for(var j=0; j<$scope.character.skills[i].rank; j++)
 							{
-								$scope.skills[i].dice.push({die: "Proficient.png"});
+								$scope.character.skills[i].dice.push({die: "Proficient.png"});
 							}
 							
-							for(var h=0; h<$scope.character.presence - $scope.skills[i].rank; h++)
+							for(var h=0; h<$scope.character.presence - $scope.character.skills[i].rank; h++)
 							{
-								$scope.skills[i].dice.push({die: "Standard.png"});
+								$scope.character.skills[i].dice.push({die: "Standard.png"});
 							}
 						}
 						else
 						{
 							for(var j=0; j<$scope.character.presence; j++)
 							{
-								$scope.skills[i].dice.push({die: "Proficient.png"});
+								$scope.character.skills[i].dice.push({die: "Proficient.png"});
 							}
 							
-							for(var h=0; h<$scope.skills[i].rank - $scope.character.presence; h++)
+							for(var h=0; h<$scope.character.skills[i].rank - $scope.character.presence; h++)
 							{
-								$scope.skills[i].dice.push({die: "Standard.png"});
+								$scope.character.skills[i].dice.push({die: "Standard.png"});
 							}
 						}
 						break;
 						
 					case "Willpower":
-						if ($scope.character.willpower >= $scope.skills[i].rank)
+						if ($scope.character.willpower >= $scope.character.skills[i].rank)
 						{
-							for(var j=0; j<$scope.skills[i].rank; j++)
+							for(var j=0; j<$scope.character.skills[i].rank; j++)
 							{
-								$scope.skills[i].dice.push({die: "Proficient.png"});
+								$scope.character.skills[i].dice.push({die: "Proficient.png"});
 							}
 							
-							for(var h=0; h<$scope.character.willpower - $scope.skills[i].rank; h++)
+							for(var h=0; h<$scope.character.willpower - $scope.character.skills[i].rank; h++)
 							{
-								$scope.skills[i].dice.push({die: "Standard.png"});
+								$scope.character.skills[i].dice.push({die: "Standard.png"});
 							}
 						}
 						else
 						{
 							for(var j=0; j<$scope.character.willpower; j++)
 							{
-								$scope.skills[i].dice.push({die: "Proficient.png"});
+								$scope.character.skills[i].dice.push({die: "Proficient.png"});
 							}
 							
-							for(var h=0; h<$scope.skills[i].rank - $scope.character.willpower; h++)
+							for(var h=0; h<$scope.character.skills[i].rank - $scope.character.willpower; h++)
 							{
-								$scope.skills[i].dice.push({die: "Standard.png"});
+								$scope.character.skills[i].dice.push({die: "Standard.png"});
 							}
 						}
 						break;
@@ -939,14 +939,15 @@ appControllers.controller('playerController', ['$scope', '$filter', '$interval',
 		
 		//Set the selected Character
 		$scope.character = $scope.pcs[index];
-
+        
 		//Get the selected Characters skills
 		playerFactory.getPcSkills($scope.character.id)
 		.then(function(result)
 		{
-			$scope.skills = result;
+			//$scope.skills = result;
 			
-			$scope.setDice(result.length);
+			//$scope.setDice(result.length);
+            $scope.setDice($scope.character.skills.length);
 		});
 		
 
@@ -954,7 +955,7 @@ appControllers.controller('playerController', ['$scope', '$filter', '$interval',
 		playerFactory.getPcWeapons($scope.character.id)
 		.then(function(result)
 		{
-			$scope.weapons = result;
+			//$scope.weapons = result;
 		});
 
 		//Get the selected Character armor
@@ -962,7 +963,7 @@ appControllers.controller('playerController', ['$scope', '$filter', '$interval',
 		.then(function(result)
 		{
 			console.log(result);
-			$scope.armor = result;
+			//$scope.armor = result;
 		});
 
 		//Get the selected Character items
@@ -978,28 +979,19 @@ appControllers.controller('playerController', ['$scope', '$filter', '$interval',
 		//Set initail character_stage
 		$scope.character_stage = "overview";
 		
-		//Start update timer to auto update - 3 second interval
+		//Start update timer to auto update - 5 second interval
 		tmr_attr_update = $interval(function()
 		{
 			playerFactory.getPc($scope.character.id)
 			.then(function(result)
 			{
+                //Update the player
 				$scope.character = result;
+                //Redraw the dice
+                $scope.setDice($scope.character.skills.length);
 			});
 		}
-		,3000);
-		
-		//Skills update - 30 second interval (should not change much)
-		tmr_skills_update = $interval(function()
-		{
-			playerFactory.getPcSkills($scope.character.id)
-			.then(function(result)
-			{
-				$scope.skills = result;
-				$scope.setDice(result.length);
-			});
-		}
-		,30000);
+		,5000);
 	};
 	
 	

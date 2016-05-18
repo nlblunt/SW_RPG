@@ -6,14 +6,14 @@
             <td>Skill</td>
             <td>Attribute</td>
             <td>Rank</td>
-            <td>C</td>
+            <td>Career</td>
             <td>Dice</td>
         </tr>
-            <tr ng-repeat="skill in skills | orderBy:'name'" >
+            <tr ng-repeat="skill in character.skills | orderBy:'name'" >
                 <td>{{skill.name}}</td>
                 <td>{{skill.attrib}}</td>
-                <td class="text-right">{{skill.rank}}</td>
-                <td class="text-center" ng-if="skill.career == true">*</td>
+                <td class="text-right emp-color">{{skill.rank}}</td>
+                <td class="text-center emp-color" ng-if="skill.career == true">*</td>
                 <td ng-if="skill.career == false"></td>
                 <td>
                     <div class="float-right" ng-repeat="die in skill.dice">

@@ -22,7 +22,7 @@ body#character
 	background-repeat: no-repeat;
     background-color: #F5F5F5;
 	//background-color: rgb(253, 234, 203);
-	font-family: 'Rock Salt', cursive;
+	//font-family: 'Rock Salt', cursive;
 	font-size: 12px;
 }
 
@@ -42,6 +42,12 @@ body#gm
     font-family: 'Biryani', sans-serif;
 }
 
+.emp-color
+{
+    color: rgb(160, 60, 68);
+    font-weight: bold;
+}
+
 .character-section
 {
     background-color: white;
@@ -49,6 +55,12 @@ body#gm
     border-right: 1px solid rgb(200, 200, 200);
     width: 100%;
     margin: 5px;
+}
+
+.character-overview-section
+{
+    width: 45%;
+    float: left;
 }
 
 img.nav-header
@@ -196,7 +208,7 @@ table#character-stats-preview
 	font-size: 10px;
 }
 
-table.skills
+table#skills
 {
 	min-width: 320px;
 	max-width: 500px;

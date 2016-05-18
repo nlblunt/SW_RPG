@@ -2,32 +2,33 @@
     <section class="character-section">
         <img ng-src={{character.avatar}} class="character-avatar">
         <h2 class="character-heading">{{character.name}}</h2>
-        <p>Race: {{character.race_name}}</p>
-        <p>Career: {{character.career_name}}</p>
-        <p>XP: {{character.xp}}</p>
-        <p>Credits: {{character.credits}}</p>
+        <section class="character-overview-section">
+            <p>Race: {{character.race_name}}</p>
+            <p>Career: {{character.career_name}}</p>
+            <p>XP: {{character.xp}}</p>
+            <p>Credits: {{character.credits}}</p>
+        </section>
+        <section class="character-overview-section">
+            <p>Obligation: N/A</p>
+            <p>Duty: N/A</p>
+            <p>Force Balance: N/A</p>
+        </section>
     </section>
     
     <section class="character-section">
     <h2 class="character-heading">Health</h2>
     <table class="table">
         <tr>
-            <td>Wounds</td>
-            <td>{{character.wounds_current}}</td>
-            <td>Max Wounds</td>
-            <td>{{character.wounds_thresh}}</td>
-        </tr>
-        <tr>
             <td>Strain</td>
-            <td>{{character.strain_current}}</td>
-            <td>Max Strain</td>
-            <td>{{character.strain_thresh}}</td>
+            <td class="emp-color">{{character.strain_current}} / {{character.strain_thresh}}</td>
+            <td>Soak</td>
+            <td class="emp-color">{{character.brawn + armor[0].soak}}</td>
         </tr>
         <tr>
-            <td>Soak</td>
-            <td>{{character.brawn + armor[0].soak}}</td>
+            <td>Wounds</td>
+            <td class="emp-color">{{character.wounds_current}} / {{character.wounds_thresh}}</td>
             <td>Defence</td>
-            <td>{{0 + armor[0].soak}}<td>
+            <td class="emp-color">{{0 + armor[0].soak}}</td>
         </tr>
     </table>
     </section>
@@ -37,20 +38,20 @@
     <table class="table">
         <tr>
             <td>Agility</td>
-            <td>{{character.agility}}</td>
+            <td class="emp-color">{{character.agility}}</td>
             <td>Brawn</td>
-            <td>{{character.brawn}}</td>
+            <td class="emp-color">{{character.brawn}}</td>
             <td>Cunning</td>
-            <td>{{character.cunning}}</td>
+            <td class="emp-color">{{character.cunning}}</td>
 
         </tr>
         <tr>
             <td>Intellect</td>
-            <td>{{character.intellect}}</td>
+            <td class="emp-color">{{character.intellect}}</td>
             <td>Presence</td>
-            <td>{{character.presence}}</td>
+            <td class="emp-color">{{character.presence}}</td>
             <td>Willpower</td>
-            <td>{{character.willpower}}</td>
+            <td class="emp-color">{{character.willpower}}</td>
         </tr>
     </table>
     </section>
