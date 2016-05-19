@@ -24,6 +24,7 @@ body#character
 	//background-color: rgb(253, 234, 203);
 	//font-family: 'Rock Salt', cursive;
 	font-size: 12px;
+    min-width: 600px;
 }
 
 body#gm
@@ -39,7 +40,8 @@ body#gm
 .character-heading
 {
     color: rgb(169, 69, 68);
-    font-family: 'Biryani', sans-serif;
+    //font-family: 'Biryani', sans-serif;
+    font-family: 'STARWARS', sans-serif;
 }
 
 .emp-color
