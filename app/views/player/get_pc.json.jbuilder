@@ -22,8 +22,6 @@ json.career_name @pc.career.name
 json.avatar @pc.avatar
 json.status @pc.status
 
-json.skills @pc.skills
-
 json.skills @pc.pcs_skills do |s|
     json.id   s.skill.id
     json.name s.skill.name
