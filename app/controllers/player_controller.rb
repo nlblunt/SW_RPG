@@ -118,18 +118,81 @@ class PlayerController < ApplicationController
       end
   end
     
+  def delete_weapon
+      #Get the pcs_weapon row to delete
+      pcs_weapon = PcsWeapon.find_by_id(params[:id])
+    
+      #delete the pcs_weapon row
+      if pcs_weapon.valid?
+          pcs_weapon.delete
+          render json: {msg: "Weapon deleted"}
+      else
+          render status: :error, json: {e: "Error deleting weapon"}
+      end
+  end
+  
   def get_pc_armor
     pc = Pc.find(params[:id])
 
     render json: pc.armors
   end
 
+  def add_armor
+    #Add the armor to the PC
+      pc = Pc.find(params[:id])
+      a = Armor.find(params[:a_id])
+      
+      if pc.armors << a
+          render json: {msg: "Added armor"}
+      else
+          render status: :error, json: {e: "Error adding armor"}
+      end
+  end
+  
+  def delete_armor
+    #Delete the armor from the PC
+      armors_pcs = ArmorsPc.find_by_id(params[:id])
+    
+      #delete the armors_pcs row
+      if armors_pcs.valid?
+          armors_pcs.delete
+          render json: {msg: "Armor deleted"}
+      else
+          render status: :error, json: {e: "Error deleting armor"}
+      end
+  end
+  
   def get_pc_items
     pc = Pc.find(params[:id])
 
     render json: pc.items
   end
 
+  def add_item
+    #Add the item to the PC
+    pc = Pc.find(params[:id])
+    i = Item.find(params[:i_id])
+      
+    if pc.items << i
+      render json: {msg: "Added item"}
+    else
+      render status: :error, json: {e: "Error adding item"}
+    end
+  end
+  
+  def delete_item
+    #Delete the item from the PC
+    items_pcs = ItemsPc.find_by_id(params[:id])
+    
+    #delete the items_pcs row
+    if items_pcs.valid?
+      items_pcs.delete
+      render json: {msg: "Item deleted"}
+      else
+      render status: :error, json: {e: "Error deleting item"}
+      end
+  end
+  
   def get_pc_career_skills
     #Get the PC we are needing the career skills for
     pc = Pc.find(params[:id])

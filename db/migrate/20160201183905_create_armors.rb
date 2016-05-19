@@ -2,7 +2,7 @@ class CreateArmors < ActiveRecord::Migration
   def change
     create_table :armors do |t|
       t.string :name
-      t.string :description
+      t.text :description
       t.integer :defense
       t.integer :soak
       t.integer :price
@@ -11,7 +11,7 @@ class CreateArmors < ActiveRecord::Migration
       t.timestamps null: false
     end
 
-    create_table :armors_pcs, id: false do |t|
+    create_table :armors_pcs do |t|
       t.belongs_to :armor
       t.belongs_to :pc
     end

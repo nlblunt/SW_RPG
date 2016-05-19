@@ -7,9 +7,14 @@ class Pc < ActiveRecord::Base
     has_and_belongs_to_many :specializations
     has_and_belongs_to_many :sessions
     
-    has_and_belongs_to_many :weapons
-    has_and_belongs_to_many :armors
-    has_and_belongs_to_many :items
+    has_many :pcs_weapons
+    has_many :weapons, :through => :pcs_weapons
+    
+    has_many :armors_pcs
+    has_many :armors, :through => :armors_pcs
+    
+    has_many :items_pcs
+    has_many :items, :through => :items_pcs
     
     #Initialize the new PC
     #Setup skill table

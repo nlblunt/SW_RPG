@@ -9,7 +9,7 @@ class CreateItems < ActiveRecord::Migration
       t.timestamps null: false
     end
 	  
-	  create_table :items_pcs, id: false do |t|
+	  create_table :items_pcs do |t|
 		  t.belongs_to :item
       	  t.belongs_to :pc
     end

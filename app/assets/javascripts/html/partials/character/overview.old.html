@@ -1,0 +1,51 @@
+<div id="character_overview" ng-show="character_stage == 'overview'">
+        <img ng-src={{character.avatar}} class="character-avatar">
+    <h2>{{character.name}}</h2>
+    <p>Race: {{character.race_name}}</p>
+    <p>Career: {{character.career_name}}</p>
+    <p>XP: {{character.xp}}</p>
+    <p>Credits: {{character.credits}}</p>
+
+    <h2>Health</h2>
+    <table class="table">
+        <tr>
+            <td>Wounds</td>
+            <td>{{character.wounds_current}}</td>
+            <td>Max Wounds</td>
+            <td>{{character.wounds_thresh}}</td>
+        </tr>
+        <tr>
+            <td>Strain</td>
+            <td>{{character.strain_current}}</td>
+            <td>Max Strain</td>
+            <td>{{character.strain_thresh}}</td>
+        </tr>
+        <tr>
+            <td>Soak</td>
+            <td>{{character.brawn + armor[0].soak}}</td>
+            <td>Defence</td>
+            <td>{{armor[0].soak}}<td>
+        </tr>
+    </table>
+    
+    <h2>Attributes</h2>
+    <table class="table">
+        <tr>
+            <td>Agility</td>
+            <td>{{character.agility}}</td>
+            <td>Brawn</td>
+            <td>{{character.brawn}}</td>
+            <td>Cunning</td>
+            <td>{{character.cunning}}</td>
+
+        </tr>
+        <tr>
+            <td>Intellect</td>
+            <td>{{character.intellect}}</td>
+            <td>Presence</td>
+            <td>{{character.presence}}</td>
+            <td>Willpower</td>
+            <td>{{character.willpower}}</td>
+        </tr>
+    </table>
+</div>

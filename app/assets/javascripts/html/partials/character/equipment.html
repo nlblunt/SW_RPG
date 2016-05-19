@@ -1,5 +1,6 @@
 <div id="character_equipment" ng-show="character_stage == 'equipment'">
-    <h2>Weapons</h2>
+    <section class="character-section">
+    <h2 class="character-heading">Weapons</h2>
     <table class="table table-stripped">
     	<thead>
     		<tr>
@@ -13,7 +14,7 @@
     		</tr>
     	</thead>
     	<tbody>
-    		<tr ng-repeat="w in weapons">
+    		<tr ng-repeat="w in character.weapons">
     			<td>{{w.name}}</td>
     			<td>{{w.skill}}</td>
     			<td>{{w.damage}}</td>
@@ -24,8 +25,10 @@
     		</tr>
     	</tbody>
     </table>
+    </section>
 
-    <h2>Armor</h2>
+    <section class="character-section">
+    <h2 class="character-heading">Armor</h2>
     <table class="table table-stripped">
         <thead>
             <tr>
@@ -36,7 +39,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="a in armor">
+            <tr ng-repeat="a in character.armors">
                 <td>{{a.name}}</td>
                 <td>{{a.soak}}</td>
                 <td>{{a.defense}}</td>
@@ -44,8 +47,10 @@
             </tr>
         </tbody>
     </table>
+    </section>
 
-    <h2>Items</h2>
+    <section class="character-section">
+    <h2 class="character-heading">Items</h2>
     <table class="table table-stripped">
         <thead>
             <tr>
@@ -54,10 +59,11 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="i in items">
+            <tr ng-repeat="i in character.items">
                 <td>{{i.name}}</td>
                 <td>{{i.description}}</td>
             </tr>
         </tbody>
     </table>
+    <section>
 </div>
