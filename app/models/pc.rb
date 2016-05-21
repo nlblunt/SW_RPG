@@ -36,8 +36,8 @@ class Pc < ActiveRecord::Base
         self.strain_thresh = self.race.strain_thresh + self.willpower
         
         #Set wounds, critical wounds, soak, and strain to 0
-        self.wounds_current = 0
-        self.strain_current = 0
+        self.wounds_current = self.wounds_thresh
+        self.strain_current = self.strain_thresh
         self.critical       = 0
         self.soak           = self.brawn
         
