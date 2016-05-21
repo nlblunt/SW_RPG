@@ -1,6 +1,7 @@
 <div id="characterselected" ng-show="stage == 'characterselected'">
+    <img ng-src="images/imperial_logo.jpg" ng-click="toggle_char_menu()" class="nav-icon">
     <div>
-    	<ul id="character-nav">
+    	<ul id="character-nav" class="{{char_nav_class}}">
     		<li>
                 <a href ng-click="set_char_stage('overview')">
                 <img class="pc-nav" ng-src="/images/pc/pc_overview.png">      

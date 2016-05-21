@@ -15,7 +15,7 @@
     	</thead>
     	<tbody>
     		<tr ng-repeat="w in character.weapons">
-    			<td>{{w.name}}</td>
+    			<td class="emp-color">{{w.name}}</td>
     			<td>{{w.skill}}</td>
     			<td>{{w.damage}}</td>
     			<td>{{w.critical}}</td>
@@ -40,7 +40,7 @@
         </thead>
         <tbody>
             <tr ng-repeat="a in character.armors">
-                <td>{{a.name}}</td>
+                <td class="emp-color">{{a.name}}</td>
                 <td>{{a.soak}}</td>
                 <td>{{a.defense}}</td>
                 <td>{{a.price}}</td>
@@ -60,7 +60,7 @@
         </thead>
         <tbody>
             <tr ng-repeat="i in character.items">
-                <td>{{i.name}}</td>
+                <td class="emp-color">{{i.name}}</td>
                 <td>{{i.description}}</td>
             </tr>
         </tbody>

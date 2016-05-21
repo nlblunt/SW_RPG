@@ -937,41 +937,14 @@ appControllers.controller('playerController', ['$scope', '$filter', '$interval',
 		//Set the body to character
 		$scope.$root.body_id = "character";
 		
+        //Hide the nav menu
+        $scope.char_nav_class = "nav-hidden";
+        
 		//Set the selected Character
 		$scope.character = $scope.pcs[index];
         
-		//Get the selected Characters skills
-		playerFactory.getPcSkills($scope.character.id)
-		.then(function(result)
-		{
-			//$scope.skills = result;
-			
-			//$scope.setDice(result.length);
-            $scope.setDice($scope.character.skills.length);
-		});
-		
-
-		//Get the selectec Character weapons
-		playerFactory.getPcWeapons($scope.character.id)
-		.then(function(result)
-		{
-			//$scope.weapons = result;
-		});
-
-		//Get the selected Character armor
-		playerFactory.getPcArmor($scope.character.id)
-		.then(function(result)
-		{
-			console.log(result);
-			//$scope.armor = result;
-		});
-
-		//Get the selected Character items
-		//playerFactory.getPcItems($scope.character.id)
-		//.then(function(result)
-		//{
-		//	$scope.items = result;
-		//});
+        //Set the skill dice
+        $scope.setDice($scope.character.skills.length);
 
 		//Set the stage to the character
 		$scope.stage = "characterselected";
@@ -994,7 +967,16 @@ appControllers.controller('playerController', ['$scope', '$filter', '$interval',
 		,5000);
 	};
 	
-	
+	$scope.toggle_char_menu = function()
+    {
+        //Toggle the state of the nav menu
+        if ($scope.char_nav_class == "nav-hidden")
+            $scope.char_nav_class = "nav-show";
+        else
+            $scope.char_nav_class = "nav-hidden";
+        
+    };
+    
 	$scope.$on('destroy', function()
 	{
 		//Called on 'destroy'.  Stop tmr_attr_update
@@ -1201,6 +1183,10 @@ appControllers.controller('playerController', ['$scope', '$filter', '$interval',
 	
 	$scope.set_char_stage = function(state)
 	{
+        //Set the character stage
 		$scope.character_stage = state;
+        
+        //Hide the menu again
+        $scope.char_nav_class = "nav-hidden";
 	};
 }]);

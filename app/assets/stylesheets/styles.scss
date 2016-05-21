@@ -65,6 +65,23 @@ body#gm
     display: inline-block;
 }
 
+.nav-hidden
+{
+    //height: 0px;
+    display: none;
+}
+
+.nav-icon
+{
+    width: 50px;
+}
+
+.nav-show
+{
+    //height: auto;
+    display: block;
+}
+
 img.nav-header
 {
 	width: 100%;
