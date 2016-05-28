@@ -112,11 +112,11 @@ app.directive('characterEquipment', function()
 	};
 });
 
-app.directive('characterOptions', function()
+app.directive('characterCombat', function()
 {
 	return{
 		restrict: 'E',
-		templateUrl: 'html/partials/character/options.html'
+		templateUrl: 'html/partials/character/combat.html'
 	};
 });
 

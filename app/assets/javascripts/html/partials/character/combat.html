@@ -1,0 +1,76 @@
+<div id="character_combat" ng-show="character_stage == 'combat'">
+    <div class="row">
+        <div class="col-sm-6">
+            <section class="character-section">
+                <h2 class="character-heading">COMBAT STATS</h2>
+                <table class="table">
+                    <tr>
+                        <td>Strain</td>
+                        <td class="emp-color">{{character.strain_current}} / {{character.strain_thresh}}</td>
+                        <td>Soak</td>
+                        <td class="emp-color">{{character.brawn + armor[0].soak}}</td>
+                    </tr>
+                    <tr>
+                        <td>Wounds</td>
+                        <td class="emp-color">{{character.wounds_current}} / {{character.wounds_thresh}}</td>
+                        <td>Defence</td>
+                        <td class="emp-color">{{0 + armor[0].soak}}</td>
+                    </tr>
+                </table>
+            </section>
+        </div>
+        
+        <div class="col-sm-6">
+            <section class="character-section">
+                <h2 class="character-heading">WEAPONS</h2>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Skill</td>
+                            <td>Damage</td>
+                            <td>Critical</td>
+                            <td>Range</td>
+                            <td>Special</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="w in character.weapons">
+                            <td class="emp-color">{{w.name}}</td>
+                            <td>{{w.skill}}<br>
+                               <div ng-repeat="skill in character.skills | filter:{name: w.skill}">
+                                    <div ng-repeat="die in skill.dice">
+                                        <img class="micro-dice float-left" ng-src="images/{{skill.dice[0].die}}" />
+                                    </div>
+                                </div>
+                            </td>
+                            
+                            <td>{{w.damage}}</td>
+                            <td>{{w.critical}}</td>
+                            <td>{{w.range}}</td>
+                            <td>{{w.special}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            
+            <section class="character-section">
+                <h2 class="character-heading">ITEMS</h2>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Description</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="i in character.items">
+                            <td class="emp-color">{{i.name}}</td>
+                            <td>{{i.description}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </div>
+    </div>
+</div>
